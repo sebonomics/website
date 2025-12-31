@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { useEffect, useRef, useState } from "react"
 
 export default function Home() {
@@ -115,6 +116,28 @@ export default function Home() {
                   I believe that people are the greatest asset that any of us will have in life. The people who work
                   with you, for you, and around you are some of the largest predictors of where life will take you.
                 </p>
+              </div>
+            </div>
+
+            <div className="hidden lg:flex lg:col-span-2 items-start justify-center self-stretch">
+              <div className="relative w-full max-w-md h-full">
+                <div className="absolute inset-0 rounded-lg overflow-hidden">
+                  <Image
+                    src="/my-photo.jpg"
+                    alt="Sebastian Tan"
+                    fill
+                    className="object-cover"
+                    priority
+                    style={{
+                      maskImage: 'radial-gradient(ellipse 90% 90% at center, black 60%, transparent 100%)',
+                      WebkitMaskImage: 'radial-gradient(ellipse 90% 90% at center, black 60%, transparent 100%)',
+                    }}
+                  />
+                </div>
+                <div className="absolute inset-0 rounded-lg pointer-events-none bg-gradient-to-b from-background/0 via-background/0 to-background/30"></div>
+                <div className="absolute inset-0 rounded-lg pointer-events-none bg-gradient-to-t from-background/0 via-background/0 to-background/30"></div>
+                <div className="absolute inset-0 rounded-lg pointer-events-none bg-gradient-to-r from-background/0 via-background/0 to-background/20"></div>
+                <div className="absolute inset-0 rounded-lg pointer-events-none bg-gradient-to-l from-background/0 via-background/0 to-background/20"></div>
               </div>
             </div>
           </div>
