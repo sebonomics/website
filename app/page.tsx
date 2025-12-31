@@ -219,38 +219,58 @@ export default function Home() {
           </section>
         )}
 
-        <section id="connect" ref={(el) => (sectionsRef.current[1] = el)} className="py-20 sm:py-32 opacity-0">
-          <div className="grid lg:grid-cols-2 gap-12 sm:gap-16">
-            <div className="space-y-6 sm:space-y-8">
-              <h2 className="text-3xl sm:text-4xl font-light">Let's Connect</h2>
-
-              <div className="space-y-4">
-                <div className="text-base sm:text-lg">sebastian@talunt.io</div>
-              </div>
-            </div>
-
-            <div className="space-y-6 sm:space-y-8">
-              <div className="text-sm text-muted-foreground font-mono">ELSEWHERE</div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {[
-                  { name: "GitHub", handle: "@sebonomics" },
-                  { name: "LinkedIn", handle: "sebonomics" },
-                  { name: "Twitter", handle: "@sebonomics" },
-                  { name: "Email", handle: "sebastian@talunt.io" },
-                ].map((social) => (
-                  <div
-                    key={social.name}
-                    className="p-4 border border-border rounded-lg"
-                  >
-                    <div className="space-y-2">
-                      <div className="text-foreground">
-                        {social.name}
-                      </div>
-                      <div className="text-sm text-muted-foreground">{social.handle}</div>
+        <section id="connect" ref={(el) => (sectionsRef.current[1] = el)} className="min-h-screen py-32 sm:py-40 lg:py-48 opacity-0 flex items-center">
+          <div className="w-full max-w-4xl mx-auto">
+            <h2 className="text-3xl sm:text-4xl font-light mb-12 sm:mb-16">Let's Connect</h2>
+            
+            <div className="grid lg:grid-cols-2 gap-6">
+              <div className="p-6 border border-border rounded-lg flex flex-col">
+                <div className="space-y-6">
+                  <div>
+                    <div className="text-sm text-muted-foreground font-mono mb-4">EMAIL</div>
+                    <Link href="mailto:sebastian@talunt.io" className="text-base sm:text-lg hover:opacity-70 transition-opacity">
+                      sebastian@talunt.io
+                    </Link>
+                  </div>
+                  <div>
+                    <div className="text-sm text-muted-foreground font-mono mb-4">ELSEWHERE</div>
+                    <div className="grid grid-cols-2 gap-4">
+                      {[
+                        { name: "GitHub", handle: "@sebonomics", url: "https://github.com/sebonomics" },
+                        { name: "LinkedIn", handle: "sebonomics", url: "https://linkedin.com/in/sebonomics" },
+                        { name: "Twitter", handle: "@sebonomics", url: "https://twitter.com/sebonomics" },
+                        { name: "Email", handle: "sebastian@talunt.io", url: "mailto:sebastian@talunt.io" },
+                      ].map((social) => (
+                        <Link
+                          key={social.name}
+                          href={social.url}
+                          target={social.name === "Email" ? undefined : "_blank"}
+                          rel={social.name === "Email" ? undefined : "noopener noreferrer"}
+                          className="space-y-1 hover:opacity-70 transition-opacity"
+                        >
+                          <div className="text-sm text-foreground font-medium">
+                            {social.name}
+                          </div>
+                          <div className="text-xs text-muted-foreground">{social.handle}</div>
+                        </Link>
+                      ))}
                     </div>
                   </div>
-                ))}
+                </div>
+              </div>
+
+              <div className="p-6 border border-border rounded-lg flex flex-col">
+                <div className="text-sm text-muted-foreground font-mono mb-4">LOCATIONS</div>
+                <div className="space-y-6">
+                  <div className="space-y-2">
+                    <div className="text-sm font-medium text-foreground">Founder's Inc Campus</div>
+                    <div className="text-sm text-muted-foreground">Fort Mason Center for Arts & Culture, Building B, San Francisco, CA.</div>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="text-sm font-medium text-foreground">Afore Capital Office</div>
+                    <div className="text-sm text-muted-foreground">680 2nd Street, San Francisco, CA 94107</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
