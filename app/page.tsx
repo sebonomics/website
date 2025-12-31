@@ -4,7 +4,7 @@ import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
 
 export default function Home() {
-  const [isDark, setIsDark] = useState(true)
+  const [isDark, setIsDark] = useState(false)
   const [activeSection, setActiveSection] = useState("")
   const sectionsRef = useRef<(HTMLElement | null)[]>([])
 
@@ -62,35 +62,31 @@ export default function Home() {
           <div className="grid lg:grid-cols-5 gap-12 sm:gap-16 w-full">
             <div className="lg:col-span-3 space-y-6 sm:space-y-8">
               <div className="space-y-3 sm:space-y-2">
-                <div className="text-sm text-muted-foreground font-mono tracking-wider">ABOUT / 2025</div>
+                <div className="text-sm text-muted-foreground font-mono tracking-wider">ABOUT / 2026</div>
                 <h1 className="text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight">Sebastian Tan</h1>
               </div>
 
               <div className="space-y-6 max-w-xl">
                 <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
-                  I currently live in California and founded{" "}
+                  I currently live in SF and am building{" "}
                   <Link href="https://talunt.io" className="text-foreground hover:underline">
                     Talunt.io
                   </Link>
-                  . I'm also a student at Stanford University, studying computer science and economics.
+                  . You can find me at either at the Founder's, Inc campus near Fort Mason or in Afore Capital's SoMa office.
                 </p>
 
                 <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
-                  I am currently on leave from college. I interned as a software engineer at{" "}
-                  <Link href="https://palantir.com" className="text-foreground hover:underline">
-                    Palantir
-                  </Link>
-                  , sold an early-stage company, built projects, and started Talunt.
+                  I'm also a student at Stanford, studying computer science and economics. Right now, I'm on leave, but I take trips down to campus sometimes to see friends.
+                </p>
+
+                <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
+                  On my gap year, I interned as a SWE at Palantir, founded Beacon (Acquired), explored NYC, and started Talunt. I fell in love with all types of food, but still enjoy staying active and lifting.
                 </p>
 
                 <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
                   I believe that people are the greatest asset that any of us will have in life. The people who work
                   with you, for you, and around you are some of the largest predictors of where life will take you.
                 </p>
-
-                <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 text-sm text-muted-foreground">
-                  <div>San Francisco Bay Area</div>
-                </div>
               </div>
             </div>
           </div>
@@ -104,7 +100,7 @@ export default function Home() {
           <div className="space-y-12 sm:space-y-16">
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
               <h2 className="text-3xl sm:text-4xl font-light">Experience</h2>
-              <div className="text-sm text-muted-foreground font-mono">2025</div>
+              <div className="text-sm text-muted-foreground font-mono">2026</div>
             </div>
 
             <div className="space-y-8 sm:space-y-12">
@@ -239,20 +235,7 @@ export default function Home() {
               <h2 className="text-3xl sm:text-4xl font-light">Let's Connect</h2>
 
               <div className="space-y-4">
-                <Link
-                  href="mailto:sebastian@talunt.io"
-                  className="group flex items-center gap-3 text-foreground hover:text-muted-foreground transition-colors duration-300"
-                >
-                  <span className="text-base sm:text-lg">sebastian@talunt.io</span>
-                  <svg
-                    className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </Link>
+                <div className="text-base sm:text-lg">sebastian@talunt.io</div>
               </div>
             </div>
 
@@ -261,23 +244,22 @@ export default function Home() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
-                  { name: "GitHub", handle: "@sebonomics", url: "https://github.com/sebonomics" },
-                  { name: "LinkedIn", handle: "sebonomics", url: "https://linkedin.com/in/sebonomics" },
-                  { name: "Twitter", handle: "@sebonomics", url: "https://twitter.com/sebonomics" },
-                  { name: "Email", handle: "sebastian@talunt.io", url: "mailto:sebastian@talunt.io" },
+                  { name: "GitHub", handle: "@sebonomics" },
+                  { name: "LinkedIn", handle: "sebonomics" },
+                  { name: "Twitter", handle: "@sebonomics" },
+                  { name: "Email", handle: "sebastian@talunt.io" },
                 ].map((social) => (
-                  <Link
+                  <div
                     key={social.name}
-                    href={social.url}
-                    className="group p-4 border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-300 hover:shadow-sm"
+                    className="p-4 border border-border rounded-lg"
                   >
                     <div className="space-y-2">
-                      <div className="text-foreground group-hover:text-muted-foreground transition-colors duration-300">
+                      <div className="text-foreground">
                         {social.name}
                       </div>
                       <div className="text-sm text-muted-foreground">{social.handle}</div>
                     </div>
-                  </Link>
+                  </div>
                 ))}
               </div>
             </div>
@@ -287,7 +269,7 @@ export default function Home() {
         <footer className="py-12 sm:py-16 border-t border-border">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 sm:gap-8">
             <div className="space-y-2">
-              <div className="text-sm text-muted-foreground">© 2025 Sebastian Tan. All rights reserved.</div>
+              <div className="text-sm text-muted-foreground">© 2026 Sebastian Tan. All rights reserved.</div>
             </div>
 
             <div className="flex items-center gap-4">
@@ -317,22 +299,6 @@ export default function Home() {
                     <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
                   </svg>
                 )}
-              </button>
-
-              <button className="group p-3 rounded-lg border border-border hover:border-muted-foreground/50 transition-all duration-300">
-                <svg
-                  className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors duration-300"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8s9 3.582 9 8z"
-                  />
-                </svg>
               </button>
             </div>
           </div>
