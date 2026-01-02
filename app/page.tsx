@@ -219,7 +219,7 @@ export default function Home() {
           </section>
         )}
 
-        <section id="connect" ref={(el) => (sectionsRef.current[1] = el)} className="min-h-screen pt-48 pb-32 sm:py-40 lg:py-48 opacity-0 flex items-center">
+        <section id="connect" ref={(el) => (sectionsRef.current[1] = el)} className="min-h-screen pt-64 pb-32 sm:py-40 lg:py-48 opacity-0 flex items-center">
           <div className="w-full max-w-4xl mx-auto">
             <h2 className="text-3xl sm:text-4xl font-light mb-12 sm:mb-16">Let's Connect</h2>
             
