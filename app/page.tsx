@@ -112,7 +112,7 @@ export default function Home() {
                   On my gap year, I interned as a SWE at Palantir, founded Beacon (Acquired), explored NYC, and started Talunt. I fell in love with all types of food, but still enjoy staying active and lifting.
                 </p>
 
-                <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
+                <p className="hidden sm:block text-lg sm:text-xl text-muted-foreground leading-relaxed">
                   I believe that people are the greatest asset that any of us will have in life. The people who work
                   with you, for you, and around you are some of the largest predictors of where life will take you.
                 </p>
