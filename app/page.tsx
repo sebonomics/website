@@ -101,7 +101,15 @@ export default function Home() {
                   <Link href="https://talunt.io" className="text-foreground hover:underline">
                     Talunt.io
                   </Link>
-                  . You can find me at either at the Founder's, Inc campus near Fort Mason or in Afore Capital's SoMa office.
+                  . I'm usually in the office at{" "}
+                  <Link href="https://human.capital/" className="text-foreground hover:underline">
+                    Human Capital
+                  </Link>{" "}
+                  in the Financial District or{" "}
+                  <Link href="https://www.afore.vc/" className="text-foreground hover:underline">
+                    Afore Capital
+                  </Link>{" "}
+                  in SoMa.
                 </p>
 
                 <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
@@ -263,11 +271,19 @@ export default function Home() {
                 <div className="text-sm text-muted-foreground font-mono mb-4">LOCATIONS</div>
                 <div className="space-y-6">
                   <div className="space-y-2">
-                    <div className="text-sm font-medium text-foreground">Founder's Inc Campus</div>
-                    <div className="text-sm text-muted-foreground">Fort Mason Center for Arts & Culture, Building B, San Francisco, CA.</div>
+                    <div className="text-sm font-medium text-foreground">
+                      <Link href="https://human.capital/" className="hover:opacity-70 transition-opacity">
+                        Human Capital
+                      </Link>
+                    </div>
+                    <div className="text-sm text-muted-foreground">340 Pine Street, Suite 200, San Francisco, CA 94104</div>
                   </div>
                   <div className="space-y-2">
-                    <div className="text-sm font-medium text-foreground">Afore Capital Office</div>
+                    <div className="text-sm font-medium text-foreground">
+                      <Link href="https://www.afore.vc/" className="hover:opacity-70 transition-opacity">
+                        Afore Capital
+                      </Link>
+                    </div>
                     <div className="text-sm text-muted-foreground">680 2nd Street, San Francisco, CA 94107</div>
                   </div>
                 </div>
