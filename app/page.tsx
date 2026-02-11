@@ -69,7 +69,7 @@ export default function Home() {
 
       <nav className="fixed left-8 top-1/2 -translate-y-1/2 z-10 hidden lg:block">
         <div className="flex flex-col gap-4">
-          {["intro", "connect"].map((section) => (
+          {["intro", "believe", "connect"].map((section) => (
             <button
               key={section}
               onClick={() => document.getElementById(section)?.scrollIntoView({ behavior: "smooth" })}
@@ -86,7 +86,7 @@ export default function Home() {
         <header
           id="intro"
           ref={(el) => (sectionsRef.current[0] = el)}
-          className="min-h-screen flex items-center opacity-0"
+          className="min-h-[80vh] sm:min-h-[85vh] flex items-center opacity-0 pt-20 pb-12 sm:pt-24 sm:pb-16"
         >
           <div className="grid lg:grid-cols-5 gap-12 sm:gap-16 w-full">
             <div className="lg:col-span-3 space-y-6 sm:space-y-8">
@@ -117,7 +117,7 @@ export default function Home() {
                 </p>
 
                 <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
-                  On my gap year, I interned as a SWE at Palantir, founded Beacon (Acquired), explored NYC, and started Talunt. I fell in love with all types of food, but still enjoy staying active and lifting.
+                  On my gap year, I did software engineering at Palantir, founded and sold a company, explored NYC, and started another company. I fell in love with all types of food, but still enjoy staying active and lifting.
                 </p>
 
                 <p className="hidden sm:block text-lg sm:text-xl text-muted-foreground leading-relaxed">
@@ -150,6 +150,42 @@ export default function Home() {
             </div>
           </div>
         </header>
+
+        <section
+          id="believe"
+          ref={(el) => (sectionsRef.current[1] = el)}
+          className="min-h-[80vh] sm:min-h-[85vh] flex items-center opacity-0 py-12 sm:pb-8 sm:pt-16"
+        >
+          <div className="space-y-12 sm:space-y-16 w-full">
+            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+              <h2 className="text-3xl sm:text-4xl font-light">Recent Things I've Learned</h2>
+              <div className="text-sm text-muted-foreground font-mono">2026</div>
+            </div>
+
+            <div className="space-y-4 sm:space-y-5">
+              {[
+                "Working with great people is one of the most rewarding experiences in life.",
+                "Pure ambition and perserverence can beat any level of natural talent in most things.",
+                "Being honest is not something to be afraid of, it helps everyone grow.",
+                "People who value humility over status are true friends who are with you for the right reasons.",
+                "Money buys most of what people call happiness, with the exception of true or unconditional love.",
+                "Hard things are simply a part of life, you can choose to quit or choose to fight.",
+                "Asking people you respect for actionable advice is the best way to improve yourself.",
+                "Pay things forward because not long ago you were in that person's shoes.",
+                "Too often, people overestimate risk and underestimate opportunity.",
+                "People are hard to change, but it's the ones who do that are worth fighting for.",
+                "Make a habit of doing small favors for people, those favors compound and provide wholesome returns.",
+              ].map((belief, index) => (
+                <div
+                  key={index}
+                  className="text-lg sm:text-xl text-muted-foreground leading-relaxed"
+                >
+                  {belief}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {false && (
           <section
@@ -227,7 +263,7 @@ export default function Home() {
           </section>
         )}
 
-        <section id="connect" ref={(el) => (sectionsRef.current[1] = el)} className="min-h-screen pt-64 pb-32 sm:py-40 lg:py-48 opacity-0 flex items-center">
+        <section id="connect" ref={(el) => (sectionsRef.current[2] = el)} className="min-h-[80vh] sm:min-h-[85vh] flex items-center opacity-0 py-12 sm:pt-4 sm:pb-16">
           <div className="w-full max-w-4xl mx-auto">
             <h2 className="text-3xl sm:text-4xl font-light mb-12 sm:mb-16">Let's Connect</h2>
             
