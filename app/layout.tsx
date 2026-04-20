@@ -11,8 +11,7 @@ const geist = Geist({
 
 export const metadata: Metadata = {
   title: "Sebastian Tan",
-  description: "Stanford student and Co-Founder of Talunt.io",
-  generator: "v0.app",
+  description: "Sebastian Tan",
 }
 
 export default function RootLayout({
