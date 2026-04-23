@@ -13,37 +13,49 @@ export default function Home() {
       <h1 className="mb-10 text-2xl font-normal">Sebastian Tan</h1>
 
       <div className="space-y-5 text-[15px] leading-relaxed sm:text-base">
+        <p>I grew up with entrepreneurs as my heroes.</p>
+
         <p>
-          Growing up, I was always the kid who couldn't sit still. In middle school, I almost burned the house down
-          mining Bitcoin in the basement. In high school, I sold sneakers and software out of my bedroom.
+          I read <span className="italic">The Everything Store</span> in fifth grade, and I've wanted to be a founder
+          ever since. Like Jeff Bezos, my mother raised me alone. I learned self-reliance from attending Montesorri
+          School. I spent the summer heat running the family store. He worked at a McDonald's growing up.
+          {'\u00a0'}For me, it was Wendy's.
         </p>
 
         <p>
-          I heard about Stanford from a friend during my freshman year of high school. My mom, who raised me by
-          herself, had never even heard of the school, and when I told my principal that I wanted to go there, I
-          remember her laughing in my face.
+          In middle school, it was Steve Jobs. I spent these years blowing off school and building a lot of computers. I
+          almost burned the house <span className="italic">down</span> mining Bitcoin in the basement. I nearly blew the
+          house <span className="italic">up</span> soldering batteries in
+          the garage. After fuck-ups like those, I watched{" "}
+          <Link
+            href="https://www.youtube.com/watch?v=UF8uR6Z6KLc"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 underline-offset-4 hover:text-blue-800 hover:underline"
+          >
+            his speech on YouTube
+          </Link>
+          . It has almost 50M views.
         </p>
 
         <p>
-          A couple of years later, I graduated from high school with the highest GPA in my class — and also the most
-          absences. I got into Stanford, and we got a new head of school. This one gave me an award.
+          In high school, it was Peter Thiel and Elon Musk. Both built things because they believed America was worth
+          fighting for. After high school, I deferred Stanford to work at Palantir. My high school class threw a fit, but I went
+          anyway. My family came to this country with nothing, and it gave us a chance. We hang flags in the office to
+          remind us of this.
         </p>
 
         <p>
-          I thought I would go to Stanford, but I took a detour when Palantir called, asking me to come work in New
-          York. My high school class thought I was an idiot for taking that swing. Alex Karp thought it was badass.
+          Now, I admire the new generation. Michael Truell. Patrick Collison. Henrique Dubugras. They all started very
+          young. Being young is intimidating, but for every experienced person who thinks you're stupid, there's one who
+          respects your willingness to try. It's a reminder that you don't have to wait to do something meaningful.
         </p>
 
         <p>
-          I've started three companies. The first was a job platform that helped thousands of people with criminal
-          records get jobs. The second one got acquired the summer after I graduated high school. And the third one, I
-          am working on now.
-        </p>
-
-        <p>
-          My biggest strength is my ability to withstand pain. My biggest fear is not reaching my potential while
-          I'm here. My biggest hero is my mom. And my greatest enjoyment comes from spending time with amazing
-          people whom I am lucky to call friends.
+          In the future, I dream of being like the people on this list. I've started three companies. The first helped
+          thousands of people with criminal records find work. The second was acquired the summer after high school.
+          And the third one, I'm building now. I don't consider any of them to be successful yet, but in time, I think
+          one will.
         </p>
       </div>
 
@@ -52,7 +64,7 @@ export default function Home() {
           <Link
             key={label}
             href={href}
-            className="text-black underline-offset-4 hover:underline"
+            className="text-blue-600 underline-offset-4 hover:text-blue-800 hover:underline"
             {...(href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
           >
             {label}
