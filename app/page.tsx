@@ -1,76 +1,100 @@
+import type { ReactNode } from "react"
 import Link from "next/link"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 const socials = [
-  { label: "Email", href: "mailto:sebastian@talunt.io" },
+  { label: "Twitter", href: "https://twitter.com/sebonomics" },
   { label: "GitHub", href: "https://github.com/sebonomics" },
   { label: "LinkedIn", href: "https://linkedin.com/in/sebonomics" },
-  { label: "Twitter", href: "https://twitter.com/sebonomics" },
+  { label: "Email", href: "mailto:sebastian@talunt.io" },
 ]
+
+function AccentLink({ href, children }: { href: string; children: ReactNode }) {
+  const external = href.startsWith("http")
+  return (
+    <Link
+      href={href}
+      className="text-accent underline decoration-accent/50 underline-offset-2 transition-opacity hover:opacity-80"
+      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+    >
+      {children}
+    </Link>
+  )
+}
 
 export default function Home() {
   return (
-    <main className="mx-auto w-full max-w-xl px-6 py-16 text-black sm:py-24 lg:max-w-4xl lg:min-h-dvh lg:flex lg:flex-col lg:justify-center lg:px-12 lg:py-20 xl:max-w-5xl xl:px-16">
-      <h1 className="mb-10 text-2xl font-normal">Sebastian Tan</h1>
-
-      <div className="space-y-5 text-[15px] leading-relaxed sm:text-base">
-        <p>I grew up with entrepreneurs as my heroes.</p>
-
-        <p>
-          I read <span className="italic">The Everything Store</span> in fifth grade, and I've wanted to be a founder
-          ever since. Like Jeff Bezos, my mother raised me alone. I learned self-reliance from attending Montesorri
-          School. I spent the summer heat running the family store. He worked at a McDonald's growing up.
-          {'\u00a0'}For me, it was Wendy's.
-        </p>
-
-        <p>
-          In middle school, it was Steve Jobs. I spent these years blowing off school and building a lot of computers. I
-          almost burned the house <span className="italic">down</span> mining Bitcoin in the basement. I nearly blew the
-          house <span className="italic">up</span> soldering batteries in
-          the garage. After fuck-ups like those, I watched{" "}
-          <Link
-            href="https://www.youtube.com/watch?v=UF8uR6Z6KLc"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-600 underline-offset-4 hover:text-blue-800 hover:underline"
-          >
-            his speech on YouTube
+    <div className="relative z-10 mx-auto flex min-h-dvh max-w-[42rem] flex-col px-8 py-12 sm:px-10 sm:py-14">
+      <header className="mb-16 flex items-start justify-between gap-4">
+        <nav className="flex gap-6 text-[15px]">
+          <Link href="/" className="text-foreground underline decoration-foreground/40 underline-offset-4">
+            Sebastian Tan
           </Link>
-          . It has almost 50M views.
+        </nav>
+        <ThemeToggle />
+      </header>
+
+      <div className="flex flex-1 flex-col justify-center space-y-12 text-[17px] leading-[1.65] sm:text-[18px]">
+        <p>
+          I'm originally from Pittsburgh, but I live in San Francisco now. I took a gap year from Stanford and have been
+          having a blast so far. Usually you can find me in our office in South Beach, taking runs around Fort Mason, or
+          spending weekends with friends.
         </p>
 
-        <p>
-          In high school, it was Peter Thiel and Elon Musk. Both built things because they believed America was worth
-          fighting for. After high school, I deferred Stanford to work at Palantir. My high school class threw a fit, but I went
-          anyway. My family came to this country with nothing, and it gave us a chance. We hang flags in the office to
-          remind us of this.
-        </p>
+        <section className="space-y-6">
+          <h2 className="text-sm tracking-wide text-muted">Companies</h2>
 
-        <p>
-          Now, I admire the new generation. Michael Truell. Patrick Collison. Henrique Dubugras. They all started very
-          young. Being young is intimidating, but for every experienced person who thinks you're stupid, there's one who
-          respects your willingness to try. It's a reminder that you don't have to wait to do something meaningful.
-        </p>
+          <div className="space-y-6">
+            <p>
+              <AccentLink href="https://talunt.io">Talunt</AccentLink> — $25M agentic revenue engine for startups. $240K
+              ARR and 20 customers. Backed by ZFellows and angels from DoorDash.
+            </p>
 
-        <p>
-          In the future, I dream of being like the people on this list. I've started three companies. The first helped
-          thousands of people with criminal records find work. The second was acquired the summer after high school.
-          And the third one, I'm building now. I don't consider any of them to be successful yet, but in time, I think
-          one will.
-        </p>
+            <p>
+              <AccentLink href="https://bayesstreet.com">Bayes Street</AccentLink> — Crypto quant fund using HFT. Our
+              current strategy has better returns than even frontier hedge funds.
+            </p>
+
+            <p>
+              <AccentLink href="https://www.psl.com/">Beacon</AccentLink> — Cursor for GTM teams, acquired by a Pioneer
+              Square Labs portfolio company. Backed by angels from Kalshi.
+            </p>
+          </div>
+        </section>
+
+        <section className="space-y-6">
+          <h2 className="text-sm tracking-wide text-muted">Previously</h2>
+
+          <div className="space-y-6">
+            <p>
+              <AccentLink href="https://www.palantir.com">Palantir</AccentLink> — engineer on the data connection team,
+              building Foundry.
+            </p>
+
+            <p>
+              <AccentLink href="https://willowvoice.com">Willow</AccentLink> — built platform tooling for the team for a
+              couple months.
+            </p>
+          </div>
+        </section>
       </div>
 
-      <nav className="mt-14 flex flex-wrap gap-x-5 gap-y-2 text-sm">
-        {socials.map(({ label, href }) => (
-          <Link
-            key={label}
-            href={href}
-            className="text-blue-600 underline-offset-4 hover:text-blue-800 hover:underline"
-            {...(href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-          >
-            {label}
-          </Link>
-        ))}
-      </nav>
-    </main>
+      <footer className="mt-16">
+        <nav className="flex flex-wrap items-center gap-2 text-sm text-muted">
+          {socials.map((social, index) => (
+            <span key={social.label} className="flex items-center gap-2">
+              {index > 0 && <span className="text-muted/50">/</span>}
+              <Link
+                href={social.href}
+                className="text-foreground/80 transition-opacity hover:text-foreground"
+                {...(social.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              >
+                {social.label}
+              </Link>
+            </span>
+          ))}
+        </nav>
+      </footer>
+    </div>
   )
 }
