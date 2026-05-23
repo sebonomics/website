@@ -47,12 +47,7 @@ export default function Home() {
           <div className="space-y-6">
             <p>
               <AccentLink href="https://talunt.io">Talunt</AccentLink> — $25M agentic revenue engine for startups. $240K
-              ARR and 20 customers. Backed by ZFellows and angels from DoorDash.
-            </p>
-
-            <p>
-              <AccentLink href="https://bayesstreet.com">Bayes Street</AccentLink> — Crypto quant fund using HFT. Our
-              current strategy has better returns than even frontier hedge funds.
+              ARR and backed by Afore Capital, ZFellows, and DoorDash angels.
             </p>
 
             <p>
