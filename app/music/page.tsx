@@ -15,10 +15,7 @@ export const revalidate = 0
 
 export default async function MusicPage() {
   const lastfm = await getLastFmMusic()
-  const hasData =
-    lastfm.nowPlaying != null ||
-    lastfm.recentTracks.length > 0 ||
-    lastfm.topArtists.length > 0
+  const hasData = lastfm.lastPlayed != null || lastfm.topSongs.length > 0
 
   return (
     <PageShell>
@@ -37,11 +34,7 @@ export default async function MusicPage() {
               </a>
             </p>
           ) : (
-            <MusicLastFm
-              nowPlaying={lastfm.nowPlaying}
-              recentTracks={lastfm.recentTracks}
-              topArtists={lastfm.topArtists}
-            />
+            <MusicLastFm lastPlayed={lastfm.lastPlayed} topSongs={lastfm.topSongs} />
           )}
         </section>
       </div>

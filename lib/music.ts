@@ -5,6 +5,7 @@ export type MusicTrack = {
   album?: string
   artworkUrl?: string
   appleMusicUrl?: string
+  playCount?: number
 }
 
 export type MusicArtist = {

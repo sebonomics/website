@@ -1,4 +1,4 @@
-import type { MusicArtist, MusicTrack } from "@/lib/music"
+import type { MusicTrack } from "@/lib/music"
 
 const LASTFM_USERNAME = process.env.LASTFM_USERNAME ?? "sebonomics"
 const LASTFM_API_KEY =
@@ -9,9 +9,10 @@ type LastFmArtist = { "#text": string; name?: string; playcount?: string; image?
 type LastFmTrack = {
   name: string
   url?: string
-  artist: LastFmArtist | { "#text": string }
+  artist: LastFmArtist | { "#text": string; name?: string }
   album?: { "#text": string }
   image?: LastFmImage[]
+  playcount?: string
   "@attr"?: { nowplaying?: string }
 }
 
@@ -19,8 +20,8 @@ type LastFmResponse = {
   recenttracks?: {
     track?: LastFmTrack | LastFmTrack[]
   }
-  topartists?: {
-    artist?: LastFmArtist | LastFmArtist[]
+  toptracks?: {
+    track?: LastFmTrack | LastFmTrack[]
   }
   error?: number
   message?: string
@@ -49,60 +50,26 @@ function normalizeTrack(track: LastFmTrack, index: number): MusicTrack {
     artist: lastFmArtistName(track.artist),
     album: track.album?.["#text"] || undefined,
     artworkUrl: largestImage(track.image),
+    playCount: track.playcount ? Number.parseInt(track.playcount, 10) : undefined,
   }
 }
 
-function normalizeArtists(raw: LastFmArtist | LastFmArtist[] | undefined): MusicArtist[] {
+function parseLastPlayed(raw: LastFmTrack | LastFmTrack[] | undefined): MusicTrack | null {
+  if (!raw) return null
+
+  const list = Array.isArray(raw) ? raw : [raw]
+  const track = list.find((item) => item.name && item.name !== "—")
+  return track ? normalizeTrack(track, 0) : null
+}
+
+function normalizeTopTracks(raw: LastFmTrack | LastFmTrack[] | undefined): MusicTrack[] {
   if (!raw) return []
   const list = Array.isArray(raw) ? raw : [raw]
 
   return list
-    .filter((artist) => artist.name)
-    .map((artist, index) => ({
-      id: `${artist.name}-${index}`,
-      name: artist.name!,
-      playCount: artist.playcount ? Number.parseInt(artist.playcount, 10) : undefined,
-      artworkUrl: largestImage(artist.image),
-    }))
-}
-
-function dedupeTracks(tracks: MusicTrack[]): MusicTrack[] {
-  const seen = new Set<string>()
-  return tracks.filter((track) => {
-    const key = `${track.title}-${track.artist}`.toLowerCase()
-    if (seen.has(key)) return false
-    seen.add(key)
-    return true
-  })
-}
-
-function parseRecentTracks(raw: LastFmTrack | LastFmTrack[] | undefined): {
-  nowPlaying: MusicTrack | null
-  recentTracks: MusicTrack[]
-} {
-  if (!raw) return { nowPlaying: null, recentTracks: [] }
-
-  const list = Array.isArray(raw) ? raw : [raw]
-  let nowPlaying: MusicTrack | null = null
-  const scrobbled: MusicTrack[] = []
-
-  list.forEach((track, index) => {
-    if (!track.name || track.name === "—") return
-
-    const normalized = normalizeTrack(track, index)
-
-    if (track["@attr"]?.nowplaying === "true") {
-      nowPlaying = normalized
-      return
-    }
-
-    scrobbled.push(normalized)
-  })
-
-  return {
-    nowPlaying,
-    recentTracks: dedupeTracks(scrobbled).slice(0, 5),
-  }
+    .filter((track) => track.name && track.name !== "—")
+    .map((track, index) => normalizeTrack(track, index))
+    .slice(0, 5)
 }
 
 async function lastFmRequest(params: Record<string, string>): Promise<LastFmResponse> {
@@ -129,9 +96,8 @@ async function lastFmRequest(params: Record<string, string>): Promise<LastFmResp
 }
 
 export type LastFmMusic = {
-  nowPlaying: MusicTrack | null
-  recentTracks: MusicTrack[]
-  topArtists: MusicArtist[]
+  lastPlayed: MusicTrack | null
+  topSongs: MusicTrack[]
   configured: boolean
   error?: "fetch_failed" | "not_configured"
 }
@@ -139,53 +105,45 @@ export type LastFmMusic = {
 export async function getLastFmMusic(): Promise<LastFmMusic> {
   if (!LASTFM_API_KEY || !LASTFM_USERNAME) {
     return {
-      nowPlaying: null,
-      recentTracks: [],
-      topArtists: [],
+      lastPlayed: null,
+      topSongs: [],
       configured: false,
       error: "not_configured",
     }
   }
 
   try {
-    const [recent, topArtistsRes] = await Promise.all([
-      lastFmRequest({ method: "user.getRecentTracks", limit: "8" }),
-      lastFmRequest({ method: "user.getTopArtists", period: "1month", limit: "5" }),
+    const [recent, topTracksRes] = await Promise.all([
+      lastFmRequest({ method: "user.getRecentTracks", limit: "1" }),
+      lastFmRequest({ method: "user.getTopTracks", period: "1month", limit: "5" }),
     ])
 
-    if (recent.error || topArtistsRes.error) {
+    if (recent.error || topTracksRes.error) {
       return {
-        nowPlaying: null,
-        recentTracks: [],
-        topArtists: [],
+        lastPlayed: null,
+        topSongs: [],
         configured: true,
         error: "fetch_failed",
       }
     }
 
-    const { nowPlaying, recentTracks } = parseRecentTracks(recent.recenttracks?.track)
-    const topArtists = normalizeArtists(topArtistsRes.topartists?.artist)
-
     return {
-      nowPlaying,
-      recentTracks,
-      topArtists,
+      lastPlayed: parseLastPlayed(recent.recenttracks?.track),
+      topSongs: normalizeTopTracks(topTracksRes.toptracks?.track),
       configured: true,
     }
   } catch (error) {
     if (error instanceof Error && error.message === "not_configured") {
       return {
-        nowPlaying: null,
-        recentTracks: [],
-        topArtists: [],
+        lastPlayed: null,
+        topSongs: [],
         configured: false,
         error: "not_configured",
       }
     }
     return {
-      nowPlaying: null,
-      recentTracks: [],
-      topArtists: [],
+      lastPlayed: null,
+      topSongs: [],
       configured: true,
       error: "fetch_failed",
     }

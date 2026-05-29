@@ -1,12 +1,12 @@
 import type { ReactNode } from "react"
-import type { MusicArtist, MusicTrack } from "@/lib/music"
+import type { MusicTrack } from "@/lib/music"
 import { MusicTrackList } from "@/components/music-track-list"
 
 function SectionHeading({ children }: { children: ReactNode }) {
   return <h2 className="text-sm tracking-wide text-muted">{children}</h2>
 }
 
-function NowPlaying({ track }: { track: MusicTrack }) {
+function LastPlayed({ track }: { track: MusicTrack }) {
   return (
     <div className="flex items-start gap-4">
       {track.artworkUrl ? (
@@ -27,53 +27,26 @@ function NowPlaying({ track }: { track: MusicTrack }) {
   )
 }
 
-function ArtistList({ artists }: { artists: MusicArtist[] }) {
-  return (
-    <ol className="space-y-4">
-      {artists.map((artist, index) => (
-        <li key={artist.id} className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-          <span className="w-5 shrink-0 text-sm text-muted tabular-nums">{index + 1}</span>
-          <span className="text-foreground">{artist.name}</span>
-          {artist.playCount != null ? (
-            <span className="text-sm text-muted">
-              {artist.playCount} {artist.playCount === 1 ? "play" : "plays"}
-            </span>
-          ) : null}
-        </li>
-      ))}
-    </ol>
-  )
-}
-
 export function MusicLastFm({
-  nowPlaying,
-  recentTracks,
-  topArtists,
+  lastPlayed,
+  topSongs,
 }: {
-  nowPlaying: MusicTrack | null
-  recentTracks: MusicTrack[]
-  topArtists: MusicArtist[]
+  lastPlayed: MusicTrack | null
+  topSongs: MusicTrack[]
 }) {
   return (
     <div className="space-y-10">
-      {nowPlaying ? (
+      {lastPlayed ? (
         <section className="space-y-4">
-          <SectionHeading>Playing now</SectionHeading>
-          <NowPlaying track={nowPlaying} />
+          <SectionHeading>Last played</SectionHeading>
+          <LastPlayed track={lastPlayed} />
         </section>
       ) : null}
 
-      {recentTracks.length > 0 ? (
+      {topSongs.length > 0 ? (
         <section className="space-y-4">
-          <SectionHeading>Recent</SectionHeading>
-          <MusicTrackList tracks={recentTracks} />
-        </section>
-      ) : null}
-
-      {topArtists.length > 0 ? (
-        <section className="space-y-4">
-          <SectionHeading>Top artists this month</SectionHeading>
-          <ArtistList artists={topArtists} />
+          <SectionHeading>Top songs</SectionHeading>
+          <MusicTrackList tracks={topSongs} />
         </section>
       ) : null}
     </div>
