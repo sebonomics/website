@@ -9,7 +9,6 @@ const navLinks = [
   { href: "/work", label: "Work" },
   { href: "/writing", label: "Writing" },
   { href: "/music", label: "Music" },
-  { href: "/calendar", label: "Calendar" },
 ]
 
 export function SiteHeader() {
