@@ -58,21 +58,21 @@ export function MusicLastFm({
     <div className="space-y-10">
       {lastPlayed ? (
         <section className="space-y-4">
-          <SectionHeading>Last played</SectionHeading>
+          <SectionHeading>Last Played</SectionHeading>
           <LastPlayed track={lastPlayed} />
         </section>
       ) : null}
 
       {topSongs.length > 0 ? (
         <section className="space-y-4">
-          <SectionHeading>Top songs</SectionHeading>
+          <SectionHeading>Top Songs</SectionHeading>
           <MusicTrackList tracks={topSongs} />
         </section>
       ) : null}
 
       {topArtists.length > 0 ? (
         <section className="space-y-4">
-          <SectionHeading>Top artists</SectionHeading>
+          <SectionHeading>Top Artists</SectionHeading>
           <ArtistList artists={topArtists} />
         </section>
       ) : null}
