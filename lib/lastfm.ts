@@ -1,5 +1,9 @@
 import type { MusicArtist, MusicTrack } from "@/lib/music"
 
+const LASTFM_USERNAME = process.env.LASTFM_USERNAME ?? "sebonomics"
+const LASTFM_API_KEY =
+  process.env.LASTFM_API_KEY ?? "390f2ef724bcc5cdaef02fd793169ac8"
+
 type LastFmImage = { "#text": string; size: string }
 type LastFmArtist = { "#text": string; name?: string; playcount?: string; image?: LastFmImage[] }
 type LastFmTrack = {
@@ -101,26 +105,20 @@ function parseRecentTracks(raw: LastFmTrack | LastFmTrack[] | undefined): {
   }
 }
 
-async function lastFmRequest(
-  params: Record<string, string>,
-  revalidate = 300
-): Promise<LastFmResponse> {
-  const apiKey = process.env.LASTFM_API_KEY
-  const user = process.env.LASTFM_USERNAME
-
-  if (!apiKey || !user) {
+async function lastFmRequest(params: Record<string, string>): Promise<LastFmResponse> {
+  if (!LASTFM_API_KEY || !LASTFM_USERNAME) {
     throw new Error("not_configured")
   }
 
   const search = new URLSearchParams({
     ...params,
-    user,
-    api_key: apiKey,
+    user: LASTFM_USERNAME,
+    api_key: LASTFM_API_KEY,
     format: "json",
   })
 
   const res = await fetch(`https://ws.audioscrobbler.com/2.0/?${search}`, {
-    next: { revalidate },
+    cache: "no-store",
   })
 
   if (!res.ok) {
@@ -139,7 +137,7 @@ export type LastFmMusic = {
 }
 
 export async function getLastFmMusic(): Promise<LastFmMusic> {
-  if (!process.env.LASTFM_API_KEY || !process.env.LASTFM_USERNAME) {
+  if (!LASTFM_API_KEY || !LASTFM_USERNAME) {
     return {
       nowPlaying: null,
       recentTracks: [],
@@ -151,11 +149,8 @@ export async function getLastFmMusic(): Promise<LastFmMusic> {
 
   try {
     const [recent, topArtistsRes] = await Promise.all([
-      lastFmRequest({ method: "user.getRecentTracks", limit: "8" }, 60),
-      lastFmRequest(
-        { method: "user.getTopArtists", period: "1month", limit: "5" },
-        300
-      ),
+      lastFmRequest({ method: "user.getRecentTracks", limit: "8" }),
+      lastFmRequest({ method: "user.getTopArtists", period: "1month", limit: "5" }),
     ])
 
     if (recent.error || topArtistsRes.error) {

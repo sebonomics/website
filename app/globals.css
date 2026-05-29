@@ -66,25 +66,3 @@ html.light .grain {
   mix-blend-mode: multiply;
   filter: contrast(1.5) brightness(0.95);
 }
-
-.typewriter-cursor {
-  display: inline-block;
-  width: 2px;
-  height: 0.85em;
-  margin-left: 2px;
-  vertical-align: -0.05em;
-  background-color: var(--foreground);
-  animation: typewriter-blink 1s step-end infinite;
-}
-
-@keyframes typewriter-blink {
-  50% {
-    opacity: 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .typewriter-cursor {
-    display: none;
-  }
-}
