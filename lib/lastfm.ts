@@ -1,4 +1,4 @@
-import type { MusicTrack } from "@/lib/music"
+import type { MusicArtist, MusicTrack } from "@/lib/music"
 
 const LASTFM_USERNAME = process.env.LASTFM_USERNAME ?? "sebonomics"
 const LASTFM_API_KEY =
@@ -22,6 +22,9 @@ type LastFmResponse = {
   }
   toptracks?: {
     track?: LastFmTrack | LastFmTrack[]
+  }
+  topartists?: {
+    artist?: LastFmArtist | LastFmArtist[]
   }
   error?: number
   message?: string
@@ -72,6 +75,21 @@ function normalizeTopTracks(raw: LastFmTrack | LastFmTrack[] | undefined): Music
     .slice(0, 5)
 }
 
+function normalizeArtists(raw: LastFmArtist | LastFmArtist[] | undefined): MusicArtist[] {
+  if (!raw) return []
+  const list = Array.isArray(raw) ? raw : [raw]
+
+  return list
+    .filter((artist) => artist.name)
+    .map((artist, index) => ({
+      id: `${artist.name}-${index}`,
+      name: artist.name!,
+      playCount: artist.playcount ? Number.parseInt(artist.playcount, 10) : undefined,
+      artworkUrl: largestImage(artist.image),
+    }))
+    .slice(0, 5)
+}
+
 async function lastFmRequest(params: Record<string, string>): Promise<LastFmResponse> {
   if (!LASTFM_API_KEY || !LASTFM_USERNAME) {
     throw new Error("not_configured")
@@ -98,6 +116,7 @@ async function lastFmRequest(params: Record<string, string>): Promise<LastFmResp
 export type LastFmMusic = {
   lastPlayed: MusicTrack | null
   topSongs: MusicTrack[]
+  topArtists: MusicArtist[]
   configured: boolean
   error?: "fetch_failed" | "not_configured"
 }
@@ -107,21 +126,24 @@ export async function getLastFmMusic(): Promise<LastFmMusic> {
     return {
       lastPlayed: null,
       topSongs: [],
+      topArtists: [],
       configured: false,
       error: "not_configured",
     }
   }
 
   try {
-    const [recent, topTracksRes] = await Promise.all([
+    const [recent, topTracksRes, topArtistsRes] = await Promise.all([
       lastFmRequest({ method: "user.getRecentTracks", limit: "1" }),
       lastFmRequest({ method: "user.getTopTracks", period: "1month", limit: "5" }),
+      lastFmRequest({ method: "user.getTopArtists", period: "1month", limit: "5" }),
     ])
 
-    if (recent.error || topTracksRes.error) {
+    if (recent.error || topTracksRes.error || topArtistsRes.error) {
       return {
         lastPlayed: null,
         topSongs: [],
+        topArtists: [],
         configured: true,
         error: "fetch_failed",
       }
@@ -130,6 +152,7 @@ export async function getLastFmMusic(): Promise<LastFmMusic> {
     return {
       lastPlayed: parseLastPlayed(recent.recenttracks?.track),
       topSongs: normalizeTopTracks(topTracksRes.toptracks?.track),
+      topArtists: normalizeArtists(topArtistsRes.topartists?.artist),
       configured: true,
     }
   } catch (error) {
@@ -137,6 +160,7 @@ export async function getLastFmMusic(): Promise<LastFmMusic> {
       return {
         lastPlayed: null,
         topSongs: [],
+        topArtists: [],
         configured: false,
         error: "not_configured",
       }
@@ -144,6 +168,7 @@ export async function getLastFmMusic(): Promise<LastFmMusic> {
     return {
       lastPlayed: null,
       topSongs: [],
+      topArtists: [],
       configured: true,
       error: "fetch_failed",
     }

@@ -1,5 +1,5 @@
 import type { ReactNode } from "react"
-import type { MusicTrack } from "@/lib/music"
+import type { MusicArtist, MusicTrack } from "@/lib/music"
 import { MusicTrackList } from "@/components/music-track-list"
 
 function SectionHeading({ children }: { children: ReactNode }) {
@@ -27,12 +27,32 @@ function LastPlayed({ track }: { track: MusicTrack }) {
   )
 }
 
+function ArtistList({ artists }: { artists: MusicArtist[] }) {
+  return (
+    <ol className="space-y-4">
+      {artists.map((artist, index) => (
+        <li key={artist.id} className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+          <span className="w-5 shrink-0 text-sm text-muted tabular-nums">{index + 1}</span>
+          <span className="text-foreground">{artist.name}</span>
+          {artist.playCount != null ? (
+            <span className="text-sm text-muted">
+              {artist.playCount} {artist.playCount === 1 ? "play" : "plays"}
+            </span>
+          ) : null}
+        </li>
+      ))}
+    </ol>
+  )
+}
+
 export function MusicLastFm({
   lastPlayed,
   topSongs,
+  topArtists,
 }: {
   lastPlayed: MusicTrack | null
   topSongs: MusicTrack[]
+  topArtists: MusicArtist[]
 }) {
   return (
     <div className="space-y-10">
@@ -47,6 +67,13 @@ export function MusicLastFm({
         <section className="space-y-4">
           <SectionHeading>Top songs</SectionHeading>
           <MusicTrackList tracks={topSongs} />
+        </section>
+      ) : null}
+
+      {topArtists.length > 0 ? (
+        <section className="space-y-4">
+          <SectionHeading>Top artists</SectionHeading>
+          <ArtistList artists={topArtists} />
         </section>
       ) : null}
     </div>
