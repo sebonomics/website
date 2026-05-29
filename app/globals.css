@@ -6,7 +6,10 @@
   --foreground: #e8e4df;
   --muted: #a8a29e;
   --accent: #c06c4c;
-  --grain-opacity: 0.18;
+  --accent-hover: #d47d5c;
+  --accent-muted: color-mix(in srgb, var(--accent) 20%, transparent);
+  --border: color-mix(in srgb, var(--accent) 14%, transparent);
+  --grain-opacity: 0.58;
 }
 
 html.light {
@@ -15,7 +18,10 @@ html.light {
   --foreground: #1c1c1c;
   --muted: #6b6560;
   --accent: #c06c4c;
-  --grain-opacity: 0.1;
+  --accent-hover: #a85a3e;
+  --accent-muted: color-mix(in srgb, var(--accent) 16%, transparent);
+  --border: color-mix(in srgb, var(--accent) 12%, transparent);
+  --grain-opacity: 0.42;
 }
 
 @theme inline {
@@ -23,6 +29,9 @@ html.light {
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-muted: var(--accent-muted);
+  --color-border: var(--border);
 }
 
 @layer base {
@@ -33,6 +42,11 @@ html.light {
       background-color 0.25s ease,
       color 0.25s ease;
   }
+
+  ::selection {
+    background-color: var(--accent-muted);
+    color: var(--foreground);
+  }
 }
 
 .grain {
@@ -41,12 +55,36 @@ html.light {
   z-index: 0;
   pointer-events: none;
   opacity: var(--grain-opacity);
-  mix-blend-mode: soft-light;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
-  background-size: 180px 180px;
+  mix-blend-mode: overlay;
+  filter: contrast(1.65) brightness(1.05);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 72px 72px;
   transition: opacity 0.25s ease;
 }
 
 html.light .grain {
   mix-blend-mode: multiply;
+  filter: contrast(1.5) brightness(0.95);
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 0.85em;
+  margin-left: 2px;
+  vertical-align: -0.05em;
+  background-color: var(--foreground);
+  animation: typewriter-blink 1s step-end infinite;
+}
+
+@keyframes typewriter-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typewriter-cursor {
+    display: none;
+  }
 }

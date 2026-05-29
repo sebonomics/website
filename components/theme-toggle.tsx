@@ -25,11 +25,11 @@ export function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label={light ? "Switch to dark mode" : "Switch to light mode"}
-      className="shrink-0 rounded-sm p-1 transition-opacity hover:opacity-70"
+      className="shrink-0 rounded-sm p-1 text-muted transition-colors hover:text-foreground"
     >
-      <span className="flex h-3.5 w-6 overflow-hidden rounded-[2px] border border-foreground/25">
-        <span className="w-1/2 bg-foreground/75" />
-        <span className="w-1/2 bg-foreground/20" />
+      <span className="flex h-3.5 w-6 overflow-hidden rounded-[2px] border border-border">
+        <span className={`w-1/2 transition-colors ${light ? "bg-background" : "bg-foreground/80"}`} />
+        <span className={`w-1/2 transition-colors ${light ? "bg-accent/70" : "bg-accent/35"}`} />
       </span>
     </button>
   )
