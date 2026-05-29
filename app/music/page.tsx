@@ -11,14 +11,20 @@ export const metadata: Metadata = {
 
 export const dynamic = "force-dynamic"
 
+export const revalidate = 0
+
 export default async function MusicPage() {
   const lastfm = await getLastFmMusic()
+  const hasData =
+    lastfm.nowPlaying != null ||
+    lastfm.recentTracks.length > 0 ||
+    lastfm.topArtists.length > 0
 
   return (
     <PageShell>
       <div className="flex flex-1 flex-col justify-center space-y-10 text-[17px] leading-[1.65] sm:text-[18px]">
         <section className="space-y-6">
-          {lastfm.error ? (
+          {lastfm.error || !hasData ? (
             <p className="text-muted">
               Could not load music right now.{" "}
               <a

@@ -56,14 +56,12 @@ export function MusicLastFm({
 }) {
   return (
     <div className="space-y-10">
-      <section className="space-y-4">
-        <SectionHeading>Playing now</SectionHeading>
-        {nowPlaying ? (
+      {nowPlaying ? (
+        <section className="space-y-4">
+          <SectionHeading>Playing now</SectionHeading>
           <NowPlaying track={nowPlaying} />
-        ) : (
-          <p className="text-muted">Nothing playing right now.</p>
-        )}
-      </section>
+        </section>
+      ) : null}
 
       {recentTracks.length > 0 ? (
         <section className="space-y-4">
@@ -74,7 +72,7 @@ export function MusicLastFm({
 
       {topArtists.length > 0 ? (
         <section className="space-y-4">
-          <SectionHeading>Top Artists</SectionHeading>
+          <SectionHeading>Top artists this month</SectionHeading>
           <ArtistList artists={topArtists} />
         </section>
       ) : null}
