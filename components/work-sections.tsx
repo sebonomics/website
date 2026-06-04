@@ -4,6 +4,16 @@ export function WorkSections() {
   return (
     <>
       <section className="space-y-6">
+        <h2 className="text-sm tracking-wide text-muted">Summary</h2>
+        <p>
+          I build software companies. Right now I&apos;m focused on{" "}
+          <AccentLink href="https://talunt.io">Talunt</AccentLink> — an agentic revenue engine for
+          startups. Before that I sold Beacon, worked at Palantir on Foundry, and shipped platform
+          tooling at Willow.
+        </p>
+      </section>
+
+      <section className="space-y-6">
         <h2 className="text-sm tracking-wide text-muted">Companies</h2>
 
         <div className="space-y-6">
