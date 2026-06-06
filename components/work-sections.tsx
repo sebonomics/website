@@ -5,7 +5,7 @@ export function WorkSections() {
     <div className="space-y-6">
       <p>
         I knew I wanted to be an entrepreneur when I was very young. In middle school I almost burned
-        the house down building an Ethereum mine in our basement. I spent my summers selling sneakers
+        the house down mining Ethereum in the basement. I spent my summers selling sneakers
         instead of skipping grades in math, and ran our family bakery instead of prioritizing
         homework.
       </p>
@@ -13,14 +13,13 @@ export function WorkSections() {
       <p>
         When I started high school I told our head of school about my dream of going to Stanford. She
         laughed at me, and I worked my ass off academically simply because I had a chip on my
-        shoulder. In the end, that dream came true, and I knew then that I had a real shot of being a
-        great founder.
+        shoulder. Nevertheless, that dream came true.
       </p>
 
       <p>
         After high school I worked at a couple friends&apos; early stage companies, and then at
-        Palantir as an engineer on Foundry. I also started and sold a company called Beacon. These
-        experiences were incredible and brought me out of the small suburban bubble I grew up in.
+        Palantir as an engineer on Foundry. I also started and sold a company called Beacon. I think
+        the gap year, that most people said not to take, was completely worth it.
       </p>
 
       <p>
