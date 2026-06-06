@@ -7,7 +7,7 @@ export function HomeIntro() {
     <div className="space-y-6">
       <p>
         Hey, I&apos;m Sebastian. I currently live in San Francisco, but I grew up in Pittsburgh and took a gap year
-        from Stanford after graduating high school. I&apos;ve lived in a couple different cities,
+        from Stanford after graduating high school. I&apos;ve lived in a couple of different cities,
         including New York, but nothing is quite as beautiful as the Bay Area.
       </p>
       <p>
