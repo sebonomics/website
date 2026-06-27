@@ -2,34 +2,47 @@ import { AccentLink } from "@/components/accent-link"
 
 export function WorkSections() {
   return (
-    <div className="space-y-6">
-      <p>
-        I knew I wanted to be an entrepreneur when I was very young. I spent my summers selling
-        sneakers instead of skipping grades in math, and I ran our family bakery instead of
-        prioritizing homework.
-      </p>
+    <div className="space-y-8">
+      <section className="space-y-4">
+        <h2 className="text-xs uppercase tracking-wide text-muted">Currently</h2>
 
-      <p>
-        After high school, I worked at a couple of friends&apos; early-stage companies, and then at
-        Palantir as an engineer on Foundry. I also started and sold a company. I think the gap year,
-        which most people told me not to take, was completely worth it.
-      </p>
+        <div className="space-y-4">
+          <section className="space-y-1.5 border-b border-border/60 pb-4">
+            <h3 className="text-base text-foreground">
+              Founder @ <AccentLink href="https://talunt.ai">Talunt AI</AccentLink>
+            </h3>
+            <p className="text-[15px] leading-relaxed text-muted">
+              Building an AI-native services company for startups, starting with revenue automation and
+              execution-heavy workflows.
+            </p>
+          </section>
 
-      <p>
-        Right now I&apos;m focused on an inflection point in software:{" "}
-        <AccentLink href="https://sequoiacap.com/article/services-the-new-software/">
-          AI-native services companies
-        </AccentLink>
-        . For every $1 a company spends on software, it spends $6 on services. I believe the
-        current biggest window of opportunity in technology is this discrepancy. I&apos;m working on{" "}
-        <AccentLink href="https://talunt.io">Talunt</AccentLink>, an AI-native services company for
-        startups.
-      </p>
+          <section className="space-y-1.5">
+            <h3 className="text-base text-foreground">
+              Scout @ <AccentLink href="https://a16z.com">Andreessen Horowitz</AccentLink>
+            </h3>
+            <p className="text-[15px] leading-relaxed text-muted">
+              Investing $200k+ through the scout fund in $10k-$25k checks and serving as a referral
+              path into both the main fund and Speedrun.
+            </p>
+          </section>
+        </div>
+      </section>
 
-      <p>
-        I plan to build technology companies for the rest of my life. And when I get too old for
-        that, I&apos;ll help younger versions of myself start their own.
-      </p>
+      <section className="space-y-4">
+        <h2 className="text-xs uppercase tracking-wide text-muted">Previously</h2>
+
+        <section className="space-y-1.5">
+          <h3 className="text-base text-foreground">
+            Software Engineer @{" "}
+            <AccentLink href="https://palantir.com">Palantir Technologies</AccentLink>
+          </h3>
+          <p className="text-[15px] leading-relaxed text-muted">
+            Worked on Foundry as a software engineering intern. Designed an IMAP ingest deployed to
+            hundreds of enterprise customers.
+          </p>
+        </section>
+      </section>
     </div>
   )
 }
