@@ -9,7 +9,7 @@ export function WorkSections() {
         <div className="space-y-4">
           <section className="space-y-1.5 border-b border-border/60 pb-4">
             <h3 className="text-base text-foreground">
-              Founder @ <AccentLink href="https://talunt.ai">Talunt AI</AccentLink>
+              Founder @ <AccentLink href="https://talunt.ai">Talunt</AccentLink>
             </h3>
             <p className="text-[15px] leading-relaxed text-muted">
               Building an AI-native services company for startups, starting with revenue automation and
@@ -19,7 +19,7 @@ export function WorkSections() {
 
           <section className="space-y-1.5">
             <h3 className="text-base text-foreground">
-              Scout @ <AccentLink href="https://a16z.com">Andreessen Horowitz</AccentLink>
+              Scout @ <AccentLink href="https://a16z.com">a16z</AccentLink>
             </h3>
             <p className="text-[15px] leading-relaxed text-muted">
               Investing $200k+ through the scout fund in $10k-$25k checks and serving as a referral
@@ -35,7 +35,7 @@ export function WorkSections() {
         <section className="space-y-1.5">
           <h3 className="text-base text-foreground">
             Software Engineer @{" "}
-            <AccentLink href="https://palantir.com">Palantir Technologies</AccentLink>
+            <AccentLink href="https://palantir.com">Palantir</AccentLink>
           </h3>
           <p className="text-[15px] leading-relaxed text-muted">
             Worked on Foundry as a software engineering intern. Designed an IMAP ingest deployed to
