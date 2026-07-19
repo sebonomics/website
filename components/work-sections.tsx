@@ -58,7 +58,7 @@ export function WorkSections() {
               </h3>
             </div>
             <p className="text-[15px] leading-relaxed text-muted">
-              Building an AI-native hedge fund that outperformed Citadel and Point72.
+              AI-native hedge fund outperforming Citadel, Millennium, and Bridgewater YTD.
             </p>
           </section>
 
@@ -90,16 +90,11 @@ export function WorkSections() {
             </h3>
           </div>
           <p className="text-[15px] leading-relaxed text-muted">
-            Youngest intern on Foundry Data Connection. Built{" "}
-            <span
-              aria-label="redacted"
-              className="inline-block h-[0.8em] w-14 rounded-sm bg-foreground/20 align-baseline blur-[2px] sm:w-24"
-            />{" "}
-            deployed to hundreds of customers.
+            Youngest intern on Foundry Data Connection. Built {"{ORCON}"} deployed to hundreds of customers.
           </p>
         </section>
 
-        <section className="border-b border-border/60 pb-4">
+        <section className="space-y-2 border-b border-border/60 pb-4">
           <div className="flex items-start gap-2.5">
             <ExperienceLogo domain="codefour.us" name="Code Four" />
             <h3 className="text-base leading-5 text-foreground">
@@ -107,6 +102,9 @@ export function WorkSections() {
               <span className="text-foreground/60"> — Growth Engineer</span>
             </h3>
           </div>
+          <p className="text-[15px] leading-relaxed text-muted">
+            Built GTM tooling reaching thousands of police departments across the United States.
+          </p>
         </section>
 
         <section className="space-y-2">
