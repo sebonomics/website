@@ -31,7 +31,7 @@ function ExperienceLogo({ domain, name, src }: { domain?: string; name: string; 
 
 export function WorkSections() {
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 lg:-mx-28">
       <section className="space-y-4">
         <h2 className="text-xs uppercase tracking-wide text-muted">Currently</h2>
 
@@ -44,7 +44,7 @@ export function WorkSections() {
                 <span className="text-foreground/60"> — Founder</span>
               </h3>
             </div>
-            <p className="text-[15px] leading-relaxed text-muted">
+            <p className="text-[15px] leading-relaxed text-muted lg:whitespace-nowrap">
               Building the revenue engine for small businesses. $700K raised at a $25M valuation. $20K MRR.
             </p>
           </section>
@@ -57,7 +57,7 @@ export function WorkSections() {
                 <span className="text-foreground/60"> — Founder</span>
               </h3>
             </div>
-            <p className="text-[15px] leading-relaxed text-muted">
+            <p className="text-[15px] leading-relaxed text-muted lg:whitespace-nowrap">
               AI-native hedge fund outperforming Citadel, Millennium, and Bridgewater YTD.
             </p>
           </section>
@@ -70,7 +70,7 @@ export function WorkSections() {
                 <span className="text-foreground/60"> — Scout</span>
               </h3>
             </div>
-            <p className="text-[15px] leading-relaxed text-muted">
+            <p className="text-[15px] leading-relaxed text-muted lg:whitespace-nowrap">
               Investing $10k-$25k checks through the scout fund. Referral path into both the main fund and
               Speedrun.
             </p>
@@ -89,7 +89,7 @@ export function WorkSections() {
               <span className="text-foreground/60"> — Software Engineer</span>
             </h3>
           </div>
-          <p className="text-[15px] leading-relaxed text-muted">
+          <p className="text-[15px] leading-relaxed text-muted lg:whitespace-nowrap">
             Youngest intern on Foundry Data Connection. Built {"{ORCON}"} deployed to hundreds of customers.
           </p>
         </section>
@@ -102,7 +102,7 @@ export function WorkSections() {
               <span className="text-foreground/60"> — Growth Engineer</span>
             </h3>
           </div>
-          <p className="text-[15px] leading-relaxed text-muted">
+          <p className="text-[15px] leading-relaxed text-muted lg:whitespace-nowrap">
             Built GTM tooling reaching thousands of police departments across the United States.
           </p>
         </section>
@@ -115,7 +115,7 @@ export function WorkSections() {
               <span className="text-foreground/60"> — Founder</span>
             </h3>
           </div>
-          <p className="text-[15px] leading-relaxed text-muted">
+          <p className="text-[15px] leading-relaxed text-muted lg:whitespace-nowrap">
             MCP infrastructure for GTM teams. Acquired by Pioneer Square Labs when I was 18.
           </p>
         </section>
