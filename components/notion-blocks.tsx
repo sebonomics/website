@@ -2,7 +2,7 @@ import type { ReactNode } from "react"
 
 export function PageTitle({ children }: { children: ReactNode }) {
   return (
-    <h1 className="pb-3 pt-10 text-[38px] font-bold leading-tight tracking-[-0.02em] sm:text-[42px]">
+    <h1 className="pb-3 pt-7 text-[38px] font-bold leading-tight tracking-[-0.02em] sm:text-[42px]">
       {children}
     </h1>
   )
@@ -18,7 +18,7 @@ export function Callout({ children }: { children: ReactNode }) {
 
 export function H2({ children }: { children: ReactNode }) {
   return (
-    <h2 className="mb-1 mt-9 text-[24px] font-semibold tracking-[-0.01em] text-foreground">
+    <h2 className="mb-1 mt-7 text-[24px] font-semibold tracking-[-0.01em] text-foreground">
       {children}
     </h2>
   )

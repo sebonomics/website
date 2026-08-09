@@ -6,7 +6,6 @@ import {
   Callout,
   H2,
   PageTitle,
-  Paragraph,
   SpotifyPill,
 } from "@/components/notion-blocks"
 import { PageShell } from "@/components/page-shell"
@@ -32,11 +31,7 @@ export default function Home() {
         </Bullet>
       </Bullets>
 
-      <H2>Dock</H2>
-      <Paragraph>What I&apos;m currently up to</Paragraph>
-      <div className="mt-5">
-        <Dock />
-      </div>
+      <Dock />
     </PageShell>
   )
 }

@@ -22,7 +22,7 @@ export function CoverBanner() {
   if (failed || !profile.coverImage) return <AsciiCover />
 
   return (
-    <div className="relative h-[150px] w-full overflow-hidden bg-cover sm:h-[200px] md:h-[260px]">
+    <div className="relative h-[140px] w-full overflow-hidden bg-cover sm:h-[min(22vh,190px)] md:h-[min(25vh,230px)]">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         ref={imgRef}
