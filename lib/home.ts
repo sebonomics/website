@@ -4,6 +4,8 @@ export const profile = {
   pageTitle: "Hey, I'm Sebastian",
   pageEmoji: "👋",
   tagline: "I'm broadly interested in technology, investing, and writing.",
+  /** shorter line for narrow screens */
+  taglineShort: "I'm interested in tech, investing, and writing",
   editedLabel: "Edited Aug 8",
   /** cover photo in /public — falls back to the dot-matrix scene if missing */
   coverImage: "/cover.png",
@@ -26,7 +28,7 @@ export const aboutItems: AboutItem[] = [
     html: `I live in San Francisco, grew up in Pittsburgh, and took a gap year from Stanford`,
   },
   {
-    html: `Building <a class="notion-link" href="https://formenos.ai" target="_blank" rel="noopener noreferrer">Formenos</a>, the AI-native hedge fund, and investing through <a class="notion-link" href="https://a16z.com" target="_blank" rel="noopener noreferrer">a16z</a>&apos;s scout fund`,
+    html: `Building <a class="notion-link" href="https://formenos.ai" target="_blank" rel="noopener noreferrer">Formenos</a>, the AI-native hedge fund, and investing through <a class="notion-link" href="https://a16z.com" target="_blank" rel="noopener noreferrer">a16z</a>'s scout fund`,
   },
   {
     html: `Outside of work: hiking, running, and anything outdoors or with friends`,

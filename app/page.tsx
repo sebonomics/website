@@ -16,7 +16,10 @@ export default function Home() {
     <PageShell icon="about" title="About" cover={<CoverBanner />}>
       <PageTitle>{profile.fullName}</PageTitle>
 
-      <Callout>{profile.tagline}</Callout>
+      <Callout>
+        <span className="sm:hidden">{profile.taglineShort}</span>
+        <span className="hidden sm:inline">{profile.tagline}</span>
+      </Callout>
 
       <H2>About</H2>
       <Bullets>
