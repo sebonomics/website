@@ -11,6 +11,8 @@ export type Person = {
   domain?: string
   logo?: string
   initial?: string
+  /** starting bump count, before visitor bumps */
+  bumps?: number
 }
 
 /**

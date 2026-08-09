@@ -29,10 +29,10 @@ export const aboutItems: AboutItem[] = [
     html: `Building <a class="notion-link" href="https://formenos.ai" target="_blank" rel="noopener noreferrer">Formenos</a>, and scouting for <a class="notion-link" href="https://a16z.com" target="_blank" rel="noopener noreferrer">a16z</a>`,
   },
   {
-    html: `Outside of work: hiking, running, and pretty much anything outdoors`,
+    html: `Outside of work: hiking, running, and anything outdoors or with friends`,
   },
   {
-    html: `Before I die: hike every national park, take up sailing, and become a generational founder`,
+    html: `Before I die: hike every national park and learn how to sail`,
   },
 ]
 
@@ -57,16 +57,16 @@ export type DockApp = {
  */
 export const dockApps: DockApp[] = [
   { name: "Messages", icon: "messages" },
-  { name: "Chrome", icon: "chrome" },
+  { name: "Chrome", icon: "chrome", href: "https://www.google.com/chrome/" },
   { name: "System Settings", icon: "settings", badge: 1 },
-  { name: "Slack", icon: "slack" },
-  { name: "Slashy", icon: "slashy" },
-  { name: "Granola", icon: "spiral" },
-  { name: "Cursor", icon: "cursor" },
-  { name: "Willow Voice", icon: "layers" },
-  { name: "Anticipate", icon: "anticipate" },
-  { name: "Claude", icon: "claude" },
-  { name: "Notion", icon: "notion", running: true },
+  { name: "Slack", icon: "slack", href: "https://slack.com" },
+  { name: "Slashy", icon: "slashy", href: "https://slashy.com" },
+  { name: "Granola", icon: "spiral", href: "https://www.granola.ai" },
+  { name: "Cursor", icon: "cursor", href: "https://cursor.com" },
+  { name: "Willow Voice", icon: "layers", href: "https://willowvoice.com" },
+  { name: "Anticipate", icon: "anticipate", href: "https://useanticipate.com" },
+  { name: "Claude", icon: "claude", href: "https://claude.ai" },
+  { name: "Notion", icon: "notion", href: "https://www.notion.so", running: true },
 ]
 
 export type ExperienceRow = {

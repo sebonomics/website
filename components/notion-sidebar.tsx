@@ -96,15 +96,18 @@ export function SidebarContent({
             Sebastian&apos;s Notion
           </span>
         </div>
-        <button
-          type="button"
-          onClick={onCollapse}
-          aria-label="Collapse sidebar"
-          title="Collapse sidebar"
-          className="flex size-6 shrink-0 items-center justify-center rounded text-faint transition-colors hover:bg-hover hover:text-foreground"
-        >
-          <ChevronsLeft className="size-4" strokeWidth={1.75} />
-        </button>
+        {/* only in the docked sidebar — the mobile drawer has its own close button */}
+        {onCollapse ? (
+          <button
+            type="button"
+            onClick={onCollapse}
+            aria-label="Collapse sidebar"
+            title="Collapse sidebar"
+            className="flex size-6 shrink-0 items-center justify-center rounded text-faint transition-colors hover:bg-hover hover:text-foreground"
+          >
+            <ChevronsLeft className="size-4" strokeWidth={1.75} />
+          </button>
+        ) : null}
       </div>
 
       <nav className="notion-scroll flex-1 overflow-y-auto px-3 pb-4 pt-2">

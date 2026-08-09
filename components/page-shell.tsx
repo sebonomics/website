@@ -208,7 +208,7 @@ export function PageShell({
               type="button"
               onClick={() => setDrawer(false)}
               aria-label="Close menu"
-              className="absolute right-2 top-2.5 z-10 flex size-7 items-center justify-center rounded text-faint hover:bg-hover"
+              className="absolute right-2 top-2 z-10 flex size-7 items-center justify-center rounded text-faint transition-colors hover:bg-hover hover:text-foreground"
             >
               <X className="size-4" strokeWidth={1.75} />
             </button>
@@ -303,7 +303,7 @@ export function PageShell({
 
         {cover}
 
-        <main className="notion-scroll flex-1 px-6 pb-28 sm:px-10">
+        <main className="notion-scroll flex-1 px-6 pb-28 sm:px-10 sm:pb-[98px]">
           <div className="mx-auto w-full max-w-[708px]">{children}</div>
         </main>
       </div>

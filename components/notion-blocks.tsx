@@ -55,7 +55,7 @@ export function SpotifyPill({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="ml-1 inline-flex translate-y-[3px] items-center gap-1.5 rounded-[4px] bg-hover px-1.5 py-0.5 align-middle text-[14px] transition-colors hover:bg-active"
+      className="ml-1 inline-flex -translate-y-px items-center gap-1.5 rounded-[4px] bg-hover px-1.5 py-0.5 align-middle text-[14px] leading-none transition-colors hover:bg-active"
     >
       <svg viewBox="0 0 24 24" className="size-[15px] shrink-0" aria-hidden="true">
         <circle cx="12" cy="12" r="12" fill="#1db954" />

@@ -194,23 +194,36 @@ function DockTray({ apps = dockApps }: { apps?: typeof dockApps }) {
         WebkitBackdropFilter: "blur(12px)",
       }}
     >
-      {apps.map((app) => (
+      {apps.map((app) => {
+        const Tile = app.href ? "a" : "span"
+        return (
         <span key={app.name} className="group relative flex flex-col items-center">
-          <span className="dock-icon relative size-[38px] sm:size-[44px]">
+          <Tile
+            className="dock-icon relative block size-[38px] sm:size-[44px]"
+            {...(app.href
+              ? {
+                  href: app.href,
+                  target: "_blank",
+                  rel: "noopener noreferrer",
+                  "aria-label": app.name,
+                }
+              : {})}
+          >
             <DockIcon name={app.name} icon={app.icon} />
             {app.badge ? (
               <span className="absolute -right-1 -top-1 flex size-[15px] items-center justify-center rounded-full bg-[#ff3b30] text-[9px] font-semibold leading-none text-white shadow-sm ring-[1.5px] ring-white/70">
                 {app.badge}
               </span>
             ) : null}
-          </span>
+          </Tile>
           <span
             className={`mt-[3px] size-[3px] rounded-full ${
               app.running ? "bg-foreground/45" : "bg-transparent"
             }`}
           />
         </span>
-      ))}
+        )
+      })}
     </div>
   )
 }
