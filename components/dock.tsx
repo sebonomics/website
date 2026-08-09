@@ -11,7 +11,7 @@ const ICONS: Record<string, IconSpec> = {
     bg: "linear-gradient(180deg,#4aa8f5 0%,#2a7fd4 100%)",
     art: (
       <>
-        <path d="M0 0h32v64H0z" fill="#ffffff" opacity="0.92" />
+        <path d="M0 0h32v64H0z" fill="#f1f6fe" />
         <circle cx="17" cy="26" r="3" fill="#1b3d5c" />
         <circle cx="45" cy="26" r="3" fill="#1b3d5c" />
         <path d="M20 42q12 9 24 0" stroke="#1b3d5c" strokeWidth="3.2" fill="none" strokeLinecap="round" />
