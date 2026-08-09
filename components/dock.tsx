@@ -179,27 +179,29 @@ function DockIcon({ name, icon }: { name: string; icon: string }) {
   const spec = ICONS[icon]
   if (!spec) return null
 
-  // clip-path rounds proportionally and antialiases cleanly at any size, unlike
-  // overflow-hidden + a fixed radius (which stair-steps on scaled/fractional pixels)
-  const squircle = { clipPath: "inset(0 round 22.5%)", borderRadius: "22.5%" }
+  // The tile background is a CSS gradient (clipped in CSS) while the art is SVG.
+  // Both are rounded with the same 22.5% radius — expressed in each coordinate
+  // system — so full-bleed art like Finder's white half lines up with the tile edge.
+  const clipId = `dock-clip-${icon}`
+  const radius = S * 0.225
 
   return (
     <span
       className="flex size-full items-center justify-center"
       style={{
-        ...squircle,
+        clipPath: "inset(0 round 22.5%)",
+        borderRadius: "22.5%",
         background: spec.bg,
         boxShadow: spec.border ? `inset 0 0 0 1px ${spec.border}` : undefined,
       }}
     >
-      <svg
-        viewBox={`0 0 ${S} ${S}`}
-        className="size-full"
-        style={squircle}
-        aria-label={name}
-        role="img"
-      >
-        {spec.art}
+      <svg viewBox={`0 0 ${S} ${S}`} className="size-full" aria-label={name} role="img">
+        <defs>
+          <clipPath id={clipId}>
+            <rect width={S} height={S} rx={radius} ry={radius} />
+          </clipPath>
+        </defs>
+        <g clipPath={`url(#${clipId})`}>{spec.art}</g>
       </svg>
     </span>
   )
