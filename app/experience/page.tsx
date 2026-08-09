@@ -5,7 +5,7 @@ import { Callout, PageTitle } from "@/components/notion-blocks"
 import { PageShell } from "@/components/page-shell"
 
 export const metadata: Metadata = {
-  title: "Experience — Sebastian Tan",
+  title: "Experience",
   description: "Companies and experience — Sebastian Tan",
 }
 
@@ -14,7 +14,7 @@ export default function ExperiencePage() {
     <PageShell icon="experience" title="Experience">
       <PageTitle>Experience</PageTitle>
 
-      <Callout>Everything I&apos;ve built, shipped, or helped fund.</Callout>
+      <Callout>Things I&apos;ve built, shipped, or helped fund</Callout>
 
       <div className="mt-3">
         <ExperienceTable />

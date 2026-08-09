@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import Script from "next/script"
 import { Inter, Newsreader } from "next/font/google"
 import "./globals.css"
+import { siteDescription as description, siteUrl } from "@/lib/site"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -18,8 +19,41 @@ const newsreader = Newsreader({
 })
 
 export const metadata: Metadata = {
-  title: "Sebastian Tan",
-  description: "Sebastian Tan — founder, builder, San Francisco.",
+  metadataBase: new URL(siteUrl),
+  // "Sebastian Tan" on the home page; subpages read "Experience — Sebastian Tan"
+  title: {
+    default: "Sebastian Tan",
+    template: "%s — Sebastian Tan",
+  },
+  description,
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    siteName: "Sebastian Tan",
+    title: "Sebastian Tan",
+    description,
+    url: siteUrl,
+    images: [{ url: "/cover.png", width: 1860, height: 930, alt: "Sebastian Tan" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sebastian Tan",
+    description,
+    creator: "@sebonomics",
+    images: ["/cover.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+  },
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/icon-light-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: "/apple-icon.png",
+  },
 }
 
 const themeScript = `

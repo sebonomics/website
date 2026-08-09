@@ -7,7 +7,7 @@ import { PageShell } from "@/components/page-shell"
 import { writingPostHref, writingPosts } from "@/lib/writing"
 
 export const metadata: Metadata = {
-  title: "Writing — Sebastian Tan",
+  title: "Writing",
   description: "Essays and writing by Sebastian Tan",
 }
 
@@ -16,7 +16,7 @@ export default function WritingPage() {
     <PageShell icon="writing" title="Writing">
       <PageTitle>Writing</PageTitle>
 
-      <Callout>Notes on technology, investing, and whatever else I&apos;m chewing on.</Callout>
+      <Callout>Shit that I&apos;ve written</Callout>
 
       {writingPosts.length > 0 ? (
         <ul className="mt-4">

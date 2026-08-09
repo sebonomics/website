@@ -18,11 +18,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const post = getWritingPost(slug)
 
   if (!post) {
-    return { title: "Musings — Sebastian Tan" }
+    return { title: "Writing" }
   }
 
   return {
-    title: `${post.title} — Sebastian Tan`,
+    title: post.title,
     description: post.paragraphs[0],
   }
 }
