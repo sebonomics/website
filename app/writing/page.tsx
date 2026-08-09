@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { FileText } from "lucide-react"
 
-import { Callout, PageTitle, Paragraph } from "@/components/notion-blocks"
+import { PageTitle, Paragraph } from "@/components/notion-blocks"
 import { PageShell } from "@/components/page-shell"
 import { writingPostHref, writingPosts } from "@/lib/writing"
 
@@ -15,8 +15,6 @@ export default function WritingPage() {
   return (
     <PageShell icon="writing" title="Writing">
       <PageTitle>Writing</PageTitle>
-
-      <Callout>Shit that I&apos;ve written</Callout>
 
       {writingPosts.length > 0 ? (
         <ul className="mt-4">

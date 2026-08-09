@@ -1,5 +1,5 @@
 import type { ComponentType } from "react"
-import { Briefcase, FileText, PenLine, TrendingUp, User, Users } from "lucide-react"
+import { Briefcase, FileText, PenLine, TrendingUp, User } from "lucide-react"
 
 export type PageIconType = ComponentType<{ className?: string; strokeWidth?: number }>
 
@@ -8,7 +8,6 @@ export const pageIcons = {
   about: User as PageIconType,
   experience: Briefcase as PageIconType,
   investments: TrendingUp as PageIconType,
-  people: Users as PageIconType,
   writing: PenLine as PageIconType,
   post: FileText as PageIconType,
 }

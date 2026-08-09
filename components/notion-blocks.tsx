@@ -8,14 +8,6 @@ export function PageTitle({ children }: { children: ReactNode }) {
   )
 }
 
-export function Callout({ children }: { children: ReactNode }) {
-  return (
-    <div className="my-3 rounded-[4px] bg-callout-bg px-4 py-3.5">
-      <p className="text-[16px] leading-6 text-callout-text">{children}</p>
-    </div>
-  )
-}
-
 export function H2({ children }: { children: ReactNode }) {
   return (
     <h2 className="mb-1 mt-7 text-[24px] font-semibold tracking-[-0.01em] text-foreground">

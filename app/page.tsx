@@ -3,7 +3,6 @@ import { Dock } from "@/components/dock"
 import {
   Bullet,
   Bullets,
-  Callout,
   H2,
   PageTitle,
   SpotifyPill,
@@ -15,11 +14,6 @@ export default function Home() {
   return (
     <PageShell icon="about" title="About" cover={<CoverBanner />}>
       <PageTitle>{profile.fullName}</PageTitle>
-
-      <Callout>
-        <span className="sm:hidden">{profile.taglineShort}</span>
-        <span className="hidden sm:inline">{profile.tagline}</span>
-      </Callout>
 
       <H2>About</H2>
       <Bullets>

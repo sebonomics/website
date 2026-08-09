@@ -16,8 +16,6 @@
   --accent: #2383e2;
   --accent-hover: #1a6fc4;
 
-  --callout-bg: #f3f3f1;
-  --callout-text: #37352f;
   --yellow-bg: #fdecc8;
   --blue-btn: #2383e2;
 
@@ -53,8 +51,6 @@ html.dark {
   --accent: #529cca;
   --accent-hover: #6cb0da;
 
-  --callout-bg: #262626;
-  --callout-text: #d4d4d4;
   --yellow-bg: #56452f;
   --blue-btn: #2383e2;
 
@@ -91,8 +87,6 @@ html {
   --color-active: var(--active);
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
-  --color-callout-bg: var(--callout-bg);
-  --color-callout-text: var(--callout-text);
   --color-yellow-bg: var(--yellow-bg);
   --color-cover: var(--cover);
   --color-cover-ink: var(--cover-ink);
