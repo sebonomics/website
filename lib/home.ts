@@ -3,9 +3,9 @@ export const profile = {
   fullName: "Sebastian Tan",
   pageTitle: "Hey, I'm Sebastian",
   pageEmoji: "👋",
-  tagline: "I'm broadly interested in technology, investing, and writing.",
+  tagline: "I like technology, investing, and writing.",
   /** shorter line for narrow screens */
-  taglineShort: "I'm interested in tech, investing, and writing",
+  taglineShort: "I like tech, investing, and writing.",
   editedLabel: "Edited Aug 8",
   /** cover photo in /public — falls back to the dot-matrix scene if missing */
   coverImage: "/cover.png",
