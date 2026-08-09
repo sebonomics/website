@@ -56,17 +56,17 @@ export type DockApp = {
  * components/dock.tsx points at an image file in /public.
  */
 export const dockApps: DockApp[] = [
-  { name: "Finder", icon: "finder", running: true },
-  { name: "Messages", icon: "messages", running: true },
-  { name: "Chrome", icon: "chrome", running: true },
-  { name: "System Settings", icon: "settings", running: true, badge: 1 },
-  { name: "Slack", icon: "slack", running: true },
-  { name: "Linear", icon: "linear", running: true },
-  { name: "Granola", icon: "spiral", running: true },
-  { name: "Cursor", icon: "cursor", running: true },
-  { name: "Willow Voice", icon: "layers", running: true },
-  { name: "Anticipate", icon: "anticipate", running: true },
-  { name: "Claude", icon: "claude", running: true },
+  { name: "Messages", icon: "messages" },
+  { name: "Chrome", icon: "chrome" },
+  { name: "System Settings", icon: "settings", badge: 1 },
+  { name: "Slack", icon: "slack" },
+  { name: "Slashy", icon: "slashy" },
+  { name: "Granola", icon: "spiral" },
+  { name: "Cursor", icon: "cursor" },
+  { name: "Willow Voice", icon: "layers" },
+  { name: "Anticipate", icon: "anticipate" },
+  { name: "Claude", icon: "claude" },
+  { name: "Notion", icon: "notion", running: true },
 ]
 
 export type ExperienceRow = {
@@ -117,7 +117,7 @@ export const experience: ExperienceRow[] = [
   },
   {
     company: "Andreessen Horowitz",
-    role: "Scout",
+    role: "Venture Scout",
     start: "Jan 2026",
     end: "Present",
     highlight: "$10k–$25k checks through the scout fund",

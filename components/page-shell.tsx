@@ -18,6 +18,7 @@ import {
 
 import { SidebarContent } from "@/components/notion-sidebar"
 import { pageIcons } from "@/components/page-icons"
+import { ThemeToggle } from "@/components/theme-toggle"
 import { profile } from "@/lib/home"
 
 function useCopyLink() {
@@ -284,7 +285,7 @@ export function PageShell({
               aria-pressed={starred}
               aria-label={starred ? "Remove from favorites" : "Add to favorites"}
               title={starred ? "Remove from favorites" : "Add to favorites"}
-              className={`flex size-7 items-center justify-center rounded transition-colors hover:bg-hover ${
+              className={`hidden size-7 items-center justify-center rounded transition-colors hover:bg-hover sm:flex ${
                 starred ? "text-[#f5a623]" : "text-faint hover:text-foreground"
               }`}
             >
@@ -293,6 +294,8 @@ export function PageShell({
                 strokeWidth={1.75}
               />
             </button>
+
+            <ThemeToggle className="sm:hidden" />
 
             <MoreMenu onCopy={copy} />
           </div>

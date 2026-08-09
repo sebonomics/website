@@ -25,9 +25,13 @@
   --cover-ink: #4c4a44;
   --cover-dot: rgba(76, 74, 68, 0.16);
 
-  --dock-bg: rgba(246, 245, 243, 0.72);
-  --dock-border: rgba(55, 53, 47, 0.12);
-  --dock-shadow: 0 8px 24px rgba(15, 15, 15, 0.14);
+  --dock-bg: rgba(250, 250, 249, 0.82);
+  --dock-border: rgba(15, 15, 15, 0.14);
+  --dock-shadow:
+    0 0 0 0.5px rgba(15, 15, 15, 0.05),
+    0 14px 38px rgba(15, 15, 15, 0.13),
+    0 4px 12px rgba(15, 15, 15, 0.07),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
 
   --shadow-sm: 0 1px 2px rgba(15, 15, 15, 0.08);
   --shadow-md: 0 6px 20px rgba(15, 15, 15, 0.12);
@@ -58,9 +62,13 @@ html.dark {
   --cover-ink: #b6b3ad;
   --cover-dot: rgba(182, 179, 173, 0.16);
 
-  --dock-bg: rgba(46, 46, 46, 0.7);
-  --dock-border: rgba(255, 255, 255, 0.1);
-  --dock-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  --dock-bg: rgba(52, 52, 52, 0.72);
+  --dock-border: rgba(255, 255, 255, 0.16);
+  --dock-shadow:
+    0 0 0 0.5px rgba(0, 0, 0, 0.4),
+    0 14px 38px rgba(0, 0, 0, 0.5),
+    0 4px 12px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
 
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
   --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.5);
@@ -171,4 +179,18 @@ html.dark .name-accent {
 }
 .drawer-in {
   animation: drawer-in 0.18s ease-out;
+}
+
+/* dock hover: a soft glow and a hint of scale, not a big pop */
+.dock-icon {
+  transition:
+    transform 0.18s ease,
+    filter 0.18s ease;
+}
+.group:hover .dock-icon {
+  transform: scale(1.06);
+  filter: drop-shadow(0 3px 10px rgba(15, 15, 15, 0.3));
+}
+html.dark .group:hover .dock-icon {
+  filter: drop-shadow(0 0 11px rgba(255, 255, 255, 0.38));
 }

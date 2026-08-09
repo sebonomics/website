@@ -1,8 +1,17 @@
-import type { ReactNode } from "react"
+"use client"
+
+import { type ReactNode, useEffect, useRef, useState } from "react"
 
 import { dockApps } from "@/lib/home"
 
-type IconSpec = { bg?: string; border?: string; art?: ReactNode; img?: string }
+type IconSpec = {
+  bg?: string
+  border?: string
+  art?: ReactNode
+  img?: string
+  /** scale for image icons — <1 insets a bare logo inside its tile */
+  imgScale?: number
+}
 
 const S = 64 // icon art viewBox
 
@@ -74,35 +83,10 @@ const ICONS: Record<string, IconSpec> = {
       </>
     ),
   },
-  notion: {
-    bg: "#ffffff",
-    border: "rgba(0,0,0,0.12)",
-    art: (
-      <>
-        <path d="M20 16h9l15 22V16h6v32h-8L26 25v23h-6z" fill="#111110" />
-        <rect x="14" y="12" width="36" height="40" rx="3" stroke="#111110" strokeWidth="3" fill="none" />
-      </>
-    ),
-  },
-  linear: {
-    bg: "linear-gradient(160deg,#6165e8 0%,#4348cf 100%)",
-    art: (
-      <g fill="#ffffff">
-        {[-13, 0, 13].map((offset) => (
-          <rect
-            key={offset}
-            x={30 + offset}
-            y="15"
-            width="5"
-            height="34"
-            rx="2.5"
-            transform={`rotate(18 ${32 + offset} 32)`}
-          />
-        ))}
-      </g>
-    ),
-  },
-  slack: { img: "/slack.png" },
+  slack: { bg: "#ffffff", border: "rgba(0,0,0,0.10)", img: "/slack.png", imgScale: 1.07 },
+  slashy: { img: "/slashy.png" },
+  notion: { img: "/notion.png" },
+  chrome: { bg: "#ffffff", border: "rgba(0,0,0,0.10)", img: "/chrome.png", imgScale: 0.8 },
   spotify: {
     bg: "#1db954",
     art: (
@@ -152,42 +136,8 @@ const ICONS: Record<string, IconSpec> = {
   layers: { img: "/willow.png" },
   // real logo file rather than a hand-drawn approximation
   anticipate: { img: "/anticipate.png" },
-  chrome: {
-    bg: "#ffffff",
-    border: "rgba(0,0,0,0.12)",
-    art: (
-      <>
-        <path d="M32 12a20 20 0 0 1 17.3 10H32a10 10 0 0 0-8.7 15L14.7 22A20 20 0 0 1 32 12z" fill="#ea4335" />
-        <path d="M14.7 22 23.3 37a10 10 0 0 0 8.7 5l-8.6 14.8A20 20 0 0 1 14.7 22z" fill="#34a853" />
-        <path d="M49.3 22a20 20 0 0 1-15.9 29.6L42 37a10 10 0 0 0-.9-15z" fill="#fbbc05" />
-        <path d="M23.4 51.6 32 42a10 10 0 0 0 9.9-8.4l10.2.6A20 20 0 0 1 23.4 51.6z" fill="#fbbc05" />
-        <circle cx="32" cy="32" r="9.5" fill="#4285f4" />
-        <circle cx="32" cy="32" r="7" fill="#ffffff" opacity="0.15" />
-      </>
-    ),
-  },
   claude: { img: "/claude.png" },
-  settings: {
-    bg: "linear-gradient(160deg,#d9d9d9 0%,#9d9d9d 100%)",
-    art: (
-      <>
-        <circle cx="32" cy="32" r="17" fill="none" stroke="#4a4a4a" strokeWidth="6" />
-        <circle cx="32" cy="32" r="6" fill="#4a4a4a" />
-        {Array.from({ length: 8 }).map((_, i) => (
-          <rect
-            key={i}
-            x="30"
-            y="6"
-            width="4"
-            height="9"
-            rx="2"
-            fill="#4a4a4a"
-            transform={`rotate(${i * 45} 32 32)`}
-          />
-        ))}
-      </>
-    ),
-  },
+  settings: { img: "/settings.png" },
 }
 
 function DockIcon({ name, icon }: { name: string; icon: string }) {
@@ -202,9 +152,8 @@ function DockIcon({ name, icon }: { name: string; icon: string }) {
 
   return (
     <span
-      className="flex size-full items-center justify-center"
+      className="flex size-full items-center justify-center overflow-hidden"
       style={{
-        clipPath: "inset(0 round 22.5%)",
         borderRadius: "22.5%",
         background: spec.bg,
         boxShadow: spec.border ? `inset 0 0 0 1px ${spec.border}` : undefined,
@@ -216,8 +165,8 @@ function DockIcon({ name, icon }: { name: string; icon: string }) {
           src={spec.img}
           alt={name}
           className="size-full object-cover"
-          /* slight overscale so any leftover padding falls outside the corner clip */
-          style={{ transform: "scale(1.04)" }}
+          /* imgScale insets a bare logo like Chrome's circle inside its tile */
+          style={{ transform: `scale(${spec.imgScale ?? 1})` }}
         />
       ) : (
         <svg viewBox={`0 0 ${S} ${S}`} className="size-full" aria-label={name} role="img">
@@ -233,10 +182,10 @@ function DockIcon({ name, icon }: { name: string; icon: string }) {
   )
 }
 
-function DockTray() {
+function DockTray({ apps = dockApps }: { apps?: typeof dockApps }) {
   return (
     <div
-      className="mx-auto flex w-max items-end gap-1.5 rounded-[20px] border px-2.5 pb-1.5 pt-2 sm:gap-2 sm:px-3"
+      className="mx-auto flex w-max items-end gap-1.5 rounded-[18px] border px-3 pb-1.5 pt-2 sm:gap-2 sm:px-3.5"
       style={{
         background: "var(--dock-bg)",
         borderColor: "var(--dock-border)",
@@ -245,14 +194,9 @@ function DockTray() {
         WebkitBackdropFilter: "blur(12px)",
       }}
     >
-      {dockApps.map((app) => (
+      {apps.map((app) => (
         <span key={app.name} className="group relative flex flex-col items-center">
-          {app.name ? (
-            <span className="pointer-events-none absolute -top-9 whitespace-nowrap rounded-md border border-border bg-background px-2 py-1 text-[12px] text-foreground opacity-0 shadow-sm transition-opacity duration-150 group-hover:opacity-100">
-              {app.name}
-            </span>
-          ) : null}
-          <span className="relative size-[38px] origin-bottom transition-transform duration-200 ease-out group-hover:-translate-y-1 group-hover:scale-[1.28] sm:size-[44px]">
+          <span className="dock-icon relative size-[38px] sm:size-[44px]">
             <DockIcon name={app.name} icon={app.icon} />
             {app.badge ? (
               <span className="absolute -right-1 -top-1 flex size-[15px] items-center justify-center rounded-full bg-[#ff3b30] text-[9px] font-semibold leading-none text-white shadow-sm ring-[1.5px] ring-white/70">
@@ -275,16 +219,47 @@ function DockTray() {
  * On mobile the dock sits inline in the page. On every larger screen it is pinned
  * to the bottom-center of the viewport, where the real macOS dock lives.
  */
+const MOBILE_ICON = 38
+const MOBILE_GAP = 6
+const TRAY_PADDING = 26 // px-3 both sides + border
+
+/** Renders the right-hand icons — however many actually fit the viewport. */
+function MobileDock() {
+  const ref = useRef<HTMLDivElement>(null)
+  const [count, setCount] = useState(6)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+
+    const measure = () => {
+      const available = el.clientWidth - TRAY_PADDING
+      if (available <= 0) return // hidden at this breakpoint; nothing to measure
+      const fits = Math.floor((available + MOBILE_GAP) / (MOBILE_ICON + MOBILE_GAP))
+      setCount(Math.max(1, Math.min(dockApps.length, fits)))
+    }
+
+    measure()
+    const observer = new ResizeObserver(measure)
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
+  return (
+    <div ref={ref} className="pb-2 sm:hidden">
+      <DockTray apps={dockApps.slice(-count)} />
+    </div>
+  )
+}
+
 export function Dock() {
   return (
     <>
-      <div className="-mx-2 overflow-x-auto pb-2 sm:hidden">
-        <DockTray />
-      </div>
+      <MobileDock />
 
       {/* left-aligned to the content column (the sidebar is 240px wide on md+) */}
       <div className="pointer-events-none fixed bottom-3 left-0 right-0 z-40 hidden justify-center px-4 sm:flex md:left-[240px]">
-        <div className="pointer-events-auto max-w-full overflow-x-auto">
+        <div className="pointer-events-auto max-w-full">
           <DockTray />
         </div>
       </div>

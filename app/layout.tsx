@@ -25,11 +25,9 @@ export const metadata: Metadata = {
 const themeScript = `
 (function () {
   try {
+    // dark by default; only an explicit "light" choice opts out
     var stored = localStorage.getItem("theme");
-    var dark = stored
-      ? stored === "dark"
-      : window.matchMedia("(prefers-color-scheme: dark)").matches;
-    document.documentElement.classList.toggle("dark", dark);
+    document.documentElement.classList.toggle("dark", stored !== "light");
   } catch (e) {}
 })();
 `
@@ -40,7 +38,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${newsreader.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`dark ${inter.variable} ${newsreader.variable}`} suppressHydrationWarning>
       <body>
         <Script id="theme-init" strategy="beforeInteractive">
           {themeScript}

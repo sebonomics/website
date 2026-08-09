@@ -5,6 +5,8 @@ export type Person = {
   /** short line on why they're worth knowing */
   note?: string
   href?: string
+  /** full LinkedIn profile URL */
+  linkedin?: string
   /** favicon domain, or a local image path via `logo` */
   domain?: string
   logo?: string
@@ -12,10 +14,9 @@ export type Person = {
 }
 
 /**
- * Cool people. Add rows here and they show up on /people.
+ * Imported from the Attio "Network" export.
  *
- * Attio sync: this is the seam. Swap `people` for an async loader that hits
- * Attio's REST API, e.g.
+ * Attio sync: swap `people` for an async loader that hits Attio's REST API, e.g.
  *
  *   export async function getPeople(): Promise<Person[]> {
  *     const res = await fetch(
@@ -37,4 +38,28 @@ export type Person = {
  * That needs an ATTIO_API_KEY in .env.local and a mapping from your workspace's
  * attribute slugs to the fields above, since those are per-workspace.
  */
-export const people: Person[] = []
+export const people: Person[] = [
+  {
+    name: "Aryan Mehra",
+    company: "Palantir Technologies",
+    domain: "palantir.com",
+    linkedin: "https://www.linkedin.com/in/aryan-mehra",
+  },
+  {
+    name: "Bassel Ojjeh",
+    company: "Neo",
+    domain: "neo.com",
+    linkedin: "https://www.linkedin.com/in/basselo650",
+  },
+  {
+    name: "Troy Kirwin",
+    company: "Andreessen Horowitz",
+    domain: "a16z.com",
+  },
+  {
+    name: "Prathik Iyengar",
+    company: "CraftPath",
+    initial: "C",
+    linkedin: "https://www.linkedin.com/in/prathikiyengar",
+  },
+]
