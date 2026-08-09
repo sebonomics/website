@@ -1,21 +1,24 @@
 import type { Metadata } from "next"
+
+import { ExperienceTable } from "@/components/experience-table"
+import { Callout, PageTitle } from "@/components/notion-blocks"
 import { PageShell } from "@/components/page-shell"
-import { SocialFooter } from "@/components/social-footer"
-import { WorkSections } from "@/components/work-sections"
 
 export const metadata: Metadata = {
-  title: "Work — Sebastian Tan",
+  title: "Experience — Sebastian Tan",
   description: "Companies and experience — Sebastian Tan",
 }
 
-export default function WorkPage() {
+export default function ExperiencePage() {
   return (
-    <PageShell>
-      <div className="flex flex-1 flex-col justify-center space-y-12 text-[17px] leading-[1.65] sm:text-[18px]">
-        <WorkSections />
-      </div>
+    <PageShell icon="🏆" title="Experience">
+      <PageTitle>Experience</PageTitle>
 
-      <SocialFooter />
+      <Callout>Everything I&apos;ve built, shipped, or helped fund.</Callout>
+
+      <div className="mt-3">
+        <ExperienceTable />
+      </div>
     </PageShell>
   )
 }

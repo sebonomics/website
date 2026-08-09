@@ -1,8 +1,8 @@
 import type { Metadata } from "next"
-import Link from "next/link"
 import { notFound } from "next/navigation"
+
+import { PageTitle } from "@/components/notion-blocks"
 import { PageShell } from "@/components/page-shell"
-import { SocialFooter } from "@/components/social-footer"
 import { getWritingPost, writingPosts } from "@/lib/writing"
 
 type PageProps = {
@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const post = getWritingPost(slug)
 
   if (!post) {
-    return { title: "Writing — Sebastian Tan" }
+    return { title: "Musings — Sebastian Tan" }
   }
 
   return {
@@ -36,27 +36,17 @@ export default async function WritingArticlePage({ params }: PageProps) {
   }
 
   return (
-    <PageShell>
-      <article className="flex flex-1 flex-col justify-center space-y-10 text-[17px] leading-[1.65] sm:text-[18px]">
-        <header className="space-y-3">
-          <Link
-            href="/writing"
-            className="text-sm text-muted transition-colors hover:text-foreground"
-          >
-            ← Writing
-          </Link>
-          <h1 className="text-foreground">{post.title}</h1>
-          <p className="text-sm text-muted">{post.date}</p>
-        </header>
+    <PageShell icon="🌻" title={post.title}>
+      <PageTitle>{post.title}</PageTitle>
+      <p className="mb-6 text-[13px] text-faint">{post.date}</p>
 
-        <div className="space-y-6">
-          {post.paragraphs.map((paragraph) => (
-            <p key={paragraph.slice(0, 32)}>{paragraph}</p>
-          ))}
-        </div>
+      <article className="space-y-4">
+        {post.paragraphs.map((paragraph) => (
+          <p key={paragraph.slice(0, 32)} className="text-[16px] leading-[1.7]">
+            {paragraph}
+          </p>
+        ))}
       </article>
-
-      <SocialFooter />
     </PageShell>
   )
 }

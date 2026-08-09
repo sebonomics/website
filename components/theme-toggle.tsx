@@ -1,36 +1,37 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { Moon, Sun } from "lucide-react"
 
-function readLightMode() {
-  return document.documentElement.classList.contains("light")
-}
-
-export function ThemeToggle() {
-  const [light, setLight] = useState(false)
+export function ThemeToggle({ className = "" }: { className?: string }) {
+  const [dark, setDark] = useState(false)
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    setLight(readLightMode())
+    setDark(document.documentElement.classList.contains("dark"))
+    setMounted(true)
   }, [])
 
   const toggle = () => {
-    const next = !light
-    setLight(next)
-    document.documentElement.classList.toggle("light", next)
-    localStorage.setItem("theme", next ? "light" : "dark")
+    const next = !dark
+    setDark(next)
+    document.documentElement.classList.toggle("dark", next)
+    try {
+      localStorage.setItem("theme", next ? "dark" : "light")
+    } catch {}
   }
+
+  const Icon = mounted && dark ? Moon : Sun
 
   return (
     <button
       type="button"
       onClick={toggle}
-      aria-label={light ? "Switch to dark mode" : "Switch to light mode"}
-      className="shrink-0 rounded-sm p-1 text-muted transition-colors hover:text-foreground"
+      aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
+      title={dark ? "Light mode" : "Dark mode"}
+      className={`flex size-6 items-center justify-center rounded text-faint transition-colors hover:bg-hover hover:text-foreground ${className}`}
     >
-      <span className="flex h-3.5 w-6 overflow-hidden rounded-[2px] border border-border">
-        <span className={`w-1/2 transition-colors ${light ? "bg-background" : "bg-foreground/80"}`} />
-        <span className={`w-1/2 transition-colors ${light ? "bg-accent/70" : "bg-accent/35"}`} />
-      </span>
+      <Icon className="size-[15px]" strokeWidth={1.75} />
     </button>
   )
 }
