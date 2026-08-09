@@ -259,7 +259,7 @@ function MobileDock() {
   }, [])
 
   return (
-    <div ref={ref} className="pb-2 sm:hidden">
+    <div ref={ref} className="mt-10 sm:hidden">
       <DockTray apps={dockApps.slice(-count)} />
     </div>
   )
