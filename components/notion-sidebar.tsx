@@ -37,6 +37,7 @@ const favorites = [
   { href: "/", icon: pageIcons.about, label: "About" },
   { href: "/experience", icon: pageIcons.experience, label: "Experience" },
   { href: "/investments", icon: pageIcons.investments, label: "Investments" },
+  { href: "/people", icon: pageIcons.people, label: "People" },
   { href: "/writing", icon: pageIcons.writing, label: "Writing" },
 ]
 
@@ -57,14 +58,11 @@ function NavItem({
     <Link
       href={href}
       onClick={onNavigate}
-      className={`flex h-[27px] items-center gap-2 rounded px-2 text-[14px] transition-colors ${
-        active ? "bg-active font-medium text-foreground" : "text-muted hover:bg-hover"
+      className={`flex h-[30px] items-center gap-2.5 rounded-md px-2 text-[14px] transition-colors ${
+        active ? "bg-active text-foreground" : "text-foreground/80 hover:bg-hover"
       }`}
     >
-      <Icon
-        className={`size-[15px] shrink-0 ${active ? "text-foreground" : "text-faint"}`}
-        strokeWidth={1.75}
-      />
+      <Icon className="size-4 shrink-0 text-faint" strokeWidth={1.75} />
       <span className="truncate">{label}</span>
     </Link>
   )

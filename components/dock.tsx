@@ -2,7 +2,7 @@ import type { ReactNode } from "react"
 
 import { dockApps } from "@/lib/home"
 
-type IconSpec = { bg: string; border?: string; art: ReactNode }
+type IconSpec = { bg?: string; border?: string; art?: ReactNode; img?: string }
 
 const S = 64 // icon art viewBox
 
@@ -35,10 +35,10 @@ const ICONS: Record<string, IconSpec> = {
     ),
   },
   messages: {
-    bg: "linear-gradient(180deg,#5df675 0%,#12c93f 100%)",
+    bg: "linear-gradient(150deg,#5ef577 0%,#2ee04f 45%,#04c22f 100%)",
     art: (
       <path
-        d="M32 16c11 0 20 7 20 15.5S43 47 32 47c-2.6 0-5-.3-7.3-1L15 50l3-8.2c-3.7-2.8-6-6.6-6-10.8C12 23 21 16 32 16z"
+        d="M32 9c13.3 0 24 8.7 24 19.5S45.3 48 32 48c-2.8 0-5.4-.4-7.9-1.1-3.2 2.8-7.6 5.3-12.4 6.4 2.8-2.8 4.7-6 5.4-9.5C11.6 40.2 8 34.7 8 28.5 8 17.7 18.7 9 32 9z"
         fill="#ffffff"
       />
     ),
@@ -85,27 +85,24 @@ const ICONS: Record<string, IconSpec> = {
     ),
   },
   linear: {
-    bg: "linear-gradient(160deg,#5b5fe3 0%,#3b3fbb 100%)",
+    bg: "linear-gradient(160deg,#6165e8 0%,#4348cf 100%)",
     art: (
-      <>
-        <path d="M16 40 40 16" stroke="#fff" strokeWidth="4" strokeLinecap="round" opacity="0.95" />
-        <path d="M20 48 48 20" stroke="#fff" strokeWidth="4" strokeLinecap="round" opacity="0.75" />
-        <path d="M28 50 50 28" stroke="#fff" strokeWidth="4" strokeLinecap="round" opacity="0.5" />
-      </>
+      <g fill="#ffffff">
+        {[-13, 0, 13].map((offset) => (
+          <rect
+            key={offset}
+            x={30 + offset}
+            y="15"
+            width="5"
+            height="34"
+            rx="2.5"
+            transform={`rotate(18 ${32 + offset} 32)`}
+          />
+        ))}
+      </g>
     ),
   },
-  slack: {
-    bg: "#ffffff",
-    border: "rgba(0,0,0,0.12)",
-    art: (
-      <>
-        <rect x="12" y="28" width="16" height="7" rx="3.5" fill="#36c5f0" />
-        <rect x="29" y="12" width="7" height="16" rx="3.5" fill="#2eb67d" />
-        <rect x="36" y="29" width="16" height="7" rx="3.5" fill="#ecb22e" />
-        <rect x="28" y="36" width="7" height="16" rx="3.5" fill="#e01e5a" />
-      </>
-    ),
-  },
+  slack: { img: "/slack.png" },
   spotify: {
     bg: "#1db954",
     art: (
@@ -133,15 +130,7 @@ const ICONS: Record<string, IconSpec> = {
     bg: "linear-gradient(160deg,#8f7bff 0%,#5b48d8 100%)",
     art: <path d="M18 40c4 5 10 7 15 4 6-3 5-9-1-11s-9-6-4-10 13-2 17 3" stroke="#fff" strokeWidth="5" fill="none" strokeLinecap="round" />,
   },
-  cursor: {
-    bg: "linear-gradient(160deg,#2c2c2c 0%,#0d0d0d 100%)",
-    art: (
-      <>
-        <path d="M32 12 52 24v18L32 54 12 42V24z" fill="none" stroke="#ffffff" strokeWidth="3" opacity="0.9" />
-        <path d="M32 12v42M12 24l40 18M52 24 12 42" stroke="#ffffff" strokeWidth="2" opacity="0.35" />
-      </>
-    ),
-  },
+  cursor: { img: "/cursor.png" },
   terminal: {
     bg: "linear-gradient(180deg,#3a3a3a 0%,#101010 100%)",
     art: (
@@ -159,6 +148,25 @@ const ICONS: Record<string, IconSpec> = {
       </>
     ),
   },
+  spiral: { img: "/granola.png" },
+  layers: { img: "/willow.png" },
+  // real logo file rather than a hand-drawn approximation
+  anticipate: { img: "/anticipate.png" },
+  chrome: {
+    bg: "#ffffff",
+    border: "rgba(0,0,0,0.12)",
+    art: (
+      <>
+        <path d="M32 12a20 20 0 0 1 17.3 10H32a10 10 0 0 0-8.7 15L14.7 22A20 20 0 0 1 32 12z" fill="#ea4335" />
+        <path d="M14.7 22 23.3 37a10 10 0 0 0 8.7 5l-8.6 14.8A20 20 0 0 1 14.7 22z" fill="#34a853" />
+        <path d="M49.3 22a20 20 0 0 1-15.9 29.6L42 37a10 10 0 0 0-.9-15z" fill="#fbbc05" />
+        <path d="M23.4 51.6 32 42a10 10 0 0 0 9.9-8.4l10.2.6A20 20 0 0 1 23.4 51.6z" fill="#fbbc05" />
+        <circle cx="32" cy="32" r="9.5" fill="#4285f4" />
+        <circle cx="32" cy="32" r="7" fill="#ffffff" opacity="0.15" />
+      </>
+    ),
+  },
+  claude: { img: "/claude.png" },
   settings: {
     bg: "linear-gradient(160deg,#d9d9d9 0%,#9d9d9d 100%)",
     art: (
@@ -202,14 +210,25 @@ function DockIcon({ name, icon }: { name: string; icon: string }) {
         boxShadow: spec.border ? `inset 0 0 0 1px ${spec.border}` : undefined,
       }}
     >
-      <svg viewBox={`0 0 ${S} ${S}`} className="size-full" aria-label={name} role="img">
-        <defs>
-          <clipPath id={clipId}>
-            <rect width={S} height={S} rx={radius} ry={radius} />
-          </clipPath>
-        </defs>
-        <g clipPath={`url(#${clipId})`}>{spec.art}</g>
-      </svg>
+      {spec.img ? (
+        /* eslint-disable-next-line @next/next/no-img-element */
+        <img
+          src={spec.img}
+          alt={name}
+          className="size-full object-cover"
+          /* slight overscale so any leftover padding falls outside the corner clip */
+          style={{ transform: "scale(1.04)" }}
+        />
+      ) : (
+        <svg viewBox={`0 0 ${S} ${S}`} className="size-full" aria-label={name} role="img">
+          <defs>
+            <clipPath id={clipId}>
+              <rect width={S} height={S} rx={radius} ry={radius} />
+            </clipPath>
+          </defs>
+          <g clipPath={`url(#${clipId})`}>{spec.art}</g>
+        </svg>
+      )}
     </span>
   )
 }
@@ -228,11 +247,18 @@ function DockTray() {
     >
       {dockApps.map((app) => (
         <span key={app.name} className="group relative flex flex-col items-center">
-          <span className="pointer-events-none absolute -top-9 whitespace-nowrap rounded-md border border-border bg-background px-2 py-1 text-[12px] text-foreground opacity-0 shadow-sm transition-opacity duration-150 group-hover:opacity-100">
-            {app.name}
-          </span>
-          <span className="size-[38px] origin-bottom transition-transform duration-200 ease-out group-hover:-translate-y-1 group-hover:scale-[1.28] sm:size-[44px]">
+          {app.name ? (
+            <span className="pointer-events-none absolute -top-9 whitespace-nowrap rounded-md border border-border bg-background px-2 py-1 text-[12px] text-foreground opacity-0 shadow-sm transition-opacity duration-150 group-hover:opacity-100">
+              {app.name}
+            </span>
+          ) : null}
+          <span className="relative size-[38px] origin-bottom transition-transform duration-200 ease-out group-hover:-translate-y-1 group-hover:scale-[1.28] sm:size-[44px]">
             <DockIcon name={app.name} icon={app.icon} />
+            {app.badge ? (
+              <span className="absolute -right-1 -top-1 flex size-[15px] items-center justify-center rounded-full bg-[#ff3b30] text-[9px] font-semibold leading-none text-white shadow-sm ring-[1.5px] ring-white/70">
+                {app.badge}
+              </span>
+            ) : null}
           </span>
           <span
             className={`mt-[3px] size-[3px] rounded-full ${

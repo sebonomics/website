@@ -47,22 +47,26 @@ export type DockApp = {
   icon: string
   running?: boolean
   href?: string
+  /** red notification badge count, like a real dock */
+  badge?: number
 }
 
+/**
+ * Matches the real dock, left to right. Icons are drawn SVG unless the entry in
+ * components/dock.tsx points at an image file in /public.
+ */
 export const dockApps: DockApp[] = [
   { name: "Finder", icon: "finder", running: true },
-  { name: "Arc", icon: "arc", running: true },
   { name: "Messages", icon: "messages", running: true },
-  { name: "Calendar", icon: "calendar", running: true },
-  { name: "Notion", icon: "notion", running: true },
-  { name: "Linear", icon: "linear", running: true },
+  { name: "Chrome", icon: "chrome", running: true },
+  { name: "System Settings", icon: "settings", running: true, badge: 1 },
   { name: "Slack", icon: "slack", running: true },
-  { name: "Spotify", icon: "spotify", running: true },
-  { name: "Figma", icon: "figma" },
-  { name: "Superhuman", icon: "superhuman", running: true },
+  { name: "Linear", icon: "linear", running: true },
+  { name: "Granola", icon: "spiral", running: true },
   { name: "Cursor", icon: "cursor", running: true },
-  { name: "Terminal", icon: "terminal", running: true },
-  { name: "System Settings", icon: "settings" },
+  { name: "Willow Voice", icon: "layers", running: true },
+  { name: "Anticipate", icon: "anticipate", running: true },
+  { name: "Claude", icon: "claude", running: true },
 ]
 
 export type ExperienceRow = {
@@ -90,6 +94,17 @@ export type ExperienceRow = {
  */
 export const experience: ExperienceRow[] = [
   {
+    company: "Formenos",
+    role: "Founder & CEO",
+    start: "Aug 2026",
+    end: "Present",
+    highlight: "Outperforming Citadel, Millennium, and Bridgewater YTD",
+    blurb: "AI-native hedge fund.",
+    href: "https://formenos.ai",
+    // formenos.ai serves no favicon yet — keep the old mark until it does
+    domain: "bayesstreet.com",
+  },
+  {
     company: "Talunt",
     role: "Co-Founder & CEO",
     start: "Jan 2026",
@@ -109,17 +124,6 @@ export const experience: ExperienceRow[] = [
     blurb: "Referral path into both the main fund and Speedrun.",
     href: "https://a16z.com",
     domain: "a16z.com",
-  },
-  {
-    company: "Formenos",
-    role: "Founder & CEO",
-    start: "Sep 2025",
-    end: "Present",
-    highlight: "Outperforming Citadel, Millennium, and Bridgewater YTD",
-    blurb: "AI-native hedge fund.",
-    href: "https://formenos.ai",
-    // formenos.ai serves no favicon yet — keep the old mark until it does
-    domain: "bayesstreet.com",
   },
   {
     company: "Palantir Technologies",
