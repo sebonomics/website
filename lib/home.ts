@@ -26,13 +26,13 @@ export const aboutItems: AboutItem[] = [
     html: `I live in San Francisco, grew up in Pittsburgh, and took a gap year from Stanford`,
   },
   {
-    html: `Building <a class="notion-link" href="https://formenos.ai" target="_blank" rel="noopener noreferrer">Formenos</a>, and scouting for <a class="notion-link" href="https://a16z.com" target="_blank" rel="noopener noreferrer">a16z</a>`,
+    html: `Building <a class="notion-link" href="https://formenos.ai" target="_blank" rel="noopener noreferrer">Formenos</a>, the AI-native hedge fund, and investing through <a class="notion-link" href="https://a16z.com" target="_blank" rel="noopener noreferrer">a16z</a>&apos;s scout fund`,
   },
   {
     html: `Outside of work: hiking, running, and anything outdoors or with friends`,
   },
   {
-    html: `Before I die: hike every national park and learn how to sail`,
+    html: `Before I die: hike every national park, learn how to sail, and travel across Europe`,
   },
 ]
 
