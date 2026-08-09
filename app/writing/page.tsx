@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { FileText } from "lucide-react"
 
 import { Callout, PageTitle, Paragraph } from "@/components/notion-blocks"
 import { PageShell } from "@/components/page-shell"
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function WritingPage() {
   return (
-    <PageShell icon="✍️" title="Writing">
+    <PageShell icon="writing" title="Writing">
       <PageTitle>Writing</PageTitle>
 
       <Callout>Notes on technology, investing, and whatever else I&apos;m chewing on.</Callout>
@@ -25,7 +26,7 @@ export default function WritingPage() {
                 href={writingPostHref(post.slug)}
                 className="flex items-center gap-2.5 rounded px-1 py-2.5 transition-colors hover:bg-hover"
               >
-                <span className="text-[15px] leading-none">🌻</span>
+                <FileText className="size-4 shrink-0 text-faint" strokeWidth={1.75} />
                 <span className="min-w-0 flex-1 truncate text-[16px]">{post.title}</span>
                 <span className="shrink-0 text-[13px] text-faint">{post.date}</span>
               </Link>

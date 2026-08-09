@@ -146,9 +146,16 @@ const ICONS: Record<string, IconSpec> = {
     bg: "linear-gradient(180deg,#3a3a3a 0%,#101010 100%)",
     art: (
       <>
-        <rect x="8" y="10" width="48" height="44" rx="5" fill="#0a0a0a" stroke="#5a5a5a" strokeWidth="2" />
-        <path d="M17 24l8 7-8 7" stroke="#e8e8e8" strokeWidth="3.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M30 40h14" stroke="#e8e8e8" strokeWidth="3.4" strokeLinecap="round" />
+        <rect width={S} height={S} fill="#0a0a0a" />
+        <path
+          d="M18 23l9 8-9 8"
+          stroke="#e8e8e8"
+          strokeWidth="4"
+          fill="none"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path d="M32 41h15" stroke="#e8e8e8" strokeWidth="4" strokeLinecap="round" />
       </>
     ),
   },

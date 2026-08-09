@@ -14,7 +14,7 @@ import { aboutItems, nowPlaying, profile } from "@/lib/home"
 
 export default function Home() {
   return (
-    <PageShell icon={profile.pageEmoji} title="About" cover={<CoverBanner />}>
+    <PageShell icon="about" title="About" cover={<CoverBanner />}>
       <PageTitle>{profile.fullName}</PageTitle>
 
       <Callout>{profile.tagline}</Callout>

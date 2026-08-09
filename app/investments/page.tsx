@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function InvestmentsPage() {
   return (
-    <PageShell icon="💸" title="Investments">
+    <PageShell icon="investments" title="Investments">
       <PageTitle>Investments</PageTitle>
 
       <Callout>I write $10k–$25k checks through the a16z scout fund.</Callout>

@@ -17,6 +17,7 @@ import {
 } from "lucide-react"
 
 import { SidebarContent } from "@/components/notion-sidebar"
+import { pageIcons } from "@/components/page-icons"
 import { profile } from "@/lib/home"
 
 function useCopyLink() {
@@ -139,11 +140,13 @@ export function PageShell({
   cover,
   children,
 }: {
-  icon: string
+  /** key into pageIcons — a string, since components can't cross the server boundary */
+  icon: keyof typeof pageIcons
   title: string
   cover?: ReactNode
   children: ReactNode
 }) {
+  const Icon = pageIcons[icon]
   const [drawer, setDrawer] = useState(false)
   const [collapsed, setCollapsed] = useState(false)
   const [starred, setStarred] = useState(true)
@@ -238,7 +241,7 @@ export function PageShell({
           )}
 
           <div className="flex min-w-0 items-center gap-1.5 rounded px-1.5 py-1 hover:bg-hover">
-            <span className="text-[14px] leading-none">{icon}</span>
+            <Icon className="size-[15px] shrink-0 text-muted" strokeWidth={1.75} />
             <span className="truncate text-[14px] text-foreground">{title}</span>
           </div>
 

@@ -6,8 +6,8 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { ChevronsLeft, Github, Mail, Plus } from "lucide-react"
 
+import { pageIcons, type PageIconType } from "@/components/page-icons"
 import { ThemeToggle } from "@/components/theme-toggle"
-import { profile } from "@/lib/home"
 import { writingPostHref, writingPosts } from "@/lib/writing"
 
 function LinkedInMark(props: SVGProps<SVGSVGElement>) {
@@ -34,21 +34,21 @@ const socials = [
 ]
 
 const favorites = [
-  { href: "/", emoji: profile.pageEmoji, label: "About" },
-  { href: "/experience", emoji: "🏆", label: "Experience" },
-  { href: "/investments", emoji: "💸", label: "Investments" },
-  { href: "/writing", emoji: "✍️", label: "Writing" },
+  { href: "/", icon: pageIcons.about, label: "About" },
+  { href: "/experience", icon: pageIcons.experience, label: "Experience" },
+  { href: "/investments", icon: pageIcons.investments, label: "Investments" },
+  { href: "/writing", icon: pageIcons.writing, label: "Writing" },
 ]
 
 function NavItem({
   href,
-  emoji,
+  icon: Icon,
   label,
   active,
   onNavigate,
 }: {
   href: string
-  emoji: string
+  icon: PageIconType
   label: string
   active: boolean
   onNavigate?: () => void
@@ -61,7 +61,10 @@ function NavItem({
         active ? "bg-active font-medium text-foreground" : "text-muted hover:bg-hover"
       }`}
     >
-      <span className="w-[18px] shrink-0 text-center text-[14px] leading-none">{emoji}</span>
+      <Icon
+        className={`size-[15px] shrink-0 ${active ? "text-foreground" : "text-faint"}`}
+        strokeWidth={1.75}
+      />
       <span className="truncate">{label}</span>
     </Link>
   )
@@ -125,7 +128,7 @@ export function SidebarContent({
             <NavItem
               key={post.slug}
               href={writingPostHref(post.slug)}
-              emoji="🌻"
+              icon={pageIcons.post}
               label={post.title}
               active={pathname === writingPostHref(post.slug)}
               onNavigate={onNavigate}

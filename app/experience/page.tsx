@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function ExperiencePage() {
   return (
-    <PageShell icon="🏆" title="Experience">
+    <PageShell icon="experience" title="Experience">
       <PageTitle>Experience</PageTitle>
 
       <Callout>Everything I&apos;ve built, shipped, or helped fund.</Callout>
