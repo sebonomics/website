@@ -18,13 +18,13 @@ const ART = `
 L.   I8 YM.    , MM.   ,M9 8M   MM  L.   I8   MM     MM  8M   MM    MM    MM  
 M9mmmP'  \`Mbmmd' P^YbmdP'  \`Moo9^Yo.M9mmmP'   \`Mbmo.JMML.\`Moo9^Yo..JMML  JMML.
                                                                               
-  mm                                                                          
-  MM                                                                          
-mmMMmm  ,6"Yb.  \`7MMpMMMb.                                                    
-  MM   8)   MM    MM    MM                                                    
-  MM    ,pm9MM    MM    MM                                                    
-  MM   8M   MM    MM    MM                                                    
-  \`Mbmo\`Moo9^Yo..JMML  JMML.                                                  
+                           mm                                                 
+                           MM                                                 
+                         mmMMmm  ,6"Yb.  \`7MMpMMMb.                           
+                           MM   8)   MM    MM    MM                           
+                           MM    ,pm9MM    MM    MM                           
+                           MM   8M   MM    MM    MM                           
+                           \`Mbmo\`Moo9^Yo..JMML  JMML.                         
 `
 
 const RAW = ART.replace(/^\n/, "").replace(/\n$/, "").split("\n")
@@ -79,6 +79,10 @@ function frameAt(progress: number, noise: string[]) {
  * Covers the page on a full load: the wordmark decodes left to right, holds,
  * then fades. Client-side navigation doesn't remount the root layout, so this
  * never interrupts moving between pages.
+ *
+ * Desktop only — the wordmark is 78 characters wide, so on a phone it shrinks
+ * to an illegible smudge. Below the md breakpoint it never runs, and the CSS
+ * hides it there too so nothing flashes before hydration.
  */
 export function LoadingScreen() {
   const [frame, setFrame] = useState(() => frameAt(0, rollNoise()))
@@ -87,8 +91,10 @@ export function LoadingScreen() {
   const timers = useRef<number[]>([])
 
   useEffect(() => {
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    if (reduced) {
+    const skip =
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      window.matchMedia("(max-width: 767px)").matches
+    if (skip) {
       setPhase("gone")
       return
     }

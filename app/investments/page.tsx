@@ -16,9 +16,10 @@ export default function InvestmentsPage() {
 
       <div className="mb-7">
         <Paragraph>
-          I scout for Andreessen Horowitz and Afore Capital. I’ve also held fellowships at Notable
-          Capital, Comma Capital, and ZFellows. I am happy to provide warm introductions to these, or
-          First Round Capital, Pear VC, CRV, Pareto Holdings, Liquid2, and others.
+          I scout for Andreessen Horowitz and Afore. I’ve also held fellowships at Notable, Comma,
+          and ZFellows. I am happy to provide warm intros to these, or First Round, Pear, CRV,
+          Pareto, Liquid2, and others. I also, of course, angel invest and my portfolio has raised
+          follow-on from the above firms, too.
         </Paragraph>
       </div>
 

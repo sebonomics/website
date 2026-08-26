@@ -212,3 +212,10 @@ html.dark .group:hover .dock-icon {
     transition: none;
   }
 }
+
+/* desktop only — the wordmark is unreadable at phone widths */
+@media (max-width: 767px) {
+  .splash {
+    display: none;
+  }
+}
