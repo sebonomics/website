@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <PageShell icon="about" title="About">
       <PageTitle>{profile.fullName}</PageTitle>
-      <div className="space-y-[22px] sm:space-y-4">
+      <div className="mt-2.5 space-y-[22px] sm:mt-1 sm:space-y-4">
         {aboutItems.map((item, i) => (
           <Paragraph key={i}>
             <span dangerouslySetInnerHTML={{ __html: item.html }} />

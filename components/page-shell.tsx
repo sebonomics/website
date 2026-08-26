@@ -275,7 +275,7 @@ export function PageShell({
 
         {cover}
 
-        <main className="notion-scroll flex-1 px-5 pb-14 sm:px-10 sm:pb-[86px]">
+        <main className="notion-scroll flex-1 px-5 pb-14 sm:px-6 sm:pb-[86px] md:px-10">
           <div className="mx-auto w-full max-w-[708px]">{children}</div>
 
           {/* the sidebar carries these on desktop; mobile has no sidebar */}
