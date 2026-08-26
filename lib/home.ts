@@ -26,7 +26,7 @@ export type AboutItem = { html: string }
  */
 export const aboutItems: AboutItem[] = [
   {
-    html: `I’m originally from Pittsburgh, but I live in San Francisco. I took a gap year after high school to work at <a class="notion-link" href="https://palantir.com" target="_blank" rel="noopener noreferrer">Palantir</a> in New York, and shortly after, I moved to the Bay Area to start my own company.`,
+    html: `I’m originally from Pittsburgh, but I live in San Francisco. I took a gap year after high school to work at <a class="notion-link" href="https://palantir.com" target="_blank" rel="noopener noreferrer">Palantir</a> in New York, and shortly after, I moved to SF to start my own company.`,
   },
   {
     html: `I love hiking, running, eating, and anything outdoors or with friends. Before I die, I wanna learn how to sail and visit every (reasonably safe) country in the world. My favorite place I’ve been is Oxford. It’s genuinely one of the coolest college towns I’ve seen, and it’s surrounded by so much history.`,

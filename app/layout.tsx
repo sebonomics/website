@@ -1,5 +1,5 @@
 import type React from "react"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import Script from "next/script"
 import { Inter, Newsreader } from "next/font/google"
 import "./globals.css"
@@ -58,12 +58,19 @@ export const metadata: Metadata = {
   },
 }
 
+export const viewport: Viewport = {
+  // corrected below to the saved theme; iOS Safari tints the status bar with this
+  themeColor: "#191919",
+}
+
 const themeScript = `
 (function () {
   try {
     // dark by default; only an explicit "light" choice opts out
-    var stored = localStorage.getItem("theme");
-    document.documentElement.classList.toggle("dark", stored !== "light");
+    var dark = localStorage.getItem("theme") !== "light";
+    document.documentElement.classList.toggle("dark", dark);
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute("content", dark ? "#191919" : "#ffffff");
   } catch (e) {}
 })();
 `

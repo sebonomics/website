@@ -20,6 +20,7 @@ import { SidebarContent } from "@/components/notion-sidebar"
 import { pageIcons } from "@/components/page-icons"
 import { SocialLinks } from "@/components/socials"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { applyTheme } from "@/lib/theme"
 import { profile } from "@/lib/home"
 
 function useCopyLink() {
@@ -69,10 +70,7 @@ function MoreMenu({ onCopy }: { onCopy: () => void }) {
   const toggleTheme = () => {
     const next = !dark
     setDark(next)
-    document.documentElement.classList.toggle("dark", next)
-    try {
-      localStorage.setItem("theme", next ? "dark" : "light")
-    } catch {}
+    applyTheme(next)
     setOpen(false)
   }
 

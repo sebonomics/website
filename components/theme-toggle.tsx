@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react"
 import { Moon, Sun } from "lucide-react"
 
+import { applyTheme } from "@/lib/theme"
+
 export function ThemeToggle({ className = "" }: { className?: string }) {
   const [dark, setDark] = useState(false)
   const [mounted, setMounted] = useState(false)
@@ -15,10 +17,7 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
   const toggle = () => {
     const next = !dark
     setDark(next)
-    document.documentElement.classList.toggle("dark", next)
-    try {
-      localStorage.setItem("theme", next ? "dark" : "light")
-    } catch {}
+    applyTheme(next)
   }
 
   const Icon = mounted && dark ? Moon : Sun
