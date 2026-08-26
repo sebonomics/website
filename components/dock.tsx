@@ -182,10 +182,19 @@ function DockIcon({ name, icon }: { name: string; icon: string }) {
   )
 }
 
-function DockTray({ apps = dockApps }: { apps?: typeof dockApps }) {
+function DockTray({
+  apps = dockApps,
+  fill = false,
+}: {
+  apps?: typeof dockApps
+  /** span the container instead of hugging the icons, so it lines up with the text */
+  fill?: boolean
+}) {
   return (
     <div
-      className="mx-auto flex w-max items-end gap-1.5 rounded-[18px] border px-3 pb-1.5 pt-2 sm:gap-2 sm:px-3.5"
+      className={`mx-auto flex items-end gap-1.5 rounded-[18px] border px-3 pb-1.5 pt-2 sm:px-3.5 ${
+        fill ? "w-full justify-between" : "w-max sm:gap-2"
+      }`}
       style={{
         background: "var(--dock-bg)",
         borderColor: "var(--dock-border)",
@@ -229,8 +238,9 @@ function DockTray({ apps = dockApps }: { apps?: typeof dockApps }) {
 }
 
 /**
- * On mobile the dock sits inline in the page. On every larger screen it is pinned
- * to the bottom-center of the viewport, where the real macOS dock lives.
+ * On mobile the dock sits inline in the page, spanning the same width as the
+ * text above it. On every larger screen it is pinned to the bottom-center of the
+ * viewport, where the real macOS dock lives.
  */
 const MOBILE_ICON = 38
 const MOBILE_GAP = 6
@@ -260,7 +270,7 @@ function MobileDock() {
 
   return (
     <div ref={ref} className="mt-10 sm:hidden">
-      <DockTray apps={dockApps.slice(-count)} />
+      <DockTray apps={dockApps.slice(-count)} fill />
     </div>
   )
 }
