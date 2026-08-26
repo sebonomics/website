@@ -6,18 +6,19 @@ import {
   ChevronsRight,
   Link2,
   Lock,
-  Menu,
   MessageSquare,
   Moon,
   MoreHorizontal,
   Printer,
   Star,
   Sun,
-  X,
 } from "lucide-react"
 
+import { CoverBanner } from "@/components/cover-banner"
+import { MobileNav } from "@/components/mobile-nav"
 import { SidebarContent } from "@/components/notion-sidebar"
 import { pageIcons } from "@/components/page-icons"
+import { SocialLinks } from "@/components/socials"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { profile } from "@/lib/home"
 
@@ -138,17 +139,17 @@ function MoreMenu({ onCopy }: { onCopy: () => void }) {
 export function PageShell({
   icon,
   title,
-  cover,
+  cover = <CoverBanner />,
   children,
 }: {
   /** key into pageIcons — a string, since components can't cross the server boundary */
   icon: keyof typeof pageIcons
   title: string
+  /** the cover photo, on every page by default; pass null to drop it */
   cover?: ReactNode
   children: ReactNode
 }) {
   const Icon = pageIcons[icon]
-  const [drawer, setDrawer] = useState(false)
   const [collapsed, setCollapsed] = useState(false)
   const [starred, setStarred] = useState(true)
   const { copied, copy } = useCopyLink()
@@ -194,41 +195,9 @@ export function PageShell({
         </div>
       </aside>
 
-      {/* mobile drawer */}
-      {drawer && (
-        <div className="fixed inset-0 z-50 md:hidden">
-          <button
-            type="button"
-            aria-label="Close menu"
-            onClick={() => setDrawer(false)}
-            className="absolute inset-0 bg-black/30"
-          />
-          <div className="drawer-in absolute inset-y-0 left-0 w-[264px] border-r border-border shadow-md">
-            <button
-              type="button"
-              onClick={() => setDrawer(false)}
-              aria-label="Close menu"
-              className="absolute right-2 top-2 z-10 flex size-7 items-center justify-center rounded text-faint transition-colors hover:bg-hover hover:text-foreground"
-            >
-              <X className="size-4" strokeWidth={1.75} />
-            </button>
-            <SidebarContent onNavigate={() => setDrawer(false)} />
-          </div>
-        </div>
-      )}
-
       <div className="flex min-w-0 flex-1 flex-col">
         {/* top bar */}
         <header className="sticky top-0 z-30 flex h-11 items-center gap-2 bg-background/85 px-3 backdrop-blur-sm sm:px-4">
-          <button
-            type="button"
-            onClick={() => setDrawer(true)}
-            aria-label="Open menu"
-            className="flex size-7 items-center justify-center rounded text-muted transition-colors hover:bg-hover md:hidden"
-          >
-            <Menu className="size-[18px]" strokeWidth={1.75} />
-          </button>
-
           {collapsed && (
             <button
               type="button"
@@ -241,15 +210,18 @@ export function PageShell({
             </button>
           )}
 
-          <div className="flex min-w-0 items-center gap-1.5 rounded px-1.5 py-1 hover:bg-hover">
+          {/* breadcrumb on desktop; on mobile the nav takes this slot instead */}
+          <div className="hidden min-w-0 items-center gap-1.5 rounded px-1.5 py-1 hover:bg-hover md:flex">
             <Icon className="size-[15px] shrink-0 text-muted" strokeWidth={1.75} />
             <span className="truncate text-[14px] text-foreground">{title}</span>
           </div>
 
-          <div className="hidden items-center gap-1 text-[13px] text-faint sm:flex">
+          <div className="hidden items-center gap-1 text-[13px] text-faint md:flex">
             <Lock className="size-3.5" strokeWidth={1.75} />
             <span>Private</span>
           </div>
+
+          <MobileNav />
 
           <div className="ml-auto flex items-center gap-1 sm:gap-2">
             <span className="hidden text-[13px] text-faint lg:inline">{profile.editedLabel}</span>
@@ -305,6 +277,11 @@ export function PageShell({
 
         <main className="notion-scroll flex-1 px-6 pb-14 sm:px-10 sm:pb-[86px]">
           <div className="mx-auto w-full max-w-[708px]">{children}</div>
+
+          {/* the sidebar carries these on desktop; mobile has no sidebar */}
+          <div className="mx-auto mt-12 flex w-full max-w-[708px] items-center border-t border-border pt-5 md:hidden">
+            <SocialLinks iconClassName="size-[17px]" />
+          </div>
         </main>
       </div>
     </div>

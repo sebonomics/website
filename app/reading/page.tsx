@@ -1,8 +1,8 @@
 import type { Metadata } from "next"
 
-import { PageTitle } from "@/components/notion-blocks"
+import { Entries, Entry, PageTitle } from "@/components/notion-blocks"
 import { PageShell } from "@/components/page-shell"
-import { ReadingTable } from "@/components/reading-table"
+import { reading } from "@/lib/reading"
 
 export const metadata: Metadata = {
   title: "Reading",
@@ -14,9 +14,16 @@ export default function ReadingPage() {
     <PageShell icon="reading" title="Reading">
       <PageTitle>Reading</PageTitle>
 
-      <div className="mt-3">
-        <ReadingTable />
-      </div>
+      <Entries>
+        {reading.map((item) => (
+          <Entry
+            key={item.title}
+            title={item.title}
+            href={item.href}
+            meta={item.author}
+          />
+        ))}
+      </Entries>
     </PageShell>
   )
 }

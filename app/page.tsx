@@ -1,32 +1,19 @@
-import { CoverBanner } from "@/components/cover-banner"
 import { Dock } from "@/components/dock"
-import {
-  Bullet,
-  Bullets,
-  H2,
-  PageTitle,
-  SpotifyPill,
-} from "@/components/notion-blocks"
+import { PageTitle, Paragraph } from "@/components/notion-blocks"
 import { PageShell } from "@/components/page-shell"
-import { aboutItems, nowPlaying, profile } from "@/lib/home"
+import { aboutItems, profile } from "@/lib/home"
 
 export default function Home() {
   return (
-    <PageShell icon="about" title="About" cover={<CoverBanner />}>
+    <PageShell icon="about" title="About">
       <PageTitle>{profile.fullName}</PageTitle>
-
-      <H2>About</H2>
-      <Bullets>
+      <div className="space-y-[22px] sm:space-y-4">
         {aboutItems.map((item, i) => (
-          <Bullet key={i}>
+          <Paragraph key={i}>
             <span dangerouslySetInnerHTML={{ __html: item.html }} />
-          </Bullet>
+          </Paragraph>
         ))}
-        <Bullet>
-          Currently listening to:
-          <SpotifyPill artist={nowPlaying.artist} track={nowPlaying.track} href={nowPlaying.href} />
-        </Bullet>
-      </Bullets>
+      </div>
 
       <Dock />
     </PageShell>

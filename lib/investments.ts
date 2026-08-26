@@ -29,7 +29,27 @@ export type Investment = {
  * },
  */
 export const investments: Investment[] = [
-  { company: "Volaren", stage: "Pre-Seed", date: "Jul 2026", logo: "/volaren.png", fit: "cover" },
-  { company: "Anticipate", stage: "Pre-Seed", date: "Jul 2026", logo: "/anticipate.png" },
-  { company: "Merchant", stage: "Pre-Seed", date: "Aug 2026", logo: "/merchant.png" },
+  {
+    company: "Volaren",
+    stage: "Pre-Seed",
+    date: "Jul 2026",
+    href: "https://volaren.ai",
+    logo: "/volaren.png",
+    fit: "cover",
+  },
+  {
+    company: "Anticipate",
+    stage: "Pre-Seed",
+    date: "Jul 2026",
+    href: "https://useanticipate.com",
+    logo: "/anticipate.png",
+  },
+  {
+    company: "Merchant",
+    stage: "Pre-Seed",
+    date: "Aug 2026",
+    href: "https://merchantgo.com",
+    logo: "/merchant.png",
+  },
+  { company: "Memorable", stage: "Pre-Seed", date: "Aug 2026", href: "https://memorable.sh" },
 ]

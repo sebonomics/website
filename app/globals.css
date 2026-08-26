@@ -163,18 +163,6 @@ html.dark .name-accent {
   text-decoration-color: currentColor;
 }
 
-@keyframes drawer-in {
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-.drawer-in {
-  animation: drawer-in 0.18s ease-out;
-}
-
 /* dock hover: a soft glow and a hint of scale, not a big pop */
 .dock-icon {
   transition:
@@ -187,4 +175,40 @@ html.dark .name-accent {
 }
 html.dark .group:hover .dock-icon {
   filter: drop-shadow(0 0 11px rgba(255, 255, 255, 0.38));
+}
+
+/* ── loading screen ──────────────────────────────────────────────
+   Sits above everything on a full page load, then fades out. The art
+   is ~110 characters wide, so its size is driven off the viewport to
+   keep it on one unwrapped block at every width. */
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  background-color: var(--background);
+  opacity: 1;
+  transition: opacity 560ms ease;
+}
+.splash-out {
+  opacity: 0;
+}
+
+.splash-art {
+  margin: 0;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  /* 110 cols at ~0.6em per char, fitted to 92vw, capped so it never balloons */
+  font-size: min(1.39vw, 13px);
+  line-height: 1.22;
+  white-space: pre;
+  color: var(--foreground);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .splash,
+  .splash-art {
+    animation: none;
+    transition: none;
+  }
 }

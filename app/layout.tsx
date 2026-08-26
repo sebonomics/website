@@ -3,6 +3,8 @@ import type { Metadata } from "next"
 import Script from "next/script"
 import { Inter, Newsreader } from "next/font/google"
 import "./globals.css"
+
+import { LoadingScreen } from "@/components/loading-screen"
 import { siteDescription as description, siteUrl } from "@/lib/site"
 
 const inter = Inter({
@@ -20,7 +22,7 @@ const newsreader = Newsreader({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  // "Sebastian Tan" on the home page; subpages read "Experience — Sebastian Tan"
+  // "Sebastian Tan" on the home page; subpages read "Reading — Sebastian Tan"
   title: {
     default: "Sebastian Tan",
     template: "%s — Sebastian Tan",
@@ -77,6 +79,7 @@ export default function RootLayout({
         <Script id="theme-init" strategy="beforeInteractive">
           {themeScript}
         </Script>
+        <LoadingScreen />
         {children}
       </body>
     </html>

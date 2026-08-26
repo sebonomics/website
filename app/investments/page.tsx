@@ -1,22 +1,30 @@
 import type { Metadata } from "next"
 
-import { InvestmentsTable } from "@/components/investments-table"
-import { PageTitle } from "@/components/notion-blocks"
+import { Entries, Entry, PageTitle } from "@/components/notion-blocks"
 import { PageShell } from "@/components/page-shell"
+import { investments } from "@/lib/investments"
 
 export const metadata: Metadata = {
-  title: "Investments",
+  title: "Investing",
   description: "Scout checks and angel investments — Sebastian Tan",
 }
 
 export default function InvestmentsPage() {
   return (
-    <PageShell icon="investments" title="Investments">
-      <PageTitle>Investments</PageTitle>
+    <PageShell icon="investments" title="Investing">
+      <PageTitle>Investing</PageTitle>
 
-      <div className="mt-3">
-        <InvestmentsTable />
-      </div>
+      <Entries>
+        {investments.map((item) => (
+          <Entry
+            key={item.company}
+            title={item.company}
+            href={item.href}
+            meta={[item.stage, item.date].filter(Boolean).join(", ")}
+            note={item.note}
+          />
+        ))}
+      </Entries>
     </PageShell>
   )
 }

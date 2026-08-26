@@ -17,24 +17,25 @@ export const bioHoverNotes = {
   southBeachOffice: "88 King St, San Francisco.",
 }
 
-export type AboutItem = { emoji?: string; html: string }
+export type AboutItem = { html: string }
 
 /**
- * `html` is rendered as-is — use <a class="notion-link"> and <span class="hl"> the
- * same way the rest of the page does.
+ * The About section, one entry per paragraph. `html` is rendered as-is — use
+ * <a class="notion-link"> and <span class="hl"> the same way the rest of the
+ * page does.
  */
 export const aboutItems: AboutItem[] = [
   {
-    html: `I live in San Francisco, grew up in Pittsburgh, and took a gap year from Stanford`,
+    html: `I’m originally from Pittsburgh, but I live in San Francisco. I took a gap year after high school to work at <a class="notion-link" href="https://palantir.com" target="_blank" rel="noopener noreferrer">Palantir</a> in New York, and shortly after I moved to the Bay Area to start my own company.`,
   },
   {
-    html: `Building <a class="notion-link" href="https://formenos.ai" target="_blank" rel="noopener noreferrer">Formenos</a>, the AI-native hedge fund, investing through <a class="notion-link" href="https://a16z.com" target="_blank" rel="noopener noreferrer">a16z</a>'s scout fund`,
+    html: `I love hiking, running, eating, and anything outdoors or with friends. Before I die I wanna learn how to sail and visit every (reasonably safe) country in the world. My favorite place I’ve been is Oxford in the UK. It’s genuinely one of the coolest college towns surrounded by such rich history.`,
   },
   {
-    html: `I love hiking, running, eating, and anything outdoors or with friends`,
+    html: `In high school, I was the youngest member of the United States National Economics Team, which we dubbed “Harvard, Stanford, Sewickley.” I also developed an algorithm that helped thousands of people with criminal records gain meaningful employment.`,
   },
   {
-    html: `Before I die: hike every national park, learn how to sail, and travel across Europe`,
+    html: `Now, I code a little, read a lot, and spend a majority of my time running <a class="notion-link" href="https://formenos.ai" target="_blank" rel="noopener noreferrer">Formenos</a>, a $25M AI-Native L/S Equity Hedge Fund. We’ve generated exceptional outcomes from making bets that are contrarian and right. After all, positions worth taking are ones you can successfully defend alone.`,
   },
 ]
 

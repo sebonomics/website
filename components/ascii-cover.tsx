@@ -151,7 +151,7 @@ export function AsciiCover() {
   }, [])
 
   return (
-    <div className="relative h-[140px] w-full overflow-hidden bg-cover sm:h-[min(22vh,190px)] md:h-[min(25vh,230px)]">
+    <div className="relative h-[140px] w-full overflow-hidden bg-cover sm:h-[min(22vh,190px)] md:h-[min(29vh,270px)] lg:h-[min(31vh,300px)]">
       <svg
         viewBox={`0 0 ${W} ${H}`}
         preserveAspectRatio="xMidYMax slice"

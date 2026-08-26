@@ -6,7 +6,7 @@ import { writingPosts, writingPostHref } from "@/lib/writing"
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date()
 
-  const pages = ["", "/experience", "/investments", "/writing", "/reading"].map((path) => ({
+  const pages = ["", "/investments", "/writing", "/reading"].map((path) => ({
     url: `${siteUrl}${path}`,
     lastModified: now,
     changeFrequency: "monthly" as const,

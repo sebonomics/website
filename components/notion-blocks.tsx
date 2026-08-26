@@ -10,27 +10,56 @@ export function PageTitle({ children }: { children: ReactNode }) {
 
 export function H2({ children }: { children: ReactNode }) {
   return (
-    <h2 className="mb-1 mt-7 text-[24px] font-semibold tracking-[-0.01em] text-foreground">
+    <h2 className="mb-2 mt-8 text-[24px] font-semibold tracking-[-0.01em] text-foreground sm:mb-1 sm:mt-7">
       {children}
     </h2>
   )
 }
 
-export function Bullets({ children }: { children: ReactNode }) {
-  return <ul className="my-1.5 space-y-1.5">{children}</ul>
-}
-
-export function Bullet({ children }: { children: ReactNode }) {
+export function Paragraph({ children }: { children: ReactNode }) {
   return (
-    <li className="flex gap-2.5 text-[16px] leading-[1.6]">
-      <span aria-hidden className="mt-[9px] size-[5px] shrink-0 rounded-full bg-foreground/70" />
-      <span className="min-w-0">{children}</span>
-    </li>
+    // leading opens up on phones, where lines wrap far more often; `text-pretty`
+    // keeps a single word from stranding on the last line
+    <p className="text-pretty text-[16px] leading-[1.7] sm:leading-[1.6]">{children}</p>
   )
 }
 
-export function Paragraph({ children }: { children: ReactNode }) {
-  return <p className="my-1.5 text-[16px] leading-[1.6]">{children}</p>
+/**
+ * One list entry rendered as a paragraph rather than a table row: the name,
+ * then its details trailing after an em dash.
+ */
+export function Entry({
+  title,
+  href,
+  meta,
+  note,
+}: {
+  title: string
+  href?: string
+  /** trailing details, e.g. "Paul Graham, Essay" */
+  meta?: string
+  /** optional second line */
+  note?: string
+}) {
+  return (
+    <div>
+      <p className="text-[16px] leading-[1.6]">
+        {href ? (
+          <a href={href} target="_blank" rel="noopener noreferrer" className="notion-link">
+            {title}
+          </a>
+        ) : (
+          <span>{title}</span>
+        )}
+        {meta ? <span className="text-muted"> — {meta}</span> : null}
+      </p>
+      {note ? <p className="text-[15px] leading-[1.6] text-muted">{note}</p> : null}
+    </div>
+  )
+}
+
+export function Entries({ children }: { children: ReactNode }) {
+  return <div className="my-2 space-y-3">{children}</div>
 }
 
 export function SpotifyPill({
