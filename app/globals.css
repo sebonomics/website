@@ -198,8 +198,8 @@ html.dark .group:hover .dock-icon {
 .splash-art {
   margin: 0;
   font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
-  /* 110 cols at ~0.6em per char, fitted to 92vw, capped so it never balloons */
-  font-size: min(1.39vw, 13px);
+  /* 78 cols at ~0.6em per char, fitted to 92vw, capped so it never balloons */
+  font-size: min(1.96vw, 13px);
   line-height: 1.22;
   white-space: pre;
   color: var(--foreground);

@@ -4,18 +4,27 @@ import { useEffect, useRef, useState } from "react"
 
 /**
  * FIGlet "Georgia11", generated once and embedded — no runtime dependency.
- * Backticks and backslashes are part of the art, so it lives in a template
- * literal with those two escaped.
+ * First and last name sit on separate lines: at 78 columns instead of 110 the
+ * wordmark stays legible on a phone. Backticks and backslashes are part of the
+ * art, so it lives in a template literal with those two escaped.
  */
 const ART = `
-                 ,,                                  ,,
-                *MM                           mm     db                             mm
-                 MM                           MM                                    MM
-,pP"Ybd  .gP"Ya  MM,dMMb.   ,6"Yb.  ,pP"Ybd mmMMmm \`7MM   ,6"Yb.  \`7MMpMMMb.      mmMMmm  ,6"Yb.  \`7MMpMMMb.
-8I   \`" ,M'   Yb MM    \`Mb 8)   MM  8I   \`"   MM     MM  8)   MM    MM    MM        MM   8)   MM    MM    MM
-\`YMMMa. 8M"""""" MM     M8  ,pm9MM  \`YMMMa.   MM     MM   ,pm9MM    MM    MM        MM    ,pm9MM    MM    MM
-L.   I8 YM.    , MM.   ,M9 8M   MM  L.   I8   MM     MM  8M   MM    MM    MM        MM   8M   MM    MM    MM
-M9mmmP'  \`Mbmmd' P^YbmdP'  \`Moo9^Yo.M9mmmP'   \`Mbmo.JMML.\`Moo9^Yo..JMML  JMML.      \`Mbmo\`Moo9^Yo..JMML  JMML.
+                 ,,                                  ,,                       
+                *MM                           mm     db                       
+                 MM                           MM                              
+,pP"Ybd  .gP"Ya  MM,dMMb.   ,6"Yb.  ,pP"Ybd mmMMmm \`7MM   ,6"Yb.  \`7MMpMMMb.  
+8I   \`" ,M'   Yb MM    \`Mb 8)   MM  8I   \`"   MM     MM  8)   MM    MM    MM  
+\`YMMMa. 8M"""""" MM     M8  ,pm9MM  \`YMMMa.   MM     MM   ,pm9MM    MM    MM  
+L.   I8 YM.    , MM.   ,M9 8M   MM  L.   I8   MM     MM  8M   MM    MM    MM  
+M9mmmP'  \`Mbmmd' P^YbmdP'  \`Moo9^Yo.M9mmmP'   \`Mbmo.JMML.\`Moo9^Yo..JMML  JMML.
+                                                                              
+  mm                                                                          
+  MM                                                                          
+mmMMmm  ,6"Yb.  \`7MMpMMMb.                                                    
+  MM   8)   MM    MM    MM                                                    
+  MM    ,pm9MM    MM    MM                                                    
+  MM   8M   MM    MM    MM                                                    
+  \`Mbmo\`Moo9^Yo..JMML  JMML.                                                  
 `
 
 const RAW = ART.replace(/^\n/, "").replace(/\n$/, "").split("\n")
