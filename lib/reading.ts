@@ -62,4 +62,18 @@ export const reading: Reading[] = [
     href: "https://web.sbu.edu/theology/bychkov/plato%20republic%207.pdf",
     domain: "sbu.edu",
   },
+  {
+    title: "How to Get Rich",
+    author: "Naval Ravikant",
+    kind: "Thread",
+    href: "https://x.com/naval/status/1002103360646823936",
+    domain: "x.com",
+  },
+  {
+    title: "China Could Win Taiwan",
+    author: "David Sacks",
+    kind: "Essay",
+    href: "https://www.foreignaffairs.com/taiwan/china-could-win-taiwan-without-fighting",
+    domain: "foreignaffairs.com",
+  },
 ]

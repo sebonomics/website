@@ -21,7 +21,7 @@ export function Paragraph({ children }: { children: ReactNode }) {
     // leading opens up on phones, where lines wrap far more often. No
     // `text-wrap: pretty` here — in a ~335px column it shortens earlier lines to
     // protect the last one, which leaves big ragged gaps down the right edge.
-    <p className="text-[16px] leading-[1.7] sm:leading-[1.6]">{children}</p>
+    <p className="text-[15px] leading-[1.7] sm:leading-[1.6]">{children}</p>
   )
 }
 
@@ -44,7 +44,7 @@ export function Entry({
 }) {
   return (
     <div>
-      <p className="text-[16px] leading-[1.6]">
+      <p className="text-[15px] leading-[1.6]">
         {href ? (
           <a href={href} target="_blank" rel="noopener noreferrer" className="notion-link">
             {title}
@@ -54,7 +54,7 @@ export function Entry({
         )}
         {meta ? <span className="text-muted"> — {meta}</span> : null}
       </p>
-      {note ? <p className="text-[15px] leading-[1.6] text-muted">{note}</p> : null}
+      {note ? <p className="text-[14px] leading-[1.6] text-muted">{note}</p> : null}
     </div>
   )
 }
