@@ -18,9 +18,10 @@ export function H2({ children }: { children: ReactNode }) {
 
 export function Paragraph({ children }: { children: ReactNode }) {
   return (
-    // leading opens up on phones, where lines wrap far more often; `text-pretty`
-    // keeps a single word from stranding on the last line
-    <p className="text-pretty text-[16px] leading-[1.7] sm:leading-[1.6]">{children}</p>
+    // leading opens up on phones, where lines wrap far more often. No
+    // `text-wrap: pretty` here — in a ~335px column it shortens earlier lines to
+    // protect the last one, which leaves big ragged gaps down the right edge.
+    <p className="text-[16px] leading-[1.7] sm:leading-[1.6]">{children}</p>
   )
 }
 
