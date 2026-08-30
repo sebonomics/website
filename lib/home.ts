@@ -35,7 +35,7 @@ export const aboutItems: AboutItem[] = [
     html: `In high school, I was the youngest member of the U.S. National Economics Team, which we dubbed “Harvard, Stanford, Sewickley.” I also developed an algorithm that helped thousands of people with criminal records gain meaningful employment.`,
   },
   {
-    html: `Now, I code a little, read a lot, and spend a majority of my time running <a class="notion-link" href="https://formenos.ai" target="_blank" rel="noopener noreferrer">Formenos</a>, a $25M AI-Native L/S Equity Hedge Fund. We’ve generated exceptional outcomes from making bets that are contrarian and right. After all, positions worth taking are ones you can successfully defend alone.`,
+    html: `Now, I code a little, read a lot, and spend most of my time running <a class="notion-link" href="https://formenos.ai" target="_blank" rel="noopener noreferrer">Formenos</a>, a $25M AI-Native L/S Equity Hedge Fund. We’ve generated exceptional outcomes from making bets that are contrarian and right. After all, positions worth taking are ones you can successfully defend alone.`,
   },
 ]
 
