@@ -36,5 +36,7 @@ export const fellowships: Fellowship[] = [
   {
     program: "Comma Capital",
     role: "Fellow",
+    href: "https://comma.vc",
+    domain: "comma.vc",
   },
 ]

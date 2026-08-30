@@ -26,8 +26,7 @@ export function Paragraph({ children }: { children: ReactNode }) {
 }
 
 /**
- * One list entry rendered as a paragraph rather than a table row: the name,
- * then its details trailing after an em dash.
+ * One list entry: the name, then its details in the second column.
  */
 export function Entry({
   title,
@@ -42,25 +41,54 @@ export function Entry({
   /** optional second line */
   note?: string
 }) {
+  // `contents` hands the cells straight to the grid in Entries, so the two
+  // columns line up across every row rather than per entry
   return (
-    <div>
+    <div className="contents">
       <p className="text-[15px] leading-[1.6]">
         {href ? (
-          <a href={href} target="_blank" rel="noopener noreferrer" className="notion-link">
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            // underline on hover only — a whole page of underlined rows reads as clutter
+            className="underline-offset-2 transition-colors hover:underline"
+          >
             {title}
           </a>
         ) : (
           <span>{title}</span>
         )}
-        {meta ? <span className="text-muted"> — {meta}</span> : null}
       </p>
-      {note ? <p className="text-[14px] leading-[1.6] text-muted">{note}</p> : null}
+      <p className="text-[15px] leading-[1.6] text-muted">{meta}</p>
+      {note ? (
+        <p className="col-start-2 text-[14px] leading-[1.6] text-muted">{note}</p>
+      ) : null}
     </div>
   )
 }
 
-export function Entries({ children }: { children: ReactNode }) {
-  return <div className="my-2 space-y-3">{children}</div>
+/**
+ * Two columns, so every trailing detail starts at the same x. `max-content`
+ * measures the widest name and fits the column to it — right for a page that is
+ * one list. Pass an explicit `titleWidth` when a page has several lists that
+ * must share one column, since separate grids each measure only their own rows.
+ */
+export function Entries({
+  children,
+  titleWidth = "max-content",
+}: {
+  children: ReactNode
+  titleWidth?: string
+}) {
+  return (
+    <div
+      className="my-2 grid gap-x-6 gap-y-3"
+      style={{ gridTemplateColumns: `${titleWidth} 1fr` }}
+    >
+      {children}
+    </div>
+  )
 }
 
 export function SpotifyPill({

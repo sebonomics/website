@@ -40,13 +40,14 @@ html.dark {
 
   --background: #000000;
   --sidebar: #0a0a0a;
-  --foreground: #d4d4d4;
-  --muted: #9b9b9b;
-  --faint: #7d7d7d;
-  --border: #1f1f1f;
-  --border-strong: #2e2e2e;
-  --hover: rgba(255, 255, 255, 0.055);
-  --active: rgba(255, 255, 255, 0.1);
+  /* tuned for a pure-black ground: the old #191919 ramp reads hazy on it */
+  --foreground: #ededed;
+  --muted: #a6a6a6;
+  --faint: #8a8a8a;
+  --border: #262626;
+  --border-strong: #3a3a3a;
+  --hover: rgba(255, 255, 255, 0.07);
+  --active: rgba(255, 255, 255, 0.13);
 
   --accent: #529cca;
   --accent-hover: #6cb0da;
