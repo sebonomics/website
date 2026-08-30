@@ -64,14 +64,14 @@ const themeScript = `
     var dark = localStorage.getItem("theme") !== "light";
     document.documentElement.classList.toggle("dark", dark);
     // owns the theme-color meta: created here in <head> so iOS Safari has the
-    // right colour for the status bar / notch area before it paints
-    var meta = document.querySelector('meta[name="theme-color"]');
-    if (!meta) {
-      meta = document.createElement("meta");
-      meta.setAttribute("name", "theme-color");
-      document.head.appendChild(meta);
-    }
+    // right colour for the status bar / notch area before it paints. Kept in
+    // step with setThemeColor() in lib/theme.ts — replace the tag, never edit it
+    var stale = document.querySelectorAll('meta[name="theme-color"]');
+    for (var i = 0; i < stale.length; i++) stale[i].remove();
+    var meta = document.createElement("meta");
+    meta.setAttribute("name", "theme-color");
     meta.setAttribute("content", dark ? "#000000" : "#ffffff");
+    document.head.appendChild(meta);
   } catch (e) {}
 })();
 `
