@@ -12,6 +12,7 @@ import { writingPostHref, writingPosts } from "@/lib/writing"
 
 const favorites = [
   { href: "/", icon: pageIcons.about, label: "About" },
+  { href: "/experience", icon: pageIcons.experience, label: "Experience" },
   { href: "/investments", icon: pageIcons.investments, label: "Investing" },
   { href: "/reading", icon: pageIcons.reading, label: "Reading" },
   { href: "/writing", icon: pageIcons.writing, label: "Writing" },

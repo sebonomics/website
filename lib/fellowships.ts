@@ -22,8 +22,8 @@ export const fellowships: Fellowship[] = [
     domain: "zfellows.com",
   },
   {
-    program: "Rise",
-    role: "Rise Fellow",
+    program: "Rhodes Trust",
+    role: "Fellow",
     href: "https://www.risefortheworld.org",
     domain: "risefortheworld.org",
   },
@@ -32,5 +32,9 @@ export const fellowships: Fellowship[] = [
     role: "Fellow",
     href: "https://www.notablecap.com",
     domain: "notablecap.com",
+  },
+  {
+    program: "Comma Capital",
+    role: "Fellow",
   },
 ]

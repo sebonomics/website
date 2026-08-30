@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation"
 /** the same pages the sidebar lists under Favorites */
 const pages = [
   { href: "/", label: "About" },
+  { href: "/experience", label: "Experience" },
   { href: "/investments", label: "Investing" },
   { href: "/reading", label: "Reading" },
   { href: "/writing", label: "Writing" },
