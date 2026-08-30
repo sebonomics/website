@@ -23,7 +23,7 @@ export const socials = [
   { label: "LinkedIn", href: "https://linkedin.com/in/sebonomics", icon: LinkedInMark },
   { label: "GitHub", href: "https://github.com/sebonomics", icon: Github },
   { label: "X", href: "https://twitter.com/sebonomics", icon: XMark },
-  { label: "Instagram", href: "https://instagram.com/sebtans", icon: Instagram },
+  { label: "Instagram", href: "https://instagram.com/sebtanx", icon: Instagram },
 ]
 
 export function SocialLinks({
