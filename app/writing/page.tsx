@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function WritingPage() {
   return (
-    <PageShell icon="writing" title="Writing">
+    <PageShell>
       <PageTitle>Writing</PageTitle>
 
       {writingPosts.length > 0 ? (

@@ -52,7 +52,7 @@ export default function ExperiencePage() {
   }))
 
   return (
-    <PageShell icon="experience" title="Experience">
+    <PageShell>
       <PageTitle>Experience</PageTitle>
 
       <div className="mt-3">

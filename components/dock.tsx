@@ -280,8 +280,8 @@ export function Dock() {
     <>
       <MobileDock />
 
-      {/* left-aligned to the content column (the sidebar is 240px wide on md+) */}
-      <div className="pointer-events-none fixed bottom-3 left-0 right-0 z-40 hidden justify-center px-4 sm:flex md:left-[240px]">
+      {/* centred on the viewport — there is no sidebar to offset against */}
+      <div className="pointer-events-none fixed bottom-3 left-0 right-0 z-40 hidden justify-center px-4 sm:flex">
         <div className="pointer-events-auto max-w-full">
           <DockTray />
         </div>

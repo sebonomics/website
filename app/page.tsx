@@ -5,7 +5,7 @@ import { aboutItems, profile } from "@/lib/home"
 
 export default function Home() {
   return (
-    <PageShell icon="about" title="About">
+    <PageShell>
       <PageTitle>{profile.fullName}</PageTitle>
       <div className="mt-2.5 space-y-[22px] sm:mt-1 sm:space-y-4">
         {aboutItems.map((item, i) => (

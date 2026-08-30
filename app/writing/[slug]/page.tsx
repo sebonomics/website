@@ -36,7 +36,7 @@ export default async function WritingArticlePage({ params }: PageProps) {
   }
 
   return (
-    <PageShell icon="post" title={post.title}>
+    <PageShell>
       <PageTitle>{post.title}</PageTitle>
       <p className="mb-6 text-[13px] text-faint">{post.date}</p>
 

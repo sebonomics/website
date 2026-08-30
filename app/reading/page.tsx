@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function ReadingPage() {
   return (
-    <PageShell icon="reading" title="Reading">
+    <PageShell>
       <PageTitle>Reading</PageTitle>
 
       <Entries>
