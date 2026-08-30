@@ -1,6 +1,5 @@
 import type React from "react"
-import type { Metadata, Viewport } from "next"
-import Script from "next/script"
+import type { Metadata } from "next"
 import { Inter, Newsreader } from "next/font/google"
 import "./globals.css"
 
@@ -58,19 +57,21 @@ export const metadata: Metadata = {
   },
 }
 
-export const viewport: Viewport = {
-  // corrected below to the saved theme; iOS Safari tints the status bar with this
-  themeColor: "#191919",
-}
-
 const themeScript = `
 (function () {
   try {
     // dark by default; only an explicit "light" choice opts out
     var dark = localStorage.getItem("theme") !== "light";
     document.documentElement.classList.toggle("dark", dark);
+    // owns the theme-color meta: created here in <head> so iOS Safari has the
+    // right colour for the status bar / notch area before it paints
     var meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute("content", dark ? "#191919" : "#ffffff");
+    if (!meta) {
+      meta = document.createElement("meta");
+      meta.setAttribute("name", "theme-color");
+      document.head.appendChild(meta);
+    }
+    meta.setAttribute("content", dark ? "#191919" : "#ffffff");
   } catch (e) {}
 })();
 `
@@ -82,10 +83,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`dark ${inter.variable} ${newsreader.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body>
-        <Script id="theme-init" strategy="beforeInteractive">
-          {themeScript}
-        </Script>
         <LoadingScreen />
         {children}
       </body>
