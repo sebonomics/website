@@ -29,10 +29,10 @@ export const aboutItems: AboutItem[] = [
     html: `I’m originally from Pittsburgh, but I live in San Francisco. I took a gap year after high school to work at <a class="notion-link" href="https://palantir.com" target="_blank" rel="noopener noreferrer">Palantir</a> in New York, and shortly after, I moved to SF to start my own company.`,
   },
   {
-    html: `I love hiking, running, eating, and anything outdoors or with friends. Before I die, I wanna learn how to sail and visit every (reasonably safe) country in the world. My favorite place I’ve been so far is Oxford in the UK. I spent a summer there between my junior and senior year of high school and it was a blast.`,
+    html: `I love hiking, running, eating, and anything outdoors or with friends. Before I die, I wanna learn how to sail and visit every country in the world. My favorite place I’ve been so far is Oxford in the UK. I spent a summer there between my junior and senior year of high school and it was a blast.`,
   },
   {
-    html: `In high school, I was the youngest member of the United States National Economics Team, which we dubbed “Harvard, Stanford, Sewickley.” I also developed an algorithm that helped thousands of people with criminal records gain meaningful employment.`,
+    html: `In high school, I was the youngest member of the U.S. National Economics Team, which we dubbed “Harvard, Stanford, Sewickley.” I also developed an algorithm that helped thousands of people with criminal records gain meaningful employment.`,
   },
   {
     html: `Now, I code a little, read a lot, and spend a majority of my time running <a class="notion-link" href="https://formenos.ai" target="_blank" rel="noopener noreferrer">Formenos</a>, a $25M AI-Native L/S Equity Hedge Fund. We’ve generated exceptional outcomes from making bets that are contrarian and right. After all, positions worth taking are ones you can successfully defend alone.`,
