@@ -1,5 +1,5 @@
-/** matches --background in app/globals.css for each theme */
-export const themeColors = { dark: "#191919", light: "#ffffff" }
+/** the colour behind the notch / status bar: black in dark, white in light */
+export const themeColors = { dark: "#000000", light: "#ffffff" }
 
 /**
  * Keeps the three things that define the theme in sync: the <html> class, the

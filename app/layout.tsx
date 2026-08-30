@@ -71,7 +71,7 @@ const themeScript = `
       meta.setAttribute("name", "theme-color");
       document.head.appendChild(meta);
     }
-    meta.setAttribute("content", dark ? "#191919" : "#ffffff");
+    meta.setAttribute("content", dark ? "#000000" : "#ffffff");
   } catch (e) {}
 })();
 `
