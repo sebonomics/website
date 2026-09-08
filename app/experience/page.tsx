@@ -53,7 +53,7 @@ export default function ExperiencePage() {
 
   return (
     <PageShell>
-      <div className="mt-10 sm:mt-12">
+      <div className="mt-5 sm:mt-6">
         <Group label="Currently" rows={current} />
         <Group label="Previously" rows={previous} />
         <Group label="Fellowships" rows={fellowship} />

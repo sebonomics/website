@@ -49,13 +49,6 @@ export const reading: Reading[] = [
     domain: "wsj.com",
   },
   {
-    title: "Situational Awareness",
-    author: "Leopold Aschenbrenner",
-    kind: "Essay",
-    href: "https://situational-awareness.ai/",
-    domain: "situational-awareness.ai",
-  },
-  {
     title: "The Allegory of the Cave",
     author: "Plato",
     kind: "Essay",

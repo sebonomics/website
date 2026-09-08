@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function ReadingPage() {
   return (
     <PageShell>
-      <div className="mt-10 sm:mt-12">
+      <div className="mt-5 sm:mt-6">
         <Entries>
         {reading.map((item) => (
           <Entry

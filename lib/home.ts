@@ -32,7 +32,7 @@ export const aboutItems: AboutItem[] = [
     html: `In high school, I was the youngest member of the U.S. National Economics Team, which we dubbed “Harvard, Stanford, Sewickley.”`,
   },
   {
-    html: `After high school, I took a gap year from Stanford to work at <a class="notion-link" href="https://palantir.com/" target="_blank" rel="noopener noreferrer">Palantir</a> in New York. I grew up in Pittsburgh and live in SF today.`,
+    html: `After high school, I took a gap year from Stanford to work at <a class="notion-link" href="https://palantir.com/" target="_blank" rel="noopener noreferrer">Palantir</a> in New York.<br />I grew up in Pittsburgh and live in SF today.`,
   },
   {
     html: `I love hiking, running, and anything outdoors or with friends. Before I die, I wanna learn how to sail and visit every country in the world.`,

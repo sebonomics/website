@@ -36,7 +36,7 @@ export default async function WritingArticlePage({ params }: PageProps) {
 
   return (
     <PageShell>
-      <p className="mt-10 font-serif text-[23px] leading-tight sm:mt-12">{post.title}</p>
+      <p className="mt-5 font-serif text-[23px] leading-tight sm:mt-6">{post.title}</p>
       <p className="mb-6 mt-2 text-[12px] text-faint">{post.date}</p>
 
       <article className="space-y-4">

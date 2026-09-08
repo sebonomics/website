@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function WritingPage() {
   return (
     <PageShell>
-      <div className="mt-10 sm:mt-12">
+      <div className="mt-5 sm:mt-6">
         {writingPosts.length > 0 ? (
         <ul className="mt-4">
           {writingPosts.map((post) => (

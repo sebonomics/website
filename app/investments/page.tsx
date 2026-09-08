@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function InvestmentsPage() {
   return (
     <PageShell>
-      <div className="mt-10 sm:mt-12">
+      <div className="mt-5 sm:mt-6">
         <Paragraph>
           I scout for Andreessen Horowitz and Afore Capital. I also personally write $10–25k checks.
         </Paragraph>
