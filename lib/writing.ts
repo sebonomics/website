@@ -8,7 +8,7 @@ export type WritingPost = {
 export const writingPosts: WritingPost[] = [
   {
     slug: "contrarian-and-right",
-    title: "Contrarian and Right",
+    title: "Contrarian & Right",
     date: "Sep 7, 2026",
     blocks: [
       "Any Kalshi better will tell you that in a 99% to 1% market, if you bet with consensus, and are right, you return 1x. But if you bet against consensus and are right, you return 100x.",
