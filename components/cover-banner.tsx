@@ -9,7 +9,7 @@ import { profile } from "@/lib/home"
  * Renders the cover photo at `profile.coverImage` (drop the file in /public).
  * If that file is missing, it quietly falls back to the dot-matrix desert scene.
  */
-export function CoverBanner() {
+export function CoverBanner({ inline = false }: { inline?: boolean }) {
   const [failed, setFailed] = useState(false)
   const imgRef = useRef<HTMLImageElement>(null)
 
@@ -22,7 +22,13 @@ export function CoverBanner() {
   if (failed || !profile.coverImage) return <AsciiCover />
 
   return (
-    <div className="relative h-[140px] w-full overflow-hidden bg-cover sm:h-[min(22vh,190px)] md:h-[min(29vh,270px)] lg:h-[min(31vh,300px)]">
+    <div
+      className={`relative w-full overflow-hidden bg-cover ${
+        inline
+          ? "mt-10 aspect-[16/9]"
+          : "h-[140px] sm:h-[min(22vh,190px)] md:h-[min(29vh,270px)] lg:h-[min(31vh,300px)]"
+      }`}
+    >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         ref={imgRef}

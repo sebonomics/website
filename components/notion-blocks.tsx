@@ -2,7 +2,7 @@ import type { ReactNode } from "react"
 
 export function PageTitle({ children }: { children: ReactNode }) {
   return (
-    <h1 className="pb-3 pt-7 text-[38px] font-bold leading-tight tracking-[-0.02em] sm:text-[42px]">
+    <h1 className="pb-5 pt-10 font-serif text-[27px] font-normal leading-none tracking-[-0.02em] sm:pt-12 sm:text-[29px]">
       {children}
     </h1>
   )
@@ -10,7 +10,7 @@ export function PageTitle({ children }: { children: ReactNode }) {
 
 export function H2({ children }: { children: ReactNode }) {
   return (
-    <h2 className="mb-2 mt-8 text-[24px] font-semibold tracking-[-0.01em] text-foreground sm:mb-1 sm:mt-7">
+    <h2 className="mb-3 mt-10 font-serif text-[23px] font-medium leading-tight text-foreground">
       {children}
     </h2>
   )
@@ -21,7 +21,7 @@ export function Paragraph({ children }: { children: ReactNode }) {
     // leading opens up on phones, where lines wrap far more often. No
     // `text-wrap: pretty` here — in a ~335px column it shortens earlier lines to
     // protect the last one, which leaves big ragged gaps down the right edge.
-    <p className="text-[15px] leading-[1.7] sm:leading-[1.6]">{children}</p>
+    <p className="font-serif text-[17px] leading-[1.45]">{children}</p>
   )
 }
 
@@ -45,7 +45,7 @@ export function Entry({
   // columns line up across every row rather than per entry
   return (
     <div className="contents">
-      <p className="text-[15px] leading-[1.6]">
+      <p className="font-serif text-[17px] leading-[1.35]">
         {href ? (
           <a
             href={href}
@@ -60,9 +60,9 @@ export function Entry({
           <span>{title}</span>
         )}
       </p>
-      <p className="text-[15px] leading-[1.6] text-muted">{meta}</p>
+      <p className="font-serif text-[17px] leading-[1.35] text-muted">{meta}</p>
       {note ? (
-        <p className="col-start-2 text-[14px] leading-[1.6] text-muted">{note}</p>
+        <p className="col-start-2 font-serif text-[15px] leading-[1.35] text-muted">{note}</p>
       ) : null}
     </div>
   )
@@ -83,7 +83,7 @@ export function Entries({
 }) {
   return (
     <div
-      className="my-2 grid gap-x-6 gap-y-3"
+      className="my-2 grid gap-x-6 gap-y-3.5"
       style={{ gridTemplateColumns: `${titleWidth} 1fr` }}
     >
       {children}
@@ -105,7 +105,7 @@ export function SpotifyPill({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="ml-1 inline-flex -translate-y-px items-center gap-1.5 rounded-[4px] bg-hover px-1.5 py-0.5 align-middle text-[14px] leading-none transition-colors hover:bg-active"
+      className="ml-1 inline-flex -translate-y-px items-center gap-1.5 rounded-[4px] bg-hover px-1.5 py-0.5 align-middle text-[13px] leading-none transition-colors hover:bg-active"
     >
       <svg viewBox="0 0 24 24" className="size-[15px] shrink-0" aria-hidden="true">
         <circle cx="12" cy="12" r="12" fill="#1db954" />

@@ -92,11 +92,10 @@ html {
   --color-cover: var(--cover);
   --color-cover-ink: var(--cover-ink);
 
-  /* Notion's own UI stack: the system font first, so it renders exactly like
-     Notion does on macOS. Inter is the fallback for platforms without SF. */
+  /* The small controls stay sans; the editorial content uses a classic serif. */
   --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
     "Segoe UI Variable Text", "Segoe UI", var(--font-inter), ui-sans-serif, sans-serif;
-  --font-serif: var(--font-newsreader), Georgia, "Times New Roman", serif;
+  --font-serif: Georgia, "Times New Roman", serif;
 }
 
 @layer base {

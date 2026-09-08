@@ -19,7 +19,7 @@ export function XMark(props: SVGProps<SVGSVGElement>) {
 
 /** shared by the desktop sidebar footer and the mobile page footer */
 export const socials = [
-  { label: "Email", href: "mailto:sebastian@talunt.io", icon: Mail },
+  { label: "Email", href: "mailto:sebastiantanpersonal@gmail.com", icon: Mail },
   { label: "LinkedIn", href: "https://linkedin.com/in/sebonomics", icon: LinkedInMark },
   { label: "GitHub", href: "https://github.com/sebonomics", icon: Github },
   { label: "X", href: "https://twitter.com/sebonomics", icon: XMark },
@@ -29,12 +29,16 @@ export const socials = [
 export function SocialLinks({
   className = "",
   iconClassName = "size-[15px]",
+  variant = "icons",
 }: {
   className?: string
   iconClassName?: string
+  variant?: "icons" | "text"
 }) {
   return (
-    <div className={`flex items-center gap-3.5 ${className}`}>
+    <div
+      className={`flex items-center ${variant === "text" ? "gap-2.5 font-sans text-[10px] uppercase tracking-[0.08em]" : "gap-3.5"} ${className}`}
+    >
       {socials.map((social) => {
         const Icon = social.icon
         const external = social.href.startsWith("http")
@@ -47,7 +51,7 @@ export function SocialLinks({
             className="text-faint transition-colors hover:text-foreground"
             {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
           >
-            <Icon className={`shrink-0 ${iconClassName}`} strokeWidth={1.75} />
+            {variant === "text" ? social.label : <Icon className={`shrink-0 ${iconClassName}`} strokeWidth={1.75} />}
           </a>
         )
       })}

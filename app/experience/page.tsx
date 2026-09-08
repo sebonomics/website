@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 
-import { Entries, Entry, PageTitle } from "@/components/notion-blocks"
+import { Entries, Entry } from "@/components/notion-blocks"
 import { PageShell } from "@/components/page-shell"
 import { fellowships } from "@/lib/fellowships"
 import { experience } from "@/lib/home"
@@ -53,9 +53,7 @@ export default function ExperiencePage() {
 
   return (
     <PageShell>
-      <PageTitle>Experience</PageTitle>
-
-      <div className="mt-3">
+      <div className="mt-10 sm:mt-12">
         <Group label="Currently" rows={current} />
         <Group label="Previously" rows={previous} />
         <Group label="Fellowships" rows={fellowship} />

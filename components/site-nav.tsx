@@ -4,7 +4,6 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 
 const pages = [
-  { href: "/", label: "About" },
   { href: "/experience", label: "Experience" },
   { href: "/investments", label: "Investing" },
   { href: "/reading", label: "Reading" },
@@ -12,9 +11,8 @@ const pages = [
 ]
 
 /**
- * The whole navigation: one row of page links, the same at every width. The
- * active page is the only one at full strength. On a narrow screen the row
- * scrolls sideways rather than wrapping.
+ * A small, text-first navigation. The name is home; the rest is deliberately
+ * quiet so the page content—not the chrome—gets the attention.
  */
 export function SiteNav() {
   const pathname = usePathname()
@@ -22,9 +20,12 @@ export function SiteNav() {
   return (
     <nav
       aria-label="Pages"
-      className="notion-scroll -mx-2 flex min-w-0 flex-1 items-center gap-1 overflow-x-auto px-2"
+      className="notion-scroll -mx-1 flex min-w-0 flex-1 items-center gap-3 overflow-x-auto px-1 font-serif"
       style={{ scrollbarWidth: "none" }}
     >
+      <Link href="/" className="shrink-0 whitespace-nowrap text-[17px] leading-none text-foreground">
+        Sebastian Tan
+      </Link>
       {pages.map(({ href, label }) => {
         const active = href === "/" ? pathname === "/" : pathname.startsWith(href)
         return (
@@ -32,7 +33,7 @@ export function SiteNav() {
             key={href}
             href={href}
             aria-current={active ? "page" : undefined}
-            className={`shrink-0 whitespace-nowrap rounded-md px-2 py-1 text-[14px] transition-colors ${
+            className={`shrink-0 whitespace-nowrap text-[17px] leading-none transition-colors ${
               active ? "text-foreground" : "text-muted hover:text-foreground"
             }`}
           >

@@ -1,39 +1,28 @@
 import type { ReactNode } from "react"
 
-import { CoverBanner } from "@/components/cover-banner"
 import { SiteNav } from "@/components/site-nav"
 import { SocialLinks } from "@/components/socials"
 import { ThemeToggle } from "@/components/theme-toggle"
 
 /**
- * One centred column at every width — no sidebar, no app chrome. The nav sits in
- * a sticky bar at the top, the cover runs full bleed under it, and everything
- * else lives inside a measure narrow enough to read comfortably.
+ * A quiet editorial shell: one unadorned header and a single reading column.
+ * Individual pages decide whether they need a photograph or other media.
  */
-export function PageShell({
-  cover = <CoverBanner />,
-  children,
-}: {
-  /** the cover photo, on every page by default; pass null to drop it */
-  cover?: ReactNode
-  children: ReactNode
-}) {
+export function PageShell({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-dvh">
-      <header className="sticky top-0 z-30 bg-background/85 backdrop-blur-sm">
-        <div className="mx-auto flex h-12 w-full max-w-[48rem] items-center gap-3 px-5 sm:px-6">
+      <header className="pt-14 sm:pt-20">
+        <div className="mx-auto flex w-full max-w-[34rem] items-center gap-3 px-5 sm:px-0">
           <SiteNav />
           <ThemeToggle className="shrink-0" />
         </div>
       </header>
 
-      {cover}
-
-      <main className="mx-auto w-full max-w-[48rem] px-5 pb-16 sm:px-6 sm:pb-[86px]">
+      <main className="mx-auto w-full max-w-[34rem] px-5 pb-16 sm:px-0">
         {children}
 
-        <footer className="mt-14 border-t border-border pt-5">
-          <SocialLinks iconClassName="size-[17px]" />
+        <footer className="mt-10 pb-4">
+          <SocialLinks iconClassName="size-[16px]" />
         </footer>
       </main>
     </div>

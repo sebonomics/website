@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 
-import { PageTitle } from "@/components/notion-blocks"
 import { PageShell } from "@/components/page-shell"
 import { getWritingPost, writingPosts } from "@/lib/writing"
 
@@ -37,12 +36,12 @@ export default async function WritingArticlePage({ params }: PageProps) {
 
   return (
     <PageShell>
-      <PageTitle>{post.title}</PageTitle>
-      <p className="mb-6 text-[13px] text-faint">{post.date}</p>
+      <p className="mt-10 font-serif text-[23px] leading-tight sm:mt-12">{post.title}</p>
+      <p className="mb-6 mt-2 text-[12px] text-faint">{post.date}</p>
 
       <article className="space-y-4">
         {post.paragraphs.map((paragraph) => (
-          <p key={paragraph.slice(0, 32)} className="text-[16px] leading-[1.7]">
+          <p key={paragraph.slice(0, 32)} className="text-[15px] leading-[1.7]">
             {paragraph}
           </p>
         ))}

@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter, Newsreader } from "next/font/google"
+import { Inter } from "next/font/google"
 import "./globals.css"
 
 import { LoadingScreen } from "@/components/loading-screen"
@@ -10,13 +10,6 @@ const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-inter",
-})
-
-const newsreader = Newsreader({
-  subsets: ["latin"],
-  display: "swap",
-  style: ["normal", "italic"],
-  variable: "--font-newsreader",
 })
 
 export const metadata: Metadata = {
@@ -49,10 +42,7 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true, "max-image-preview": "large" },
   },
   icons: {
-    icon: [
-      { url: "/icon.svg", type: "image/svg+xml" },
-      { url: "/icon-light-32x32.png", sizes: "32x32", type: "image/png" },
-    ],
+    icon: { url: "/icon.svg", type: "image/svg+xml" },
     apple: "/apple-icon.png",
   },
 }
@@ -82,7 +72,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`dark ${inter.variable} ${newsreader.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`dark ${inter.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
