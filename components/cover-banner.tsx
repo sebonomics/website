@@ -25,7 +25,7 @@ export function CoverBanner({ inline = false }: { inline?: boolean }) {
     <div
       className={`relative w-full overflow-hidden bg-cover ${
         inline
-          ? "mt-10 aspect-[16/9]"
+          ? "mt-5 aspect-[16/9]"
           : "h-[140px] sm:h-[min(22vh,190px)] md:h-[min(29vh,270px)] lg:h-[min(31vh,300px)]"
       }`}
     >

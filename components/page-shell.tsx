@@ -11,7 +11,7 @@ import { ThemeToggle } from "@/components/theme-toggle"
 export function PageShell({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-dvh">
-      <header className="pt-14 sm:pt-20">
+      <header className="pt-12 sm:pt-20">
         <div className="mx-auto flex w-full max-w-[34rem] items-center gap-3 px-5 sm:px-0">
           <SiteNav />
           <ThemeToggle className="shrink-0" />
