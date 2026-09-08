@@ -50,8 +50,8 @@ export const metadata: Metadata = {
 const themeScript = `
 (function () {
   try {
-    // dark by default; only an explicit "light" choice opts out
-    var dark = localStorage.getItem("theme") !== "light";
+    // light by default; preserve an explicit dark-mode preference
+    var dark = localStorage.getItem("theme") === "dark";
     document.documentElement.classList.toggle("dark", dark);
     // owns the theme-color meta: created here in <head> so iOS Safari has the
     // right colour for the status bar / notch area before it paints. Kept in
@@ -72,7 +72,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`dark ${inter.variable}`} suppressHydrationWarning>
+    <html lang="en" className={inter.variable} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
