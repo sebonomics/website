@@ -21,7 +21,7 @@ export function Paragraph({ children }: { children: ReactNode }) {
     // leading opens up on phones, where lines wrap far more often. No
     // `text-wrap: pretty` here — in a ~335px column it shortens earlier lines to
     // protect the last one, which leaves big ragged gaps down the right edge.
-    <p className="font-serif text-[17px] leading-[1.45]">{children}</p>
+    <p className="font-serif text-[15px] leading-[1.45]">{children}</p>
   )
 }
 
@@ -45,7 +45,7 @@ export function Entry({
   // columns line up across every row rather than per entry
   return (
     <div className="contents">
-      <p className="font-serif text-[17px] leading-[1.35]">
+      <p className="font-serif text-[15px] leading-[1.35]">
         {href ? (
           <a
             href={href}
@@ -60,7 +60,7 @@ export function Entry({
           <span>{title}</span>
         )}
       </p>
-      <p className="font-serif text-[17px] leading-[1.35] text-muted">{meta}</p>
+      <p className="font-serif text-[15px] leading-[1.35] text-muted">{meta}</p>
       {note ? (
         <p className="col-start-2 font-serif text-[15px] leading-[1.35] text-muted">{note}</p>
       ) : null}

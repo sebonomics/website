@@ -13,7 +13,7 @@ export default function WritingPage() {
     <PageShell>
       <div className="mt-5 sm:mt-6">
         {writingPosts.length > 0 ? (
-          <Entries titleWidth="min(13.8rem, 60%)">
+          <Entries titleWidth="min(12.18rem, 60%)">
             {writingPosts.map((post) => (
               <Entry
                 key={post.slug}
