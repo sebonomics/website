@@ -49,8 +49,8 @@ export function Entry({
         {href ? (
           <a
             href={href}
-            target="_blank"
-            rel="noopener noreferrer"
+            target={href.startsWith("/") ? undefined : "_blank"}
+            rel={href.startsWith("/") ? undefined : "noopener noreferrer"}
             // underline on hover only — a whole page of underlined rows reads as clutter
             className="underline-offset-2 transition-colors hover:underline"
           >

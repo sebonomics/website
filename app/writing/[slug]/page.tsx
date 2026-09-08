@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   return {
     title: post.title,
-    description: post.paragraphs[0],
+    description: post.blocks.find((block): block is string => typeof block === "string"),
   }
 }
 
@@ -36,15 +36,21 @@ export default async function WritingArticlePage({ params }: PageProps) {
 
   return (
     <PageShell>
-      <p className="mt-5 font-serif text-[23px] leading-tight sm:mt-6">{post.title}</p>
+      <h1 className="mt-5 font-serif text-[23px] leading-tight sm:mt-6">{post.title}</h1>
       <p className="mb-6 mt-2 text-[12px] text-faint">{post.date}</p>
 
-      <article className="space-y-4">
-        {post.paragraphs.map((paragraph) => (
-          <p key={paragraph.slice(0, 32)} className="text-[15px] leading-[1.7]">
-            {paragraph}
-          </p>
-        ))}
+      <article className="space-y-5 font-serif text-[17px] leading-[1.6] sm:text-pretty">
+        {post.blocks.map((block, index) =>
+          typeof block === "string" ? (
+            <p key={index}>{block}</p>
+          ) : (
+            <ul key={index} className="list-disc space-y-2 pl-6">
+              {block.items.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          ),
+        )}
       </article>
     </PageShell>
   )

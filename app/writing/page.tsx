@@ -1,8 +1,5 @@
 import type { Metadata } from "next"
-import Link from "next/link"
-import { FileText } from "lucide-react"
-
-import { Paragraph } from "@/components/notion-blocks"
+import { Entries, Entry, Paragraph } from "@/components/notion-blocks"
 import { PageShell } from "@/components/page-shell"
 import { writingPostHref, writingPosts } from "@/lib/writing"
 
@@ -16,20 +13,16 @@ export default function WritingPage() {
     <PageShell>
       <div className="mt-5 sm:mt-6">
         {writingPosts.length > 0 ? (
-        <ul className="mt-4">
-          {writingPosts.map((post) => (
-            <li key={post.slug} className="border-b border-border last:border-b-0">
-              <Link
+          <Entries>
+            {writingPosts.map((post) => (
+              <Entry
+                key={post.slug}
+                title={post.title}
                 href={writingPostHref(post.slug)}
-                className="flex items-center gap-2.5 rounded px-1 py-2.5 transition-colors hover:bg-hover"
-              >
-                <FileText className="size-4 shrink-0 text-faint" strokeWidth={1.75} />
-                <span className="min-w-0 flex-1 truncate text-[15px]">{post.title}</span>
-                <span className="shrink-0 text-[12px] text-faint">{post.date}</span>
-              </Link>
-            </li>
-          ))}
-        </ul>
+                meta={post.date}
+              />
+            ))}
+          </Entries>
         ) : (
           <Paragraph>
             <span className="text-faint">No pages inside. First one&apos;s coming.</span>
