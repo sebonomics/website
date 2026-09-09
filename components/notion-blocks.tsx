@@ -18,10 +18,7 @@ export function H2({ children }: { children: ReactNode }) {
 
 export function Paragraph({ children }: { children: ReactNode }) {
   return (
-    // leading opens up on phones, where lines wrap far more often. No
-    // `text-wrap: pretty` here — in a ~335px column it shortens earlier lines to
-    // protect the last one, which leaves big ragged gaps down the right edge.
-    <p className="font-serif text-[15px] leading-[1.45]">{children}</p>
+    <p className="font-serif text-[15px] leading-[1.2] text-body-text sm:leading-[1.3]">{children}</p>
   )
 }
 
@@ -45,14 +42,13 @@ export function Entry({
   // columns line up across every row rather than per entry
   return (
     <div className="contents">
-      <p className="font-serif text-[15px] leading-[1.35]">
+      <p className="font-serif text-[15px] leading-[1.35] text-body-text">
         {href ? (
           <a
             href={href}
             target={href.startsWith("/") ? undefined : "_blank"}
             rel={href.startsWith("/") ? undefined : "noopener noreferrer"}
-            // underline on hover only — a whole page of underlined rows reads as clutter
-            className="underline-offset-2 transition-colors hover:underline"
+            className="notion-link"
           >
             {title}
           </a>

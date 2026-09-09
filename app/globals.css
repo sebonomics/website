@@ -6,6 +6,8 @@
   --background: #ffffff;
   --sidebar: #f8f8f7;
   --foreground: #37352f;
+  --body-text: #666666;
+  --link-text: #000000;
   --muted: #787774;
   --faint: #9b9a97;
   --border: #ebebea;
@@ -42,6 +44,8 @@ html.dark {
   --sidebar: #0a0a0a;
   /* tuned for a pure-black ground: the old #191919 ramp reads hazy on it */
   --foreground: #ededed;
+  --body-text: #a6a6a6;
+  --link-text: #ffffff;
   --muted: #a6a6a6;
   --faint: #8a8a8a;
   --border: #262626;
@@ -80,6 +84,7 @@ html {
   --color-background: var(--background);
   --color-sidebar: var(--sidebar);
   --color-foreground: var(--foreground);
+  --color-body-text: var(--body-text);
   --color-muted: var(--muted);
   --color-faint: var(--faint);
   --color-border: var(--border);
@@ -153,14 +158,13 @@ html.dark .name-accent {
 }
 
 .notion-link {
-  color: inherit;
-  text-decoration: underline;
-  text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
-  text-underline-offset: 2px;
-  transition: text-decoration-color 0.15s ease;
+  color: var(--link-text);
+  font-weight: 400;
+  text-decoration: none;
+  transition: opacity 0.15s ease;
 }
 .notion-link:hover {
-  text-decoration-color: currentColor;
+  opacity: 0.7;
 }
 
 /* dock hover: a soft glow and a hint of scale, not a big pop */

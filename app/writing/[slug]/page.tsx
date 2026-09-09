@@ -39,7 +39,7 @@ export default async function WritingArticlePage({ params }: PageProps) {
       <h1 className="mt-5 font-serif text-[23px] leading-tight sm:mt-6">{post.title}</h1>
       <p className="mb-6 mt-2 text-[12px] text-faint">{post.date}</p>
 
-      <article className="space-y-5 font-serif text-[15px] leading-[1.6] sm:text-pretty">
+      <article className="space-y-5 font-serif text-[15px] leading-[1.6] text-body-text sm:text-pretty">
         {post.blocks.map((block, index) =>
           typeof block === "string" ? (
             <p key={index}>{block}</p>

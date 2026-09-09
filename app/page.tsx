@@ -6,7 +6,7 @@ import { aboutItems } from "@/lib/home"
 export default function Home() {
   return (
     <PageShell>
-      <div className="mt-5 space-y-4 sm:mt-6 sm:space-y-5 sm:[&_p]:leading-[1.6] sm:[&_p]:text-pretty">
+      <div className="mt-6 space-y-[26px] sm:space-y-3">
         {aboutItems.map((item, i) => (
           <Paragraph key={i}>
             <span dangerouslySetInnerHTML={{ __html: item.html }} />
