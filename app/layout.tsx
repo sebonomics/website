@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
+import { LoadingScreen } from "@/components/loading-screen"
 
 import { siteDescription as description, siteUrl } from "@/lib/site"
 
@@ -76,6 +77,7 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body>
+        <LoadingScreen />
         {children}
       </body>
     </html>
