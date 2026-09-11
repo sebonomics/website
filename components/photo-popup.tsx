@@ -23,7 +23,7 @@ export function PhotoPopup({ children, image }: { children: ReactNode; image?: {
     }}>
       {children}
       {photo && (
-        <div id={id} className="mt-5 aspect-[16/9] w-full overflow-hidden">
+        <div id={id} className="mt-5 aspect-[3/2] w-full overflow-hidden">
           <img src={photo.src} alt={photo.alt} className="block size-full object-cover" />
         </div>
       )}

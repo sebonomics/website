@@ -38,7 +38,7 @@ export const aboutItems: AboutItem[] = [
     image: { src: "/high-school-economics.jpg", alt: "Our economics team being interviewed in high school" },
   },
   {
-    html: `After high school, I took a gap year from Stanford to work at <a class="notion-link photo-link" href="https://palantir.com/" target="_blank" rel="noopener noreferrer">Palantir</a> in New York. I grew up in Pittsburgh and live in SF today.`,
+    html: `After high school, I took a gap year from Stanford to work at <a class="notion-link photo-link" href="https://palantir.com/" target="_blank" rel="noopener noreferrer">Palantir</a> in New York. I originally grew up in Pittsburgh and I live in SF today.`,
     image: { src: "/palantir-group.jpg", alt: "A photo from my time at Palantir" },
   },
   {
