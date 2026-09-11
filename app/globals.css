@@ -265,3 +265,9 @@ html.dark .group:hover .dock-icon {
   .mobile-bio-break { display: initial; }
   .desktop-bio-space { display: none; }
 }
+
+@media (max-width: 639px) {
+  .page-content { padding-left: 16px; padding-right: 16px; }
+  .page-content p, .page-content article { font-size: 16px; }
+  .page-content p { line-height: 1.35; }
+}
