@@ -43,6 +43,7 @@ export const aboutItems: AboutItem[] = [
   },
   {
     html: `I love hiking, running, and anything outdoors or with friends. Before I die, I wanna learn how to sail and visit every country in the world.`,
+    image: { src: "/friends.jpg", alt: "A photo with friends" },
   },
 ]
 
