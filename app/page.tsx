@@ -1,5 +1,5 @@
 import { BodyShimmer } from "@/components/body-shimmer"
-import { CoverBanner } from "@/components/cover-banner"
+import { PhotoPopup } from "@/components/photo-popup"
 import { Paragraph } from "@/components/notion-blocks"
 import { PageShell } from "@/components/page-shell"
 import { aboutItems } from "@/lib/home"
@@ -13,13 +13,20 @@ export default function Home() {
       </h1>
       <div className="about-copy mt-6 space-y-[26px] sm:space-y-3">
         {aboutItems.map((item, i) => (
-          <Paragraph key={i}>
-            <BodyShimmer html={item.html} />
-          </Paragraph>
+          <PhotoPopup key={i} image={item.image}>
+            <Paragraph>
+              <BodyShimmer html={item.html} />
+            </Paragraph>
+
+          </PhotoPopup>
         ))}
       </div>
 
-      <CoverBanner inline />
+      <PhotoPopup>
+      <p className="mt-5 font-serif text-[15px]">
+        <a href="/cover.png" data-photo="My favorite mafia photo" className="notion-link photo-link">A favorite photo</a>
+      </p>
+      </PhotoPopup>
     </PageShell>
   )
 }

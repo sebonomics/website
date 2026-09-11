@@ -90,7 +90,7 @@ body::after {
   opacity: 0.025;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23000' filter='url(%23n)' opacity='.9' d='M0 0h180v180H0z'/%3E%3C/svg%3E");
   background-size: 180px 180px;
-  animation: film-grain 0.48s steps(1) infinite;
+
 }
 
 @keyframes film-grain {
@@ -257,17 +257,21 @@ html.dark .group:hover .dock-icon {
   }
 }
 
-/* Balance short biography paragraphs to avoid a stranded final line. */
-.about-copy p { text-wrap: balance; }
+/* Use the full image-aligned column for the biography. */
+.about-copy p { text-wrap: pretty; }
 
-.mobile-bio-break { display: none; }
-@media (max-width: 639px) {
-  .mobile-bio-break { display: initial; }
-  .desktop-bio-space { display: none; }
-}
 
 @media (max-width: 639px) {
   .page-content { padding-left: 16px; padding-right: 16px; }
   .page-content p, .page-content article { font-size: 16px; }
   .page-content p { line-height: 1.35; }
 }
+
+@media (max-width: 639px) {
+  .about-copy p { text-align: justify; text-align-last: left; }
+}
+
+.photo-link { text-decoration: underline; text-underline-offset: 3px; }
+.photo-paragraph p { cursor: pointer; }
+
+.shimmer-original { visibility: hidden; }

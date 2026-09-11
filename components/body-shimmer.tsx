@@ -1,115 +1,102 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { createElement, useEffect, useRef, useState, type ReactNode } from "react"
 
 const symbols = "01/<>+*{}[]"
+type Segment = { text: string; start: number } | { tag: string; props: Record<string, string>; children: Segment[] }
 
-/** Adds a moving band of cipher glyphs without changing text metrics or links. */
 export function BodyShimmer({ html }: { html: string }) {
   const root = useRef<HTMLSpanElement>(null)
+  const [segments, setSegments] = useState<Segment[] | null>(null)
+  const [glyphs, setGlyphs] = useState<Record<number, string>>({})
+  const letters = useRef<string[]>([])
 
   useEffect(() => {
-    const element = root.current
-    if (!element) return
-    const preference = window.matchMedia("(prefers-reduced-motion: reduce)")
-    const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT)
-    const nodes: Text[] = []
-    while (walker.nextNode()) nodes.push(walker.currentNode as Text)
-    const characters: { overlay: HTMLElement; original: string }[] = []
-    const replacements: { wrapper: HTMLElement; node: Text }[] = []
-    for (const node of nodes) {
-      const wrapper = document.createElement("span")
-      const accessible = document.createElement("span")
-      accessible.className = "sr-only"
-      accessible.textContent = node.data
-      wrapper.append(accessible)
-      const visual = document.createElement("span")
-      visual.setAttribute("aria-hidden", "true")
-      // Keep words together while retaining normal wrapping at spaces.
-      for (const word of node.data.split(/(\s+)/)) {
-        if (/^\s+$/.test(word)) { visual.append(word); continue }
-        const wordElement = document.createElement("span")
-        wordElement.className = "shimmer-word"
-        for (const letter of word) {
-          const cell = document.createElement("span")
-          cell.className = "shimmer-cell"
-          const sizing = document.createElement("span")
-          sizing.style.visibility = "hidden"
-          sizing.textContent = letter
-          const overlay = document.createElement("span")
-          overlay.className = "shimmer-glyph"
-          overlay.textContent = letter
-          cell.append(sizing, overlay)
-          wordElement.append(cell)
-          characters.push({ overlay, original: letter })
-        }
-        visual.append(wordElement)
+    const doc = new DOMParser().parseFromString(html, "text/html")
+    const originals: string[] = []
+    const parse = (node: Node): Segment => {
+      if (node.nodeType === Node.TEXT_NODE) {
+        const text = node.textContent || ""
+        const start = originals.length
+        originals.push(...Array.from(text))
+        return { text, start }
       }
-      wrapper.append(visual)
-      node.replaceWith(wrapper)
-      replacements.push({ wrapper, node })
-    }
-    let timer: ReturnType<typeof setInterval> | undefined
-    let pointer: { x: number; y: number } | null = null
-    const restore = () => {
-      clearInterval(timer)
-      timer = undefined
-      pointer = null
-      characters.forEach(({ overlay, original }) => { overlay.textContent = original })
-    }
-    const draw = () => {
-      if (!pointer || preference.matches) { restore(); return }
-      characters.forEach(({ overlay, original }) => {
-        const rect = overlay.getBoundingClientRect()
-        const distance = Math.hypot(rect.x + rect.width / 2 - pointer!.x, (rect.y + rect.height / 2 - pointer!.y) * 1.7)
-        overlay.textContent = distance < 55 && /[a-z0-9]/i.test(original)
-          ? symbols[Math.floor(Math.random() * symbols.length)] : original
-      })
-    }
-    const move = (event: PointerEvent) => {
-      if (preference.matches || event.pointerType === "touch") return
-      pointer = { x: event.clientX, y: event.clientY }
-      draw()
-      if (!timer) timer = setInterval(draw, 75)
-    }
-    let twitchTimer: ReturnType<typeof setTimeout>
-    let settleTimer: ReturnType<typeof setTimeout> | undefined
-    const settle = () => { if (pointer) draw(); else characters.forEach(({ overlay, original }) => { overlay.textContent = original }) }
-    const scheduleTwitch = () => {
-      twitchTimer = setTimeout(() => {
-        if (!preference.matches && !document.hidden && !pointer && characters.length) {
-          const bounds = element.getBoundingClientRect()
-          if (bounds.bottom > 0 && bounds.top < innerHeight) {
-            const start = Math.floor(Math.random() * characters.length)
-            characters.slice(start, start + 2).forEach(({ overlay }) => {
-              overlay.textContent = symbols[Math.floor(Math.random() * symbols.length)]
-            })
-            settleTimer = setTimeout(settle, 320)
-          }
+      const element = node as HTMLElement
+      const props: Record<string, string> = {}
+      for (const attribute of Array.from(element.attributes)) {
+        if (["href", "target", "rel", "class", "data-photo"].includes(attribute.name)) {
+          props[attribute.name === "class" ? "className" : attribute.name] = attribute.value
         }
-        scheduleTwitch()
-      }, 1800 + Math.random() * 3200)
+      }
+      return { tag: element.tagName.toLowerCase(), props, children: Array.from(element.childNodes).map(parse) }
     }
-    scheduleTwitch()
-    const target = element.closest<HTMLElement>("p, li, h1, h2") || element
-    target.addEventListener("pointermove", move)
-    target.addEventListener("pointerleave", restore)
-    window.addEventListener("blur", restore)
-    window.addEventListener("scroll", restore, { passive: true })
-    preference.addEventListener("change", restore)
-    return () => {
-      restore()
-      clearTimeout(twitchTimer)
-      clearTimeout(settleTimer)
-      settle()
-      target.removeEventListener("pointermove", move)
-      target.removeEventListener("pointerleave", restore)
-      window.removeEventListener("blur", restore)
-      window.removeEventListener("scroll", restore)
-      preference.removeEventListener("change", restore)
-      replacements.forEach(({ wrapper, node }) => wrapper.replaceWith(node))
-    }
+    letters.current = originals
+    setSegments(Array.from(doc.body.childNodes).map(parse))
+    setGlyphs({})
   }, [html])
 
-  return <span ref={root} dangerouslySetInnerHTML={{ __html: html }} />
+  useEffect(() => {
+    if (!segments || !root.current) return
+    const element = root.current
+    const preference = matchMedia("(prefers-reduced-motion: reduce)")
+    const target = element.closest<HTMLElement>("p, li, h1, h2") || element
+    let idle: ReturnType<typeof setTimeout> | undefined
+    let pointerActive = false
+    let lastMove = 0
+    const reset = () => { clearTimeout(idle); pointerActive = false; setGlyphs({}) }
+    const move = (event: PointerEvent) => {
+      if (preference.matches || event.pointerType === "touch") return
+      clearTimeout(idle)
+      pointerActive = true
+      idle = setTimeout(reset, 150)
+      if (performance.now() - lastMove < 65) return
+      lastMove = performance.now()
+      const next: Record<number, string> = {}
+      element.querySelectorAll<HTMLElement>("[data-glyph]").forEach(cell => {
+        const index = Number(cell.dataset.glyph)
+        const rect = cell.getBoundingClientRect()
+        if (Math.hypot(rect.x + rect.width / 2 - event.clientX, (rect.y + rect.height / 2 - event.clientY) * 1.7) < 45 && /[a-z0-9]/i.test(letters.current[index])) {
+          next[index] = symbols[Math.floor(Math.random() * symbols.length)]
+        }
+      })
+      setGlyphs(next)
+    }
+    target.addEventListener("pointermove", move)
+    target.addEventListener("pointerleave", reset)
+    target.addEventListener("click", reset)
+    window.addEventListener("scroll", reset, { passive: true })
+    window.addEventListener("blur", reset)
+    document.addEventListener("visibilitychange", reset)
+    preference.addEventListener("change", reset)
+    return () => {
+      clearTimeout(idle)
+      target.removeEventListener("pointermove", move)
+      target.removeEventListener("pointerleave", reset)
+      target.removeEventListener("click", reset)
+      window.removeEventListener("scroll", reset)
+      window.removeEventListener("blur", reset)
+      document.removeEventListener("visibilitychange", reset)
+      preference.removeEventListener("change", reset)
+    }
+  }, [segments])
+
+  const render = (segment: Segment, key: number): ReactNode => {
+    if (!("text" in segment)) {
+      // Keep photo/website links as native text so their underline remains continuous.
+      if (segment.tag === "a" && segment.props.className?.includes("photo-link")) {
+        const plain = (items: Segment[]): string => items.map(item => "text" in item ? item.text : plain(item.children)).join("")
+        return createElement("a", { ...segment.props, key }, plain(segment.children))
+      }
+      return createElement(segment.tag, { ...segment.props, key }, segment.tag === "br" ? undefined : segment.children.map(render))
+    }
+    let index = segment.start
+    return <span key={key}><span className="sr-only">{segment.text}</span><span aria-hidden="true">{segment.text.split(/(\s+)/).map((word, wordIndex) => {
+      if (/^\s+$/.test(word)) { index += Array.from(word).length; return word }
+      return <span className="shimmer-word" key={wordIndex}>{Array.from(word).map(letter => {
+        const position = index++
+        return <span className="shimmer-cell" data-glyph={position} key={position}><span className="shimmer-original">{letter}</span><span className="shimmer-glyph">{glyphs[position] || letter}</span></span>
+      })}</span>
+    })}</span></span>
+  }
+  return segments ? <span ref={root}>{segments.map(render)}</span> : <span ref={root} dangerouslySetInnerHTML={{ __html: html }} />
 }
