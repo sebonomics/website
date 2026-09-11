@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 
-import { PageTitle, Entries, Entry, H2 } from "@/components/notion-blocks"
+import { Entries, Entry } from "@/components/notion-blocks"
+import { ScrambleText } from "@/components/scramble-text"
 import { PageShell } from "@/components/page-shell"
 import { investments, sourced } from "@/lib/investments"
 
@@ -12,10 +13,9 @@ export const metadata: Metadata = {
 export default function InvestmentsPage() {
   return (
     <PageShell>
-      <PageTitle>Investing</PageTitle>
       <div className="mt-6">
         <div>
-          <H2>Investor</H2>
+          <h2 className="mb-3 font-serif text-[17px] font-normal leading-tight"><ScrambleText>Investor</ScrambleText></h2>
           <Entries>
             {investments.map((item) => (
               <Entry
@@ -27,7 +27,7 @@ export default function InvestmentsPage() {
               />
             ))}
           </Entries>
-          <H2>Sourced</H2>
+          <h2 className="mb-3 mt-8 font-serif text-[17px] font-normal leading-tight"><ScrambleText>Sourced</ScrambleText></h2>
           <Entries>
             {sourced.map((item) => (
               <Entry key={item.company} title={item.company} href={item.href} meta={["a16z Speedrun", item.date].filter(Boolean).join(", ")} />
