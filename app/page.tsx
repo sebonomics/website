@@ -22,11 +22,7 @@ export default function Home() {
         ))}
       </div>
 
-      <PhotoPopup>
-      <p className="mt-5 font-serif text-[15px]">
-        <a href="/cover.png" data-photo="My favorite mafia photo" className="notion-link photo-link">A favorite photo</a>
-      </p>
-      </PhotoPopup>
+
     </PageShell>
   )
 }
