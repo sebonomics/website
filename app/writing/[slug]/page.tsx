@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 
+import { ScrambleText } from "@/components/scramble-text"
 import { PageShell } from "@/components/page-shell"
 import { getWritingPost, writingPosts } from "@/lib/writing"
 
@@ -36,17 +37,17 @@ export default async function WritingArticlePage({ params }: PageProps) {
 
   return (
     <PageShell>
-      <h1 className="mt-5 font-serif text-[23px] leading-tight sm:mt-6">{post.title}</h1>
-      <p className="mb-6 mt-2 text-[12px] text-faint">{post.date}</p>
+      <h1 className="mt-5 font-serif text-[23px] leading-tight sm:mt-6"><ScrambleText>{post.title}</ScrambleText></h1>
+      <p className="mb-6 mt-2 text-[12px] text-faint"><ScrambleText>{post.date}</ScrambleText></p>
 
       <article className="space-y-5 font-serif text-[15px] leading-[1.6] text-body-text sm:text-pretty">
         {post.blocks.map((block, index) =>
           typeof block === "string" ? (
-            <p key={index}>{block}</p>
+            <p key={index}><ScrambleText>{block}</ScrambleText></p>
           ) : (
             <ul key={index} className="list-disc space-y-2 pl-6">
               {block.items.map((item) => (
-                <li key={item}>{item}</li>
+                <li key={item}><ScrambleText>{item}</ScrambleText></li>
               ))}
             </ul>
           ),

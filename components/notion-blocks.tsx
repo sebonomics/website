@@ -1,9 +1,10 @@
 import type { ReactNode } from "react"
+import { ScrambleText } from "@/components/scramble-text"
 
 export function PageTitle({ children }: { children: ReactNode }) {
   return (
     <h1 className="pb-5 pt-10 font-serif text-[27px] font-normal leading-none tracking-[-0.02em] sm:pt-12 sm:text-[29px]">
-      {children}
+      {typeof children === "string" ? <ScrambleText>{children}</ScrambleText> : children}
     </h1>
   )
 }
@@ -11,14 +12,14 @@ export function PageTitle({ children }: { children: ReactNode }) {
 export function H2({ children }: { children: ReactNode }) {
   return (
     <h2 className="mb-3 mt-10 font-serif text-[23px] font-medium leading-tight text-foreground">
-      {children}
+      {typeof children === "string" ? <ScrambleText>{children}</ScrambleText> : children}
     </h2>
   )
 }
 
 export function Paragraph({ children }: { children: ReactNode }) {
   return (
-    <p className="font-serif text-[15px] leading-[1.2] text-body-text sm:leading-[1.3]">{children}</p>
+    <p className="font-serif text-[15px] leading-[1.2] text-body-text sm:leading-[1.3]">{typeof children === "string" ? <ScrambleText>{children}</ScrambleText> : children}</p>
   )
 }
 
@@ -50,15 +51,15 @@ export function Entry({
             rel={href.startsWith("/") ? undefined : "noopener noreferrer"}
             className="notion-link"
           >
-            {title}
+            <ScrambleText>{title}</ScrambleText>
           </a>
         ) : (
-          <span>{title}</span>
+          <ScrambleText>{title}</ScrambleText>
         )}
       </p>
-      <p className="font-serif text-[15px] leading-[1.35] text-muted">{meta}</p>
+      <p className="font-serif text-[15px] leading-[1.35] text-muted">{meta ? <ScrambleText>{meta}</ScrambleText> : null}</p>
       {note ? (
-        <p className="col-start-2 font-serif text-[15px] leading-[1.35] text-muted">{note}</p>
+        <p className="col-start-2 font-serif text-[15px] leading-[1.35] text-muted"><ScrambleText>{note}</ScrambleText></p>
       ) : null}
     </div>
   )

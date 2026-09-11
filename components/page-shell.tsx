@@ -18,7 +18,7 @@ export function PageShell({ children }: { children: ReactNode }) {
         </div>
       </header>
 
-      <main className="mx-auto w-full max-w-[34rem] px-5 pb-16 sm:px-0">
+      <main className="page-content mx-auto w-full max-w-[34rem] px-5 pb-16 sm:px-0">
         {children}
 
         <footer className="mt-10 pb-4">

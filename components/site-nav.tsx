@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { ScrambleText } from "@/components/scramble-text"
 
 const pages = [
   { href: "/investments", label: "Investing" },
@@ -22,8 +23,8 @@ export function SiteNav() {
       className="notion-scroll -mx-1 flex min-w-0 flex-1 items-center gap-3 overflow-x-auto px-1 py-1 font-serif"
       style={{ scrollbarWidth: "none" }}
     >
-      <Link href="/" className="shrink-0 whitespace-nowrap text-[17px] leading-[1.15] text-foreground">
-        About
+      <Link href="/" aria-current={pathname === "/" ? "page" : undefined} className="shrink-0 whitespace-nowrap text-[17px] leading-[1.15] text-foreground">
+        <ScrambleText>About</ScrambleText>
       </Link>
       {pages.map(({ href, label }) => {
         const active = href === "/" ? pathname === "/" : pathname.startsWith(href)
@@ -36,7 +37,7 @@ export function SiteNav() {
               active ? "text-foreground" : "text-muted hover:text-foreground"
             }`}
           >
-            {label}
+            <ScrambleText>{label}</ScrambleText>
           </Link>
         )
       })}
