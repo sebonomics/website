@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 
-import { Entries, Entry } from "@/components/notion-blocks"
+import { PageTitle, Entries, Entry } from "@/components/notion-blocks"
 import { PageShell } from "@/components/page-shell"
 import { reading } from "@/lib/reading"
 
@@ -12,6 +12,7 @@ export const metadata: Metadata = {
 export default function ReadingPage() {
   return (
     <PageShell>
+      <PageTitle>Reading</PageTitle>
       <div className="mt-6">
         <Entries>
         {reading.map((item) => (
