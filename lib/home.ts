@@ -29,7 +29,7 @@ export const aboutItems: AboutItem[] = [
     html: `I currently run <a class="notion-link" href="https://formenos.ai/" target="_blank" rel="noopener noreferrer">Formenos</a>, a $25M AI-Native L/S Equity Hedge Fund. We’re backed by the first investors in Cognition and Etched.`,
   },
   {
-    html: `After high school, I took a gap year from Stanford to work at <a class="notion-link" href="https://palantir.com/" target="_blank" rel="noopener noreferrer">Palantir</a> in New York. I grew up in Pittsburgh and live in SF today.`,
+    html: `After high school, I took a gap year from Stanford to work at <a class="notion-link" href="https://palantir.com/" target="_blank" rel="noopener noreferrer">Palantir</a> in New York.<br class="mobile-bio-break" /><span class="desktop-bio-space"> </span>I grew up in Pittsburgh and live in SF today.`,
   },
   {
     html: `I love hiking, running, and anything outdoors or with friends. Before I die, I wanna learn how to sail and visit every country in the world.`,

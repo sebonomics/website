@@ -3,7 +3,7 @@ import { ScrambleText } from "@/components/scramble-text"
 
 export function PageTitle({ children }: { children: ReactNode }) {
   return (
-    <h1 className="pb-5 pt-10 font-serif text-[27px] font-normal leading-none tracking-[-0.02em] sm:pt-12 sm:text-[29px]">
+    <h1 className="mt-8 font-serif text-[34px] font-bold leading-[1.1] tracking-[-0.02em] sm:mt-10 sm:text-[40px]">
       {typeof children === "string" ? <ScrambleText>{children}</ScrambleText> : children}
     </h1>
   )

@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { Entries, Entry, Paragraph } from "@/components/notion-blocks"
+import { PageTitle, Entries, Entry, Paragraph } from "@/components/notion-blocks"
 import { PageShell } from "@/components/page-shell"
 import { writingPostHref, writingPosts } from "@/lib/writing"
 
@@ -11,7 +11,8 @@ export const metadata: Metadata = {
 export default function WritingPage() {
   return (
     <PageShell>
-      <div className="mt-5 sm:mt-6">
+      <PageTitle>Writing</PageTitle>
+      <div className="mt-6">
         {writingPosts.length > 0 ? (
           <Entries titleWidth="min(12.18rem, 60%)">
             {writingPosts.map((post) => (

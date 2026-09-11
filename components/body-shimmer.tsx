@@ -72,6 +72,25 @@ export function BodyShimmer({ html }: { html: string }) {
       draw()
       if (!timer) timer = setInterval(draw, 75)
     }
+    let twitchTimer: ReturnType<typeof setTimeout>
+    let settleTimer: ReturnType<typeof setTimeout> | undefined
+    const settle = () => { if (pointer) draw(); else characters.forEach(({ overlay, original }) => { overlay.textContent = original }) }
+    const scheduleTwitch = () => {
+      twitchTimer = setTimeout(() => {
+        if (!preference.matches && !document.hidden && !pointer && characters.length) {
+          const bounds = element.getBoundingClientRect()
+          if (bounds.bottom > 0 && bounds.top < innerHeight) {
+            const start = Math.floor(Math.random() * characters.length)
+            characters.slice(start, start + 2).forEach(({ overlay }) => {
+              overlay.textContent = symbols[Math.floor(Math.random() * symbols.length)]
+            })
+            settleTimer = setTimeout(settle, 320)
+          }
+        }
+        scheduleTwitch()
+      }, 1800 + Math.random() * 3200)
+    }
+    scheduleTwitch()
     const target = element.closest<HTMLElement>("p, li, h1, h2") || element
     target.addEventListener("pointermove", move)
     target.addEventListener("pointerleave", restore)
@@ -80,6 +99,9 @@ export function BodyShimmer({ html }: { html: string }) {
     preference.addEventListener("change", restore)
     return () => {
       restore()
+      clearTimeout(twitchTimer)
+      clearTimeout(settleTimer)
+      settle()
       target.removeEventListener("pointermove", move)
       target.removeEventListener("pointerleave", restore)
       window.removeEventListener("blur", restore)

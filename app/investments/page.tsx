@@ -1,8 +1,8 @@
 import type { Metadata } from "next"
 
-import { Entries, Entry, Paragraph } from "@/components/notion-blocks"
+import { PageTitle, Entries, Entry, H2 } from "@/components/notion-blocks"
 import { PageShell } from "@/components/page-shell"
-import { investments } from "@/lib/investments"
+import { investments, sourced } from "@/lib/investments"
 
 export const metadata: Metadata = {
   title: "Investing",
@@ -12,11 +12,10 @@ export const metadata: Metadata = {
 export default function InvestmentsPage() {
   return (
     <PageShell>
-      <div className="mt-5 sm:mt-6">
-        <Paragraph>
-          I scout for Andreessen Horowitz and Afore Capital. I also personally write $10–25k checks.
-        </Paragraph>
-        <div className="mt-6">
+      <PageTitle>Investing</PageTitle>
+      <div className="mt-6">
+        <div>
+          <H2>Investor</H2>
           <Entries>
             {investments.map((item) => (
               <Entry
@@ -26,6 +25,12 @@ export default function InvestmentsPage() {
                 meta={[item.stage, item.date].filter(Boolean).join(", ")}
                 note={item.note}
               />
+            ))}
+          </Entries>
+          <H2>Sourced</H2>
+          <Entries>
+            {sourced.map((item) => (
+              <Entry key={item.company} title={item.company} href={item.href} meta={["a16z Speedrun", item.date].filter(Boolean).join(", ")} />
             ))}
           </Entries>
         </div>
