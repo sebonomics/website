@@ -258,7 +258,7 @@ html.dark .group:hover .dock-icon {
 }
 
 /* Use the full image-aligned column for the biography. */
-.about-copy p { text-wrap: pretty; }
+.about-copy p { text-align: left; text-wrap: wrap; }
 
 
 @media (max-width: 639px) {
@@ -267,9 +267,6 @@ html.dark .group:hover .dock-icon {
   .page-content p { line-height: 1.35; }
 }
 
-@media (max-width: 639px) {
-  .about-copy p { text-align: justify; text-align-last: left; }
-}
 
 .photo-link { text-decoration: underline; text-underline-offset: 3px; }
 .photo-paragraph p { cursor: pointer; }
