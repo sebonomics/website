@@ -34,7 +34,7 @@ export const aboutItems: AboutItem[] = [
     image: { src: "/ethereum-mine.png", alt: "The Ethereum mining setup I built in my basement" },
   },
   {
-    html: `In high school, I made an algorithm to help people with criminal records find jobs. I was also the youngest member of the U.S. National Economics Team.`,
+    html: `In high school, I built an algorithm to help people with criminal records find jobs and was the youngest member of the U.S. National Economics Team.`,
     image: { src: "/high-school-economics.jpg", alt: "Our economics team being interviewed in high school" },
   },
   {
