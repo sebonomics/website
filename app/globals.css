@@ -5,11 +5,11 @@
 
   --background: #ffffff;
   --sidebar: #f8f8f7;
-  --foreground: #37352f;
-  --body-text: #666666;
+  --foreground: #000000;
+  --body-text: #000000;
   --link-text: #000000;
-  --muted: #787774;
-  --faint: #9b9a97;
+  --muted: #000000;
+  --faint: #000000;
   --border: #ebebea;
   --border-strong: #e0e0de;
   --hover: rgba(55, 53, 47, 0.055);
@@ -100,7 +100,7 @@ html {
   /* The small controls stay sans; the editorial content uses a classic serif. */
   --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
     "Segoe UI Variable Text", "Segoe UI", var(--font-inter), ui-sans-serif, sans-serif;
-  --font-serif: Georgia, "Times New Roman", serif;
+  --font-serif: "Merriweather", "Georgia", serif;
 }
 
 @layer base {

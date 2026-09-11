@@ -29,9 +29,6 @@ export const aboutItems: AboutItem[] = [
     html: `I currently run <a class="notion-link" href="https://formenos.ai/" target="_blank" rel="noopener noreferrer">Formenos</a>, a $25M AI-Native L/S Equity Hedge Fund. We’re backed by the first investors in Cognition and Etched.`,
   },
   {
-    html: `In high school, I was the youngest member of the U.S. National Economics Team, which we dubbed “Harvard, Stanford, Sewickley.”`,
-  },
-  {
     html: `After high school, I took a gap year from Stanford to work at <a class="notion-link" href="https://palantir.com/" target="_blank" rel="noopener noreferrer">Palantir</a> in New York. I grew up in Pittsburgh and live in SF today.`,
   },
   {

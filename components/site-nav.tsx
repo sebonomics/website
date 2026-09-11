@@ -23,7 +23,7 @@ export function SiteNav() {
       style={{ scrollbarWidth: "none" }}
     >
       <Link href="/" className="shrink-0 whitespace-nowrap text-[17px] leading-[1.15] text-foreground">
-        Sebastian
+        About
       </Link>
       {pages.map(({ href, label }) => {
         const active = href === "/" ? pathname === "/" : pathname.startsWith(href)
