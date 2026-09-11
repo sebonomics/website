@@ -30,11 +30,12 @@ export const aboutItems: AboutItem[] = [
     image: { src: "/formenos-group.png", alt: "Group photo accompanying my Formenos backstory" },
   },
   {
-    html: `In middle school, I loved building computers. I turned one of them into an Ethereum <a class="notion-link photo-link" href="/ethereum-mine.png" data-photo="My basement Ethereum mine">mine</a> in my basement and almost blew up our house.`,
+    html: `In middle school, I loved building computers. I turned one of them into an Ethereum mine in my basement and almost blew up our house.`,
     image: { src: "/ethereum-mine.png", alt: "The Ethereum mining setup I built in my basement" },
   },
   {
-    html: `In high school, I made an algorithm to help people with criminal records find employment. I was also the youngest member of the U.S. National Economics Team.`,
+    html: `In high school, I made an algorithm to help people with criminal records find jobs. I was also the youngest member of the U.S. National Economics Team.`,
+    image: { src: "/high-school-economics.jpg", alt: "Our economics team being interviewed in high school" },
   },
   {
     html: `After high school, I took a gap year from Stanford to work at <a class="notion-link photo-link" href="https://palantir.com/" target="_blank" rel="noopener noreferrer">Palantir</a> in New York. I grew up in Pittsburgh and live in SF today.`,
