@@ -38,7 +38,7 @@ export default async function WritingArticlePage({ params }: PageProps) {
   return (
     <PageShell>
       <h1 className="mt-5 font-serif text-[23px] leading-tight sm:mt-6"><ScrambleText>{post.title}</ScrambleText></h1>
-      <p className="mb-6 mt-2 text-[12px] text-faint"><ScrambleText>{post.date}</ScrambleText></p>
+      <p className="mb-6 mt-2 font-serif text-[12px] text-faint"><ScrambleText>{post.date}</ScrambleText></p>
 
       <article className="space-y-5 font-serif text-[15px] leading-[1.6] text-body-text sm:text-pretty">
         {post.blocks.map((block, index) =>

@@ -61,6 +61,27 @@ export function BodyShimmer({ html }: { html: string }) {
       })
       setGlyphs(next)
     }
+    let ambient: ReturnType<typeof setTimeout>
+    const schedule = () => {
+      ambient = setTimeout(() => {
+        const bounds = element.getBoundingClientRect()
+        if (!preference.matches && !document.hidden && !pointerActive && bounds.bottom > 0 && bounds.top < innerHeight) {
+          const candidates = Array.from(element.querySelectorAll<HTMLElement>("[data-glyph]"))
+            .map(cell => Number(cell.dataset.glyph))
+            .filter(index => /[a-z0-9]/i.test(letters.current[index]))
+          const start = Math.floor(Math.random() * candidates.length)
+          const next: Record<number, string> = {}
+          candidates.slice(start, start + 2).forEach(index => {
+            next[index] = symbols[Math.floor(Math.random() * symbols.length)]
+          })
+          clearTimeout(idle)
+          setGlyphs(next)
+          idle = setTimeout(reset, 220)
+        }
+        schedule()
+      }, 2500 + Math.random() * 3500)
+    }
+    schedule()
     target.addEventListener("pointermove", move)
     target.addEventListener("pointerleave", reset)
     target.addEventListener("click", reset)
@@ -69,6 +90,7 @@ export function BodyShimmer({ html }: { html: string }) {
     document.addEventListener("visibilitychange", reset)
     preference.addEventListener("change", reset)
     return () => {
+      clearTimeout(ambient)
       clearTimeout(idle)
       target.removeEventListener("pointermove", move)
       target.removeEventListener("pointerleave", reset)

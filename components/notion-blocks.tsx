@@ -11,7 +11,7 @@ export function PageTitle({ children }: { children: ReactNode }) {
 
 export function H2({ children }: { children: ReactNode }) {
   return (
-    <h2 className="mb-3 mt-10 font-serif text-[23px] font-medium leading-tight text-foreground">
+    <h2 className="mb-3 mt-10 font-serif text-[23px] font-normal leading-tight text-foreground">
       {typeof children === "string" ? <ScrambleText>{children}</ScrambleText> : children}
     </h2>
   )
