@@ -43,11 +43,11 @@ html.dark {
   --background: #000000;
   --sidebar: #0a0a0a;
   /* tuned for a pure-black ground: the old #191919 ramp reads hazy on it */
-  --foreground: #ededed;
-  --body-text: #a6a6a6;
+  --foreground: #ffffff;
+  --body-text: #ffffff;
   --link-text: #ffffff;
-  --muted: #a6a6a6;
-  --faint: #8a8a8a;
+  --muted: #ffffff;
+  --faint: #ffffff;
   --border: #262626;
   --border-strong: #3a3a3a;
   --hover: rgba(255, 255, 255, 0.07);
@@ -187,7 +187,7 @@ body::after {
   color: #1c1b19;
 }
 html.dark .name-accent {
-  color: #ededed;
+  color: #ffffff;
 }
 
 .notion-link {
