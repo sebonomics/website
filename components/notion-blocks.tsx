@@ -2,11 +2,7 @@ import type { ReactNode } from "react"
 import { ScrambleText } from "@/components/scramble-text"
 
 export function PageTitle({ children }: { children: ReactNode }) {
-  return (
-    <h1 className="mt-8 font-serif text-[34px] font-bold leading-[1.1] tracking-[-0.02em] sm:mt-10 sm:text-[40px]">
-      {typeof children === "string" ? <ScrambleText>{children}</ScrambleText> : children}
-    </h1>
-  )
+  return <h1 className="sr-only">{children}</h1>
 }
 
 export function H2({ children }: { children: ReactNode }) {

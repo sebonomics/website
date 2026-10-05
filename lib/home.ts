@@ -17,7 +17,7 @@ export const bioHoverNotes = {
   southBeachOffice: "88 King St, San Francisco.",
 }
 
-export type AboutItem = { html: string; image?: { src: string; alt: string } }
+export type AboutItem = { html: string }
 
 /**
  * The About section, one entry per paragraph. `html` is rendered as-is — use
@@ -27,23 +27,18 @@ export type AboutItem = { html: string; image?: { src: string; alt: string } }
 export const aboutItems: AboutItem[] = [
   {
     html: `I currently run <a class="notion-link photo-link" href="https://formenos.ai/" target="_blank" rel="noopener noreferrer">Formenos</a>, a $25M AI-Native L/S Equity Hedge Fund. We’re backed by the first investors in Cognition and Etched.`,
-    image: { src: "/formenos-group.png", alt: "Group photo accompanying my Formenos backstory" },
   },
   {
     html: `In middle school, I loved building computers. I turned one of them into an Ethereum mine in my basement and almost blew up our house.`,
-    image: { src: "/ethereum-mine.png", alt: "The Ethereum mining setup I built in my basement" },
   },
   {
     html: `In high school, I built an employment algorithm for people with criminal records and was the youngest member of the U.S. National Economics Team.`,
-    image: { src: "/high-school-economics.jpg", alt: "Our economics team being interviewed in high school" },
   },
   {
     html: `After high school, I took a gap year from Stanford to work at <a class="notion-link photo-link" href="https://palantir.com/" target="_blank" rel="noopener noreferrer">Palantir</a> in New York. I originally grew up in Pittsburgh and I live in San Francisco today.`,
-    image: { src: "/palantir-group.jpg", alt: "A photo from my time at Palantir" },
   },
   {
     html: `I love hiking, running, and anything outdoors or with friends. Before I die, I wanna learn how to sail and visit every country in the world.`,
-    image: { src: "/friends.jpg", alt: "A photo with friends" },
   },
 ]
 
