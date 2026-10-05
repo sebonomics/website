@@ -34,14 +34,6 @@ export const reading: Reading[] = [
     fit: "cover",
   },
   {
-    title: "Is YC for Cowards?",
-    author: "Bassel Ojjeh",
-    kind: "Essay",
-    href: "https://stanfordreview.org/is-yc-for-cowards/",
-    logo: "/stanford-review.png",
-    fit: "cover",
-  },
-  {
     title: "Competition is for Losers",
     author: "Peter Thiel",
     kind: "Essay",
