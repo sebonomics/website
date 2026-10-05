@@ -32,7 +32,7 @@ export const aboutItems: AboutItem[] = [
     html: `In middle school, I loved building computers. I turned one of them into an Ethereum mine in my basement and almost blew up our house.`,
   },
   {
-    html: `In high school, I built an employment algorithm for people with criminal records and was the youngest member of the U.S. National Economics Team.`,
+    html: `In high school, I built an employment algorithm for people with criminal records and competed internationally for the United States in economics.`,
   },
   {
     html: `After high school, I took a gap year from Stanford to work at <a class="notion-link photo-link" href="https://palantir.com/" target="_blank" rel="noopener noreferrer">Palantir</a> in New York. I originally grew up in Pittsburgh and I live in San Francisco today.`,
