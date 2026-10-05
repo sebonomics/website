@@ -16,7 +16,7 @@ export default function InvestmentsPage() {
       <PageTitle>Investing</PageTitle>
       <div className="mt-6">
         <div>
-          <h2 className="mb-3 font-serif text-[17px] font-normal leading-tight"><ScrambleText>Investor</ScrambleText></h2>
+          <h2 className="mb-3 font-serif text-[15px] font-normal leading-tight"><ScrambleText>Investor</ScrambleText></h2>
           <Entries>
             {investments.map((item) => (
               <Entry
@@ -28,7 +28,7 @@ export default function InvestmentsPage() {
               />
             ))}
           </Entries>
-          <h2 className="mb-3 mt-8 font-serif text-[17px] font-normal leading-tight"><ScrambleText>Sourced</ScrambleText></h2>
+          <h2 className="mb-3 mt-8 font-serif text-[15px] font-normal leading-tight"><ScrambleText>Sourced</ScrambleText></h2>
           <Entries>
             {sourced.map((item) => (
               <Entry key={item.company} title={item.company} href={item.href} meta={["a16z Speedrun", item.date].filter(Boolean).join(", ")} />

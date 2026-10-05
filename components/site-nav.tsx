@@ -23,7 +23,7 @@ export function SiteNav() {
       className="notion-scroll -mx-1 flex min-w-0 flex-1 items-center gap-3 overflow-x-auto px-1 py-1 font-serif"
       style={{ scrollbarWidth: "none" }}
     >
-      <Link href="/" aria-current={pathname === "/" ? "page" : undefined} className="shrink-0 whitespace-nowrap text-[17px] leading-[1.15] text-foreground">
+      <Link href="/" aria-current={pathname === "/" ? "page" : undefined} className="shrink-0 whitespace-nowrap text-[15px] leading-[1.15] text-foreground">
         <ScrambleText>About</ScrambleText>
       </Link>
       {pages.map(({ href, label }) => {
@@ -33,7 +33,7 @@ export function SiteNav() {
             key={href}
             href={href}
             aria-current={active ? "page" : undefined}
-            className={`shrink-0 whitespace-nowrap text-[17px] leading-[1.15] transition-colors ${
+            className={`shrink-0 whitespace-nowrap text-[15px] leading-[1.15] transition-colors ${
               active ? "text-foreground" : "text-muted hover:text-foreground"
             }`}
           >
