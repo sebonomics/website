@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { notFound } from "next/navigation"
+import { notFound, redirect } from "next/navigation"
 
 import { ScrambleText } from "@/components/scramble-text"
 import { PageShell } from "@/components/page-shell"
@@ -34,6 +34,8 @@ export default async function WritingArticlePage({ params }: PageProps) {
   if (!post) {
     notFound()
   }
+
+  if (post.href) redirect(post.href)
 
   return (
     <PageShell>

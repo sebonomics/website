@@ -22,7 +22,7 @@ export const socials = [
   { label: "Email", href: "mailto:sebastiantanpersonal@gmail.com", icon: Mail },
   { label: "LinkedIn", href: "https://linkedin.com/in/sebonomics", icon: LinkedInMark },
   { label: "GitHub", href: "https://github.com/sebonomics", icon: Github },
-  { label: "X", href: "https://twitter.com/sebonomics", icon: XMark },
+  { label: "Twitter", href: "https://twitter.com/sebonomics", icon: XMark },
   { label: "Instagram", href: "https://instagram.com/sebtanx", icon: Instagram },
 ]
 
@@ -37,7 +37,7 @@ export function SocialLinks({
 }) {
   return (
     <div
-      className={`flex items-center ${variant === "text" ? "gap-2.5 font-sans text-[10px] uppercase tracking-[0.08em]" : "gap-3.5"} ${className}`}
+      className={`flex items-center ${variant === "text" ? "flex-wrap gap-5 font-sans text-sm" : "gap-3.5"} ${className}`}
     >
       {socials.map((social) => {
         const Icon = social.icon

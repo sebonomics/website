@@ -2,12 +2,12 @@ import type { ReactNode } from "react"
 import { ScrambleText } from "@/components/scramble-text"
 
 export function PageTitle({ children }: { children: ReactNode }) {
-  return <h1 className="sr-only">{children}</h1>
+  return <h1 className="mb-5 text-base font-normal leading-6 text-foreground">{children}</h1>
 }
 
 export function H2({ children }: { children: ReactNode }) {
   return (
-    <h2 className="mb-3 mt-10 font-serif text-[15px] font-normal leading-tight text-foreground">
+    <h2 className="mb-3 mt-10 font-sans text-base font-normal leading-tight text-foreground">
       {typeof children === "string" ? <ScrambleText>{children}</ScrambleText> : children}
     </h2>
   )
@@ -15,7 +15,7 @@ export function H2({ children }: { children: ReactNode }) {
 
 export function Paragraph({ children }: { children: ReactNode }) {
   return (
-    <p className="font-serif text-[15px] leading-[1.2] text-body-text sm:leading-[1.3]">{typeof children === "string" ? <ScrambleText>{children}</ScrambleText> : children}</p>
+    <p className="font-sans text-base leading-6 text-body-text ">{typeof children === "string" ? <ScrambleText>{children}</ScrambleText> : children}</p>
   )
 }
 
@@ -39,7 +39,7 @@ export function Entry({
   // columns line up across every row rather than per entry
   return (
     <div className="contents">
-      <p className="font-serif text-[15px] leading-[1.35] text-body-text">
+      <p className="font-sans text-base leading-6 text-body-text">
         {href ? (
           <a
             href={href}
@@ -53,9 +53,9 @@ export function Entry({
           <ScrambleText>{title}</ScrambleText>
         )}
       </p>
-      <p className="font-serif text-[15px] leading-[1.35] text-muted">{meta ? <ScrambleText>{meta}</ScrambleText> : null}</p>
+      <p className="font-sans text-base leading-6 text-muted">{meta ? <ScrambleText>{meta}</ScrambleText> : null}</p>
       {note ? (
-        <p className="col-start-2 font-serif text-[15px] leading-[1.35] text-muted"><ScrambleText>{note}</ScrambleText></p>
+        <p className="col-start-2 font-sans text-base leading-6 text-muted"><ScrambleText>{note}</ScrambleText></p>
       ) : null}
     </div>
   )
