@@ -24,6 +24,6 @@ export function LiveTimeGraphic() {
         "--pixel-opacity": index <= second ? [.35, .55, .75, .95][index % 4] : .07,
       } as CSSProperties} />)}
     </div>
-    <div className="time-caption"><span>San Francisco</span><time dateTime={now?.toISOString()}>{now ? timeFormat.format(now) : "—"}<span className="time-live-dot" aria-hidden="true" /></time></div>
+    <div className="time-caption"><span>San Francisco</span><time dateTime={now?.toISOString()}>{now ? timeFormat.format(now) : "—"}</time></div>
   </div>
 }

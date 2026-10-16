@@ -461,7 +461,6 @@ a.collection-row:hover > span { opacity: .65; }
 .time-pixels > span[data-current="true"] { animation: clock-pixel 1s ease-in-out infinite; }
 .time-caption { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; font-size: 11px; line-height: 18px; color: var(--muted); }
 .time-caption time { display: inline-flex; align-items: center; gap: 7px; font-variant-numeric: tabular-nums; }
-.time-live-dot { width: 4px; height: 4px; border-radius: 50%; background: #315cf5; }
 @keyframes clock-pixel { 50% { opacity: .4; } }
 @media (max-width: 480px) { .time-pixels { gap: 3px; } }
 @media (prefers-reduced-motion: reduce) { .time-pixels > span { transition: none; } .time-pixels > span[data-current="true"] { animation: none; } }
