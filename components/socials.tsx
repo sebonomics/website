@@ -48,7 +48,7 @@ export function SocialLinks({
             href={social.href}
             aria-label={social.label}
             title={social.label}
-            className="text-faint transition-colors hover:text-foreground"
+            className="social-link text-faint transition-colors hover:text-foreground"
             {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
           >
             {variant === "text" ? social.label : <Icon className={`shrink-0 ${iconClassName}`} strokeWidth={1.75} />}

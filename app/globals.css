@@ -453,3 +453,35 @@ a.collection-row:hover > span { opacity: .65; }
 @media (hover: none) and (pointer: coarse) {
   .wave-group:focus, .wave-group:focus-visible { outline: none; box-shadow: none; }
 }
+
+.social-footer { gap: 4px; margin-left: -10px; }
+.social-footer .social-link { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 6px; color: var(--muted); transition: color 150ms ease, background-color 150ms ease; }
+.social-footer .social-link:hover { color: var(--foreground); background: var(--hover); }
+@media (max-width: 639px) { .compact-home footer > .social-footer { column-gap: 0; } .social-footer .social-link { width: 44px; height: 44px; } .social-footer { margin-left: -14px; } }
+
+.social-footer { gap: 8px; margin-left: -4px; }
+.social-footer .social-link { width: 24px; height: 24px; border-radius: 4px; }
+.compact-home footer { margin-top: 18px; }
+@media (max-width: 639px) {
+  .compact-home footer > .social-footer { column-gap: 8px; }
+  .social-footer { margin-left: -4px; }
+  .social-footer .social-link { width: 24px; height: 28px; }
+  .compact-home footer { margin-top: 18px; }
+}
+
+.social-header { gap: 6px; }
+.social-header .social-link { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 24px; border-radius: 4px; }
+.social-header .social-link:hover { background: var(--hover); }
+@media (max-width: 380px) { .header-actions { gap: 6px; } .social-header { gap: 2px; } .social-header .social-link { width: 20px; } }
+
+.header-actions { display: flex; align-items: center; }
+.social-header { display: flex; align-items: center; }
+.social-header .social-link { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0; line-height: 1; }
+.social-header .social-link svg { display: block; width: 15px; height: 15px; flex-shrink: 0; }
+
+/* One consistent gap across the social links and theme toggle. */
+.header-actions { gap: 6px; }
+.social-header { gap: 6px; }
+@media (max-width: 380px) {
+  .header-actions, .social-header { gap: 3px; }
+}
