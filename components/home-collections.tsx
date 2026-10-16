@@ -2,7 +2,7 @@
 
 import { type CSSProperties, type ReactNode } from "react"
 import * as Dialog from "@radix-ui/react-dialog"
-import { ArrowUpRight, MousePointer2, X } from "lucide-react"
+import { ArrowUpRight, X } from "lucide-react"
 import { investments, sourced } from "@/lib/investments"
 import { reading } from "@/lib/reading"
 import { writingPosts } from "@/lib/writing"
@@ -11,10 +11,7 @@ function Collection({ title, description, children, wave = false, index = 0 }: {
   return <Dialog.Root>
     <Dialog.Trigger className={wave ? "wave-group" : "collection-trigger group"}>
       {wave ? <>
-        <span className="wave-preview">
-          <span className="block px-3 pt-2.5 pb-2"><span className="block font-medium text-foreground">{title}</span><span className="mt-0.5 block text-muted">{description}</span></span>
-          <span className="flex items-center justify-between border-t border-border px-3 py-2 text-muted">Click to explore <MousePointer2 className="size-4" /></span>
-        </span>
+        <span className="wave-preview"><span className="block px-3 py-2 font-medium text-foreground">{title}</span></span>
         <span className="wave-bars" aria-hidden="true">{Array.from({ length: 77 }, (_, i) => <span key={i} style={{ "--opacity": ["0", "0.25", "0.48", "0.72", "1"][((i * 17 + Math.floor(i / 7) * 11 + index * 23) % 31) < 13 ? 0 : ((i * 13 + index * 7) % 4) + 1], "--tilt": `${((i * 7 + index * 3) % 15) - 7}deg` } as CSSProperties} />)}</span>
         <span className="sr-only">{title}: {description}</span>
       </> : <span className="flex-1"><span className="flex items-center justify-between text-foreground">{title}</span><span className="mt-1 block text-muted">{description}</span></span>}

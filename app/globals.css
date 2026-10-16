@@ -396,3 +396,5 @@ a.collection-row:hover > span { opacity: .65; }
 
 .contribution-caption { justify-content: flex-end; }
 .wave-group:nth-last-child(2) .wave-preview { left: auto; right: 0; }
+
+.wave-preview { min-width: 0; max-width: none; width: max-content; }
