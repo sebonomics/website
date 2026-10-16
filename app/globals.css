@@ -513,3 +513,12 @@ a.collection-row:hover > span { opacity: .65; }
 .graphic-preview button:hover .bar-tooltip, .graphic-preview button:focus-visible .bar-tooltip { opacity: 1; visibility: visible; transform: translateY(0); }
 @media (hover: none) and (pointer: coarse) { .graphic-preview button:hover .bar-tooltip { opacity: 0; visibility: hidden; } }
 @media (prefers-reduced-motion: reduce) { .bar-tooltip { transition: none; } }
+
+@media (max-width: 639px) {
+  .compact-home { padding-top: 12px; padding-bottom: 28px; }
+  .compact-home .inline-collections { margin-top: 4px; margin-bottom: 0; }
+  .inline-collections > .about-copy { margin-top: 22px; }
+  .compact-home .about-copy { gap: 12px; }
+  .inline-collections .inline-collection-panel { padding-top: 20px; }
+  .inline-collections .section-box-nav { margin-top: 24px; }
+}
