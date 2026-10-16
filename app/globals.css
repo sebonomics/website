@@ -397,3 +397,39 @@ a.collection-row:hover > span { opacity: .65; }
 .contribution-caption { justify-content: flex-end; }
 .wave-group:nth-last-child(2) .wave-preview { left: auto; right: 0; }
 
+
+.contribution-chart .wave-navigation { gap: 3px; }
+@media (max-width: 480px) { .contribution-chart .wave-navigation { gap: 2px; } }
+
+.contribution-chart .wave-bars { grid-template-rows: repeat(7, 1fr); }
+.contribution-chart .wave-bars > span { border-radius: 1px; }
+
+@media (max-width: 639px) {
+  .atmospheric-page > header { padding-top: calc(56px + env(safe-area-inset-top, 0px)); }
+  .compact-home { padding-top: 14px; padding-bottom: 24px; }
+  .compact-home .about-copy { gap: 10px; }
+  .compact-home .about-copy > p { line-height: 22px; }
+  .compact-home .contribution-chart { margin-top: 24px; }
+  .compact-home footer { margin-top: 22px; padding-bottom: 0; }
+  .compact-home footer > div { column-gap: 18px; row-gap: 10px; }
+}
+
+/* Touch feedback stays on the component rather than outlining its text. */
+@media (hover: none) and (pointer: coarse) {
+  a, button { -webkit-tap-highlight-color: transparent; }
+  .wave-group, .wave-preview, .dialog-header button { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+  .wave-group:hover .wave-preview { visibility: hidden; opacity: 0; }
+  .wave-group:focus-visible .wave-preview { visibility: visible; opacity: 1; }
+  .photo-link { text-decoration-thickness: 1px; text-underline-offset: 3px; }
+}
+
+.compact-home .inline-collections { margin-top: 8px; margin-bottom: 28px; }
+.inline-collection-panel { padding-top: 24px; }
+.inline-collection-panel .collection-label { margin-bottom: 4px; }
+.inline-collection-panel .collection-row { font-size: 14px; }
+.inline-collection-panel[hidden] { display: none; }
+@media (max-width: 639px) { .compact-home .inline-collections { margin-top: 6px; margin-bottom: 24px; } }
+
+.inline-collections .wave-preview { bottom: auto; top: calc(100% + 10px); }
+
+.inline-collections[data-expanded="true"] + .about-copy { display: none; }
