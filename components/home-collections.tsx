@@ -49,9 +49,7 @@ export function HomeCollections() {
   const collections = [
     { title: "Bio", description: "A little about me", content: null },
     { title: "Investing", description: `${investments.length} investments · ${sourced.length} sourced`, content: <>
-      <h3 className="collection-label">Investor</h3>
       {investments.map(item => <ExternalRow key={item.company} title={item.company} detail={[item.stage, item.date, item.note].filter(Boolean).join(" · ")} href={item.href} />)}
-      <h3 className="collection-label mt-7">Sourced · a16z Speedrun</h3>
       {sourced.map(item => <ExternalRow key={item.company} title={item.company} detail={item.date} href={item.href} />)}
     </> },
     { title: "Reading", description: `${reading.length} essays & ideas`, content: <>{reading.map(item => <ExternalRow key={item.title} title={item.title} detail={[item.author, item.kind].filter(Boolean).join(" · ")} href={item.href} />)}</> },
