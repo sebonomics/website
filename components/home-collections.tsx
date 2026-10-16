@@ -57,12 +57,8 @@ export function HomeCollections({ children }: { children: ReactNode }) {
     { title: "Projects", description: "Things I’m building", content: <ExternalRow title="Formenos" detail="AI-native L/S equity hedge fund" href="https://formenos.ai/" /> },
   ]
   return <div className="contribution-chart inline-collections" data-expanded={active !== null}>
-    <div className="wave-navigation" role="group" aria-label="SEBASTIAN — explore bio, investing, reading, writing, and projects">
-      {collections.map((item, index) => <button key={item.title} type="button" className="wave-group" style={{ flex: sectionColumns[index].length }} aria-label={item.title} aria-expanded={index === 0 ? active === null : active === index} aria-controls={`collection-panel-${index}`} onClick={() => setActive(index === 0 || active === index ? null : index)}>
-        <span className="wave-preview" aria-hidden="true">
-          <span className="block px-3 pt-2.5 pb-2"><span className="block font-medium text-foreground">{item.title}</span></span>
-          <span className="flex items-center justify-between border-t border-border px-3 py-2 text-muted">{active === index ? "Click to collapse" : "Click to explore"}<MousePointer2 className="size-4" /></span>
-        </span>
+    <div className="wave-navigation" role="img" aria-label="Animated SEBASTIAN contribution pattern">
+      {collections.map((item, index) => <div key={item.title} className="wave-group decorative-wave" style={{ flex: sectionColumns[index].length }}>
         <span className="wave-bars" aria-hidden="true">{sectionColumns[index].flatMap((column, x) => column.map((opacity, y) => <span key={`${x}-${y}`} style={{
           "--opacity": opacity,
           "--reveal": nameRows[y][[0, 11, 22, 33, 43][index] + x] === "1"
@@ -70,17 +66,18 @@ export function HomeCollections({ children }: { children: ReactNode }) {
             : (0.10 + Number(opacity) * 0.5).toFixed(2),
           "--wave-delay": `${(([0, 11, 22, 33, 43][index] + x) * .07 + y * .008).toFixed(3)}s`,
         } as CSSProperties} />))}</span>
-      </button>)}
+      </div>)}
     </div>
     {collections.map((item, index) => <section key={item.title} id={`collection-panel-${index}`} hidden={active !== index} aria-label={item.title} className="inline-collection-panel">
       <div>{item.content}</div>
     </section>)}
     {active === null && children}
     <nav className="section-box-nav graphic-preview" data-graphic="skyline" aria-label="Section navigation">
-      {collections.map((item, index) => <button key={item.title} type="button" aria-label={item.title} title={item.title} aria-current={(active ?? 0) === index ? "page" : undefined} onClick={() => setActive(index === 0 ? null : index)} style={{ "--item": index } as CSSProperties}>
+      {collections.map((item, index) => <button key={item.title} type="button" aria-label={item.title} aria-current={(active ?? 0) === index ? "page" : undefined} onClick={() => setActive(index === 0 ? null : index)} style={{ "--item": index } as CSSProperties}>
         <span className="graphic-art" aria-hidden="true">
           {Array.from({length: 3}, (_, n) => <i key={n} style={{ "--line": n, "--bell-height": "64px", "--bar-shade": (0.22 + (index * 3 + n) / 14 * 0.78).toFixed(3) } as CSSProperties} />)}
-        </span><span className="graphic-label">{item.title}</span>
+        </span>
+        <span className="bar-tooltip" aria-hidden="true"><span className="block px-3 py-2 font-medium text-foreground">{item.title}</span><span className="flex items-center justify-between gap-5 border-t border-border px-3 py-2 text-muted">Click to explore<MousePointer2 className="size-3.5" /></span></span>
       </button>)}
     </nav>
 
