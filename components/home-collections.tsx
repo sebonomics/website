@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, type CSSProperties } from "react"
+import { useState, type CSSProperties, type ReactNode } from "react"
 import { ArrowUpRight, MousePointer2 } from "lucide-react"
 import { investments, sourced } from "@/lib/investments"
 import { reading } from "@/lib/reading"
@@ -44,7 +44,7 @@ function ExternalRow({ title, detail, href }: { title: string; detail?: string; 
   return href ? <a href={href} target="_blank" rel="noopener noreferrer" className="collection-row">{content}</a> : <div className="collection-row">{content}</div>
 }
 
-export function HomeCollections() {
+export function HomeCollections({ children }: { children: ReactNode }) {
   const [active, setActive] = useState<number | null>(null)
   const collections = [
     { title: "Bio", description: "A little about me", content: null },
@@ -75,5 +75,15 @@ export function HomeCollections() {
     {collections.map((item, index) => <section key={item.title} id={`collection-panel-${index}`} hidden={active !== index} aria-label={item.title} className="inline-collection-panel">
       <div>{item.content}</div>
     </section>)}
+    {active === null && children}
+    <nav className="section-box-nav graphic-preview" data-graphic="skyline" aria-label="Section navigation">
+      {collections.map((item, index) => <button key={item.title} type="button" aria-label={item.title} title={item.title} aria-current={(active ?? 0) === index ? "page" : undefined} onClick={() => setActive(index === 0 ? null : index)} style={{ "--item": index } as CSSProperties}>
+        <span className="graphic-art" aria-hidden="true">
+          {Array.from({length: 3}, (_, n) => <i key={n} style={{ "--line": n, "--bell-height": "64px", "--bar-shade": (0.22 + (index * 3 + n) / 14 * 0.78).toFixed(3) } as CSSProperties} />)}
+        </span><span className="graphic-label">{item.title}</span>
+      </button>)}
+    </nav>
+
+
   </div>
 }

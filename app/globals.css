@@ -485,3 +485,102 @@ a.collection-row:hover > span { opacity: .65; }
 @media (max-width: 380px) {
   .header-actions, .social-header { gap: 3px; }
 }
+
+.inline-collections > .about-copy { margin-top: 28px; }
+.section-graph { position: relative; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); margin-top: 32px; padding-bottom: 4px; }
+.section-graph > svg { position: absolute; inset: 0 0 auto; width: 100%; height: 48px; pointer-events: none; }
+.section-graph button { position: relative; display: flex; flex-direction: column; align-items: center; height: 72px; padding-top: 50px; cursor: pointer; }
+.section-graph-point { position: absolute; top: calc(var(--node-y) - 3px); width: 6px; height: 6px; border-radius: 50%; background: #315cf5; opacity: .35; transition: opacity 180ms, box-shadow 180ms; }
+.section-graph-label { color: var(--muted); font-size: 10px; line-height: 16px; transition: color 180ms; }
+.section-graph button[aria-current="page"] .section-graph-point, .section-graph button:hover .section-graph-point { opacity: 1; box-shadow: 0 0 0 4px rgb(49 92 245 / .08); }
+.section-graph button[aria-current="page"] .section-graph-label, .section-graph button:hover .section-graph-label { color: var(--foreground); }
+@media (prefers-reduced-motion: reduce) { .section-graph-point, .section-graph-label { transition: none; } }
+
+.section-box-nav { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; margin-top: 28px; }
+.section-box-nav button { display: flex; align-items: center; justify-content: center; min-height: 40px; padding: 8px 2px; border-radius: 4px; background: rgb(49 92 245 / .055); color: #5871b2; font-size: 10px; line-height: 16px; cursor: pointer; transition: background-color 150ms, color 150ms; }
+.section-box-nav button:hover { background: rgb(49 92 245 / .12); color: #315cf5; }
+.section-box-nav button[aria-current="page"] { background: #315cf5; color: white; }
+html.dark .section-box-nav button:not([aria-current="page"]) { background: rgb(105 144 255 / .1); color: #a1b6ee; }
+@media (prefers-reduced-motion: reduce) { .section-box-nav button { transition: none; } }
+
+/* Understated section navigation. */
+.section-box-nav { display: flex; align-items: center; justify-content: flex-start; gap: 22px; margin-top: 28px; }
+.section-box-nav button, html.dark .section-box-nav button:not([aria-current="page"]) { position: relative; min-height: 32px; padding: 4px 0; border-radius: 0; background: transparent; color: var(--muted); font-size: 11px; }
+.section-box-nav button:hover { background: transparent; color: var(--foreground); }
+.section-box-nav button[aria-current="page"] { background: transparent; color: #315cf5; }
+.section-box-nav button[aria-current="page"]::after { content: ""; position: absolute; bottom: 0; left: calc(50% - 2px); width: 4px; height: 4px; border-radius: 1px; background: #315cf5; }
+@media (max-width: 380px) { .section-box-nav { gap: 18px; } }
+
+/* Slim blue segments, with labels below. */
+.section-box-nav { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 7px; margin-top: 30px; }
+.section-box-nav button, html.dark .section-box-nav button:not([aria-current="page"]) { position: relative; display: flex; align-items: flex-start; justify-content: center; min-height: 40px; padding: 18px 0 0; color: var(--muted); font-size: 10px; line-height: 16px; background: transparent; }
+.section-box-nav button::before { content: ""; position: absolute; inset: 0 0 auto; height: 9px; border-radius: 2px; background: #315cf5; opacity: .16; transition: opacity 180ms; }
+.section-box-nav button:hover::before { opacity: .48; }
+.section-box-nav button[aria-current="page"]::before { opacity: 1; }
+.section-box-nav button[aria-current="page"] { color: var(--foreground); }
+.section-box-nav button[aria-current="page"]::after { display: none; }
+@media (prefers-reduced-motion: reduce) { .section-box-nav button::before { transition: none; } }
+
+.inline-collections { container-type: inline-size; }
+.inline-collections .section-box-nav { margin-top: 0; gap: 6px; }
+.section-box-nav button, html.dark .section-box-nav button:not([aria-current="page"]) { height: calc((100cqw - 156px) / 53 * 7 + 18px + 28px); min-height: 70px; padding: 0; align-items: flex-end; justify-content: center; padding-bottom: 5px; }
+.section-box-nav button::before { height: calc((100cqw - 156px) / 53 * 7 + 18px); min-height: 38px; border-radius: 2px; }
+.inline-collections .wave-navigation { margin-top: 30px; }
+.inline-collections .inline-collection-panel { padding-top: 24px; }
+@media (max-width: 480px) { .section-box-nav button, html.dark .section-box-nav button:not([aria-current="page"]) { height: calc((100cqw - 104px) / 53 * 7 + 12px + 28px); } .section-box-nav button::before { height: calc((100cqw - 104px) / 53 * 7 + 12px); } }
+
+.section-box-nav button, html.dark .section-box-nav button:not([aria-current="page"]) { height: calc((100cqw - 156px) / 53 * 7 + 18px); min-height: 38px; padding: 0; }
+@media (max-width: 480px) { .section-box-nav button, html.dark .section-box-nav button:not([aria-current="page"]) { height: calc((100cqw - 104px) / 53 * 7 + 12px); } }
+
+.inline-collections > .wave-navigation:first-child { margin-top: 0; }
+.inline-collections > .section-box-nav:last-child { margin-top: 28px; }
+
+/* Temporary art direction previews. */
+.inline-collections .graphic-preview { display: flex; gap: 4px; margin-top: 36px; min-height: 100px; align-items: center; }
+.graphic-preview button, html.dark .graphic-preview button:not([aria-current="page"]) { flex: 1; height: 90px; min-height: 0; position: relative; padding: 0; background: transparent; overflow: visible; }
+.graphic-preview button::before, .graphic-preview button::after { display: none; }
+.graphic-art { position: absolute; inset: 15px 0 20px; transition: transform 300ms ease; }
+.graphic-art i { display: block; position: absolute; background: #315cf5; }
+.graphic-label { position: absolute; top: 100%; left: 50%; transform: translateX(-50%); font-size: 10px; color: var(--muted); opacity: 0; white-space: nowrap; transition: opacity 180ms; }
+.graphic-preview button:hover .graphic-label, .graphic-preview button:focus-visible .graphic-label { opacity: 1; }
+.graphic-picker { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; margin-top: 22px; }
+.graphic-picker button { padding: 5px 0; color: var(--muted); font-size: 10px; text-transform: capitalize; cursor: pointer; }
+.graphic-picker button[aria-pressed="true"] { color: #315cf5; }
+.graphic-preview[data-graphic="ribbon"] { gap: 0; }
+[data-graphic="ribbon"] .graphic-art { inset: 22px 0 22px; transform: skewY(-9deg); background: linear-gradient(110deg, #b5c8ff, #315cf5); }
+[data-graphic="ribbon"] button:nth-child(even) .graphic-art { transform: skewY(9deg); background: linear-gradient(110deg, #244ac1, #91adff); }
+[data-graphic="ribbon"] .graphic-art i { display: none; }
+[data-graphic="ribbon"] button:hover .graphic-art { translate: 0 -6px; }
+[data-graphic="skyline"] .graphic-art { display: flex; gap: 3px; align-items: flex-end; }
+[data-graphic="skyline"] .graphic-art i { position: relative; flex: 1; height: calc(14px + mod(var(--line) * 13 + var(--item) * 9, 42) * 1px); border-radius: 1px; opacity: calc(.25 + var(--line) * .12); transition: transform 250ms; }
+[data-graphic="skyline"] button:hover i { transform: scaleY(1.15); transform-origin: bottom; }
+.graphic-preview[data-graphic="glass"] { gap: 0; padding: 0 35px; }
+[data-graphic="glass"] .graphic-art { inset: 6px -10px; background: rgb(49 92 245 / .14); border: 1px solid rgb(49 92 245 / .2); border-radius: 3px; transform: rotate(-14deg); backdrop-filter: blur(2px); }
+[data-graphic="glass"] .graphic-art i { display: none; }
+[data-graphic="glass"] button:hover .graphic-art { transform: translateY(-8px) rotate(-7deg); background: rgb(49 92 245 / .3); }
+[data-graphic="scanner"] .graphic-art { display: flex; gap: 5px; align-items: center; overflow: hidden; }
+[data-graphic="scanner"] .graphic-art i { position: relative; flex: 1; height: 28px; opacity: .2; border-radius: 1px; }
+[data-graphic="scanner"] .graphic-art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgb(49 92 245 / .65), transparent); animation: scan-preview 3s linear infinite; animation-delay: calc(var(--item) * -.6s); }
+[data-graphic="scanner"] button:hover .graphic-art::after { animation-play-state: paused; }
+@keyframes scan-preview { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+[data-graphic="contours"] .graphic-art i { background: transparent; border: 1px solid #315cf5; opacity: calc(.12 + var(--line) * .08); inset: calc(var(--line) * 4px) calc(var(--line) * 3px); border-radius: 42% 58% 65% 35%; transform: rotate(calc(var(--item) * 13deg)); transition: transform 400ms; }
+[data-graphic="contours"] button:hover i { transform: rotate(calc(var(--item) * 13deg + 12deg)) scale(1.08); }
+@media (prefers-reduced-motion: reduce) { .graphic-art, .graphic-art i { transition: none !important; } [data-graphic="scanner"] .graphic-art::after { animation: none; } }
+
+.graphic-preview[data-graphic="skyline"] { gap: 3px; }
+[data-graphic="skyline"] .graphic-art { inset: 0 0 14px; gap: 3px; }
+[data-graphic="skyline"] .graphic-art i { height: var(--bell-height); opacity: .7; }
+[data-graphic="skyline"] button[aria-current="page"] .graphic-art i { opacity: 1; }
+[data-graphic="skyline"] button:hover i { transform: scaleY(1.05); }
+
+[data-graphic="skyline"] .graphic-art i,
+[data-graphic="skyline"] button[aria-current="page"] .graphic-art i { height: 64px; opacity: var(--bar-shade); }
+[data-graphic="skyline"] button:hover i { opacity: 1; }
+
+/* Match the bars to the seven-row activity grid at each screen width. */
+.inline-collections .graphic-preview[data-graphic="skyline"] { min-height: 0; }
+.graphic-preview[data-graphic="skyline"] button { height: calc((100cqw - 156px) / 53 * 7 + 18px); min-height: 0; }
+[data-graphic="skyline"] .graphic-art { inset: 0; }
+[data-graphic="skyline"] .graphic-art i,
+[data-graphic="skyline"] button[aria-current="page"] .graphic-art i { height: 100%; }
+@media (max-width: 480px) { .graphic-preview[data-graphic="skyline"] button { height: calc((100cqw - 104px) / 53 * 7 + 12px); } }
