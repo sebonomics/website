@@ -62,10 +62,16 @@ export function HomeCollections() {
     <div className="wave-navigation" role="group" aria-label="SEBASTIAN — explore bio, investing, reading, writing, and projects">
       {collections.map((item, index) => <button key={item.title} type="button" className="wave-group" style={{ flex: sectionColumns[index].length }} aria-label={item.title} aria-expanded={index === 0 ? active === null : active === index} aria-controls={`collection-panel-${index}`} onClick={() => setActive(index === 0 || active === index ? null : index)}>
         <span className="wave-preview" aria-hidden="true">
-          <span className="block px-3 pt-2.5 pb-2"><span className="block font-medium text-foreground">{item.title}</span><span className="mt-0.5 block text-muted">{item.description}</span></span>
+          <span className="block px-3 pt-2.5 pb-2"><span className="block font-medium text-foreground">{item.title}</span></span>
           <span className="flex items-center justify-between border-t border-border px-3 py-2 text-muted">{active === index ? "Click to collapse" : "Click to explore"}<MousePointer2 className="size-4" /></span>
         </span>
-        <span className="wave-bars" aria-hidden="true">{sectionColumns[index].flatMap((column, x) => column.map((opacity, y) => <span key={`${x}-${y}`} style={{ "--opacity": opacity } as CSSProperties} />))}</span>
+        <span className="wave-bars" aria-hidden="true">{sectionColumns[index].flatMap((column, x) => column.map((opacity, y) => <span key={`${x}-${y}`} style={{
+          "--opacity": opacity,
+          "--reveal": nameRows[y][[0, 11, 22, 33, 43][index] + x] === "1"
+            ? (0.62 + ((x * 13 + y * 7 + index * 11) % 35) / 100).toFixed(2)
+            : (0.10 + Number(opacity) * 0.5).toFixed(2),
+          "--wave-delay": `${(([0, 11, 22, 33, 43][index] + x) * .07 + y * .008).toFixed(3)}s`,
+        } as CSSProperties} />))}</span>
       </button>)}
     </div>
     {collections.map((item, index) => <section key={item.title} id={`collection-panel-${index}`} hidden={active !== index} aria-label={item.title} className="inline-collection-panel">

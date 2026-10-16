@@ -433,3 +433,18 @@ a.collection-row:hover > span { opacity: .65; }
 .inline-collections .wave-preview { bottom: auto; top: calc(100% + 10px); }
 
 .inline-collections[data-expanded="true"] + .about-copy { display: none; }
+
+/* A left-to-right blue sweep resolves the activity into the name. */
+.contribution-chart .wave-bars > span::after {
+  animation: contribution-reveal 11s ease-in-out infinite;
+  animation-delay: var(--wave-delay, 0s);
+}
+@keyframes contribution-reveal {
+  0%, 5% { opacity: var(--opacity); background-color: #315cf5; }
+  10% { opacity: var(--reveal); background-color: #7ca9ff; }
+  17%, 57% { opacity: var(--reveal); background-color: #2457ef; }
+  67%, 100% { opacity: var(--opacity); background-color: #315cf5; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .contribution-chart .wave-bars > span::after { animation: none; }
+}
