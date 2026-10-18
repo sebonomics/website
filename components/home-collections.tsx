@@ -1,43 +1,31 @@
 "use client"
 
-import { useState, type CSSProperties, type ReactNode } from "react"
+import { useEffect, useState, type CSSProperties, type ReactNode } from "react"
 import { ArrowUpRight, MousePointer2 } from "lucide-react"
+import { useSectionTitle } from "@/components/section-title"
 import { investments, sourced } from "@/lib/investments"
 import { reading } from "@/lib/reading"
 import { writingPosts } from "@/lib/writing"
 
-// Seven-row pixel lettering, laid out column-first like a contribution graph.
-const glyphs: Record<string, string[]> = {
-  S: ["11111", "10000", "10000", "11111", "00001", "00001", "11111"],
-  E: ["11111", "10000", "10000", "11110", "10000", "10000", "11111"],
-  B: ["11111", "10001", "10001", "11111", "10001", "10001", "11111"],
-  A: ["11111", "10001", "10001", "11111", "10001", "10001", "10001"],
-  T: ["11111", "00100", "00100", "00100", "00100", "00100", "00100"],
-  I: ["11111", "00100", "00100", "00100", "00100", "00100", "11111"],
-  N: ["10001", "11001", "11001", "10101", "10011", "10011", "10001"],
+// Decorative contribution-style activity, with stable clustered snapshots.
+function activity(column: number, row: number, phase: number) {
+  const seed = (Math.imul(column + 19 + phase * 41, 1597334677) ^ Math.imul(row + 7, 2654435761)) >>> 0
+  const noise = (seed % 1000) / 1000
+  const cluster = (Math.sin(column * .29 + phase * .6) + Math.cos(column * .13 - row * .35 + phase) + 2) / 4
+  const weekend = row > 4 ? .18 : 0
+  const level = noise < .18 + (1 - cluster) * .32 + weekend ? 0 : Math.min(4, 1 + Math.floor((noise * .45 + cluster * .55) * 4))
+  return ["0.02", "0.16", "0.36", "0.62", "0.9"][level]
 }
-const nameRows = Array.from({ length: 7 }, (_, row) =>
-  [..."SEBASTIAN"].map(letter => glyphs[letter][row]).join("0"),
+const activityColumns = Array.from({ length: 53 }, (_, column) =>
+  Array.from({ length: 7 }, (_, row) => ({
+    initial: activity(column, row, 0),
+    next: activity(column, row, 1),
+    later: activity(column, row, 2),
+    delay: `${(-((column * 1.7 + row * 3.1) % 24)).toFixed(2)}s`,
+    duration: `${24 + (column * 7 + row * 3) % 13}s`,
+  })),
 )
-const nameColumns = Array.from({ length: nameRows[0].length }, (_, column) =>
-  Array.from({ length: 7 }, (_, row) => {
-    const letter = nameRows[row][column] === "1"
-    // Stable decorative activity; these squares are navigation, not GitHub statistics.
-    const seed = ((column + 3) * 2654435761 ^ (row + 7) * 1597334677) >>> 0
-    const variation = (seed % 1000) / 1000
-    const weekSeed = Math.imul(column + 17, 1597334677) >>> 0
-    const weekActivity = (weekSeed % 100) / 100
-    const cluster = (Math.sin(column * .31) + Math.cos(column * .13 + 1.7) + 2) / 4
-    const quiet = variation < .12 + (1 - cluster) * .22
-    const level = quiet ? 0 : Math.min(4, 1 + Math.floor((variation * .45 + weekActivity * .25 + cluster * .3) * 4))
-    // Shared shades and occasional gaps keep the lettering inside the activity.
-    const shades = ["0", "0.12", "0.29", "0.48", "0.67"]
-    const ink = ["0.48", "0.65", "0.82", "0.95"]
-    return letter ? ink[seed % 4] : shades[level]
-
-  }),
-)
-const sectionColumns = [nameColumns.slice(0, 11), nameColumns.slice(11, 22), nameColumns.slice(22, 33), nameColumns.slice(33, 43), nameColumns.slice(43)]
+const sectionColumns = [activityColumns.slice(0, 11), activityColumns.slice(11, 22), activityColumns.slice(22, 33), activityColumns.slice(33, 43), activityColumns.slice(43)]
 
 function ExternalRow({ title, detail, href }: { title: string; detail?: string; href?: string }) {
   const content = <><span><span className="block text-foreground">{title}</span>{detail && <span className="mt-1 block text-sm text-muted">{detail}</span>}</span>{href && <ArrowUpRight className="size-4 shrink-0 text-faint" />}</>
@@ -46,6 +34,10 @@ function ExternalRow({ title, detail, href }: { title: string; detail?: string; 
 
 export function HomeCollections({ children }: { children: ReactNode }) {
   const [active, setActive] = useState<number | null>(null)
+  const { setTitle } = useSectionTitle()
+  useEffect(() => {
+    setTitle(active === null ? "Sebastian Tan" : ["Bio", "Investing", "Reading", "Writing", "Projects"][active])
+  }, [active, setTitle])
   const collections = [
     { title: "Bio", description: "A little about me", content: null },
     { title: "Investing", description: `${investments.length} investments · ${sourced.length} sourced`, content: <>
@@ -57,14 +49,14 @@ export function HomeCollections({ children }: { children: ReactNode }) {
     { title: "Projects", description: "Things I’m building", content: <ExternalRow title="Formenos" detail="AI-native L/S equity hedge fund" href="https://formenos.ai/" /> },
   ]
   return <div className="contribution-chart inline-collections" data-expanded={active !== null}>
-    <div className="wave-navigation" role="img" aria-label="Animated SEBASTIAN contribution pattern">
+    <div className="wave-navigation" role="img" aria-label="Animated decorative contribution activity">
       {collections.map((item, index) => <div key={item.title} className="wave-group decorative-wave" style={{ flex: sectionColumns[index].length }}>
-        <span className="wave-bars" aria-hidden="true">{sectionColumns[index].flatMap((column, x) => column.map((opacity, y) => <span key={`${x}-${y}`} style={{
-          "--opacity": opacity,
-          "--reveal": nameRows[y][[0, 11, 22, 33, 43][index] + x] === "1"
-            ? (0.62 + ((x * 13 + y * 7 + index * 11) % 35) / 100).toFixed(2)
-            : (0.10 + Number(opacity) * 0.5).toFixed(2),
-          "--wave-delay": `${(([0, 11, 22, 33, 43][index] + x) * .07 + y * .008).toFixed(3)}s`,
+        <span className="wave-bars" aria-hidden="true">{sectionColumns[index].flatMap((column, x) => column.map((cell, y) => <span key={`${x}-${y}`} style={{
+          "--opacity": cell.initial,
+          "--activity-next": cell.next,
+          "--activity-later": cell.later,
+          "--wave-delay": cell.delay,
+          "--activity-duration": cell.duration,
         } as CSSProperties} />))}</span>
       </div>)}
     </div>
