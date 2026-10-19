@@ -524,3 +524,20 @@ a.collection-row:hover > span { opacity: .65; }
 
 .contribution-chart .decorative-wave:hover, .contribution-chart .decorative-wave:hover .wave-bars > span { background-color: transparent; filter: none; }
 .contribution-chart .decorative-wave:hover .wave-bars > span { background-color: var(--sidebar); }
+
+/* Five section rectangles, with a compact desktop canvas. */
+.inline-collections .section-box-nav { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+@media (min-width: 768px) {
+  .wide-home > header > div, .wide-home > .page-content { max-width: 760px; padding-left: 32px; padding-right: 32px; }
+  .wide-home .header-actions { margin-left: auto; }
+  .wide-home .about-copy, .wide-home .inline-collection-panel > div { max-width: 640px; }
+  .wide-home .section-box-nav.graphic-preview button { height: 64px; }
+}
+
+/* Fluid typography follows the available reading width. */
+.wide-home { --home-text-size: clamp(0.875rem, 0.8rem + 0.25vw, 1rem); }
+.wide-home > header > div > [aria-live] { font-size: clamp(0.9375rem, 0.8625rem + 0.25vw, 1.0625rem); }
+.wide-home .compact-home .about-copy > p,
+.wide-home .inline-collection-panel .collection-row,
+.wide-home .inline-collection-panel article { font-size: var(--home-text-size); line-height: 1.6; }
+.wide-home .collection-row > span > span:last-child { font-size: clamp(0.75rem, 0.7rem + 0.167vw, 0.8333rem); line-height: 1.5; }

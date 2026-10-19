@@ -65,12 +65,12 @@ export function HomeCollections({ children }: { children: ReactNode }) {
     </section>)}
     {active === null && children}
     <nav className="section-box-nav graphic-preview" data-graphic="skyline" aria-label="Section navigation">
-      {collections.map((item, index) => <button key={item.title} type="button" aria-label={item.title} aria-current={(active ?? 0) === index ? "page" : undefined} onClick={() => setActive(index === 0 ? null : index)} style={{ "--item": index } as CSSProperties}>
+      {collections.map((item, index) => { return <button key={item.title} type="button" aria-label={item.title} aria-current={(active ?? 0) === index ? "page" : undefined} onClick={() => setActive(index === 0 || active === index ? null : index)} style={{ "--item": index } as CSSProperties}>
         <span className="graphic-art" aria-hidden="true">
-          {Array.from({length: 3}, (_, n) => <i key={n} style={{ "--line": n, "--bell-height": "64px", "--bar-shade": (0.22 + (index * 3 + n) / 14 * 0.78).toFixed(3) } as CSSProperties} />)}
+          <i style={{ "--bar-shade": (0.22 + index * 0.195).toFixed(2) } as CSSProperties} />
         </span>
         <span className="bar-tooltip" aria-hidden="true"><span className="block px-3 py-2 font-medium text-foreground">{item.title}</span><span className="flex items-center justify-between gap-5 border-t border-border px-3 py-2 text-muted">Click to explore<MousePointer2 className="size-3.5" /></span></span>
-      </button>)}
+      </button> })}
     </nav>
 
 
