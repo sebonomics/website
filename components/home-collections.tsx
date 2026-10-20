@@ -46,7 +46,10 @@ export function HomeCollections({ children }: { children: ReactNode }) {
     </> },
     { title: "Reading", description: `${reading.length} essays & ideas`, content: <>{reading.map(item => <ExternalRow key={item.title} title={item.title} detail={[item.author, item.kind].filter(Boolean).join(" · ")} href={item.href} />)}</> },
     { title: "Writing", description: `${writingPosts.length} ${writingPosts.length === 1 ? "essay" : "essays"} · The Stanford Review`, content: <>{writingPosts.map(post => post.href ? <ExternalRow key={post.slug} title={post.title} detail={`${post.publication} · ${post.date}`} href={post.href} /> : <article key={post.slug} className="space-y-5 text-base leading-7 text-body-text"><h3 className="text-foreground">{post.title}</h3>{post.blocks.map((block, i) => typeof block === "string" ? <p key={i}>{block}</p> : <ul key={i} className="list-disc space-y-2 pl-5">{block.items.map(item => <li key={item}>{item}</li>)}</ul>)}</article>)}</> },
-    { title: "Projects", description: "Things I’m building", content: <ExternalRow title="Formenos" detail="AI-native L/S equity hedge fund" href="https://formenos.ai/" /> },
+    { title: "Projects", description: "Things I’m building", content: <>
+      <ExternalRow title="Formenos" detail="AI-native L/S equity hedge fund" href="https://formenos.ai/" />
+      <ExternalRow title="OutsideConnection" detail="Fair-chance job-matching algorithm" href="https://solve.mit.edu/solutions/84351" />
+    </> },
   ]
   return <div className="contribution-chart inline-collections" data-expanded={active !== null}>
     <div className="wave-navigation" role="img" aria-label="Animated decorative contribution activity">
