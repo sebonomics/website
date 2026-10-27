@@ -33,6 +33,7 @@ export const investments: Investment[] = [
   { company: "Volaren", stage: "Pre-Seed", date: "Jul 2026", href: "https://www.volaren.ai/" },
   { company: "Anticipate", stage: "Pre-Seed", date: "Jul 2026", href: "https://www.useanticipate.com/" },
   { company: "Merchant", stage: "Pre-Seed", date: "Aug 2026", href: "https://www.merchantgo.com/" },
+  { company: "Auxo Health", stage: "Pre-Seed", date: "Oct 2026", href: "https://auxohealth.co/" },
 ]
 
 export const sourced: Investment[] = [

@@ -31,7 +31,7 @@ export default function InvestmentsPage() {
           <h2 className="mb-3 mt-8 font-serif text-[15px] font-normal leading-tight"><ScrambleText>Sourced</ScrambleText></h2>
           <Entries>
             {sourced.map((item) => (
-              <Entry key={item.company} title={item.company} href={item.href} meta={["a16z Speedrun", item.date].filter(Boolean).join(", ")} />
+              <Entry key={item.company} title={item.company} href={item.href} meta={["Sourced", "a16z Speedrun", item.date].filter(Boolean).join(", ")} />
             ))}
           </Entries>
         </div>

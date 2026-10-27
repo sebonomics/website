@@ -42,7 +42,7 @@ export function HomeCollections({ children }: { children: ReactNode }) {
     { title: "Bio", description: "A little about me", content: null },
     { title: "Investing", description: `${investments.length} investments · ${sourced.length} sourced`, content: <>
       {investments.map(item => <ExternalRow key={item.company} title={item.company} detail={[item.stage, item.date, item.note].filter(Boolean).join(" · ")} href={item.href} />)}
-      {sourced.map(item => <ExternalRow key={item.company} title={item.company} detail={item.date} href={item.href} />)}
+      {sourced.map(item => <ExternalRow key={item.company} title={item.company} detail={["Sourced", item.date].filter(Boolean).join(" · ")} href={item.href} />)}
     </> },
     { title: "Reading", description: `${reading.length} essays & ideas`, content: <>{reading.map(item => <ExternalRow key={item.title} title={item.title} detail={[item.author, item.kind].filter(Boolean).join(" · ")} href={item.href} />)}</> },
     { title: "Writing", description: `${writingPosts.length} ${writingPosts.length === 1 ? "essay" : "essays"} · The Stanford Review`, content: <>{writingPosts.map(post => post.href ? <ExternalRow key={post.slug} title={post.title} detail={`${post.publication} · ${post.date}`} href={post.href} /> : <article key={post.slug} className="space-y-5 text-base leading-7 text-body-text"><h3 className="text-foreground">{post.title}</h3>{post.blocks.map((block, i) => typeof block === "string" ? <p key={i}>{block}</p> : <ul key={i} className="list-disc space-y-2 pl-5">{block.items.map(item => <li key={item}>{item}</li>)}</ul>)}</article>)}</> },
