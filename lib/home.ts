@@ -26,7 +26,7 @@ export type AboutItem = { html: string }
  */
 export const aboutItems: AboutItem[] = [
   {
-    html: `I currently run <a class="notion-link photo-link" href="https://formenos.ai/" target="_blank" rel="noopener noreferrer">Formenos</a>, a $25M AI-Native L/S Equity Hedge Fund. We’re backed by the first investors in Cognition and Etched.`,
+    html: `I currently run <a class="notion-link photo-link" href="https://formenos.ai/" target="_blank" rel="noopener noreferrer">Formenos</a>, an AI-Native L/S Equity Hedge Fund and also invest in early stage companies.`,
   },
   {
     html: `In middle school, I loved building computers. I turned one of them into an Ethereum mine in my basement and almost blew up our house.`,
@@ -38,7 +38,7 @@ export const aboutItems: AboutItem[] = [
     html: `After high school, I took a gap year from Stanford to work at <a class="notion-link photo-link" href="https://palantir.com/" target="_blank" rel="noopener noreferrer">Palantir</a> in New York. I originally grew up in Pittsburgh and I live in San Francisco today.`,
   },
   {
-    html: `I love hiking, running, and anything outdoors or with friends. Before I die, I wanna learn how to sail and visit every country in the world.`,
+    html: `I love the outdoors, contrarian journalism, house music, and spending time with amazing people I'm lucky to call friends. Before I die, I wanna learn how to sail and visit every country in the world.`,
   },
 ]
 
