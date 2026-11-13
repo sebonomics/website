@@ -26,10 +26,7 @@ export type AboutItem = { html: string }
  */
 export const aboutItems: AboutItem[] = [
   {
-    html: `I'm a founder, engineer, and investor.`,
-  },
-  {
-    html: `I currently run <a class="notion-link photo-link" href="https://formenos.ai/" target="_blank" rel="noopener noreferrer">Formenos</a>, an AI-Native L/S Equity Hedge Fund and also invest in early stage companies.`,
+    html: `I'm a founder, engineer, and investor. I currently run <a class="notion-link photo-link" href="https://formenos.ai/" target="_blank" rel="noopener noreferrer">Formenos</a>, an AI-Native L/S Equity Hedge Fund and also invest in early stage companies.`,
   },
   {
     html: `In middle school, I loved building computers. I turned one of them into an Ethereum mine in my basement and almost blew up our house.`,
