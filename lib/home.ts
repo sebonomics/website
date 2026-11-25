@@ -41,7 +41,7 @@ export const aboutItems: AboutItem[] = [
     html: `I love the outdoors, house music, and spending time with amazing people I'm lucky to call friends. I try to enjoy everything I do, and I'm always on some crazy adventure.`,
   },
   {
-    html: `My parents named me Sebastian, which means venerable or revered in Greek. Before I die, I hope the work I’ve done will have made me worthy of it.`,
+    html: `My parents named me Sebastian, which means venerable or revered in Greek. I plan to spend my life living up to the name.`,
   },
 ]
 
