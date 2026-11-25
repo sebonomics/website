@@ -38,7 +38,7 @@ export const aboutItems: AboutItem[] = [
     html: `After high school, I took a gap year from Stanford to work at Palantir in New York. I originally grew up in Pittsburgh and I live in San Francisco today.`,
   },
   {
-    html: `I love the outdoors, house music, and spending time with amazing people I'm lucky to call friends. I'm always up for a good time, and I'm always on some crazy adventure.`,
+    html: `I love the outdoors, house music, and spending time with amazing people I'm lucky to call friends. I'm also someone who loves adventure and hates rules.`,
   },
   {
     html: `My parents named me Sebastian, which is Greek, and means venerable or revered. Before I die, I hope to have lived up to the name.`,
