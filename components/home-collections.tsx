@@ -3,7 +3,6 @@
 import { useEffect, useState, type CSSProperties, type ReactNode } from "react"
 import { ArrowUpRight, MousePointer2 } from "lucide-react"
 import { useSectionTitle } from "@/components/section-title"
-import { investments, sourced } from "@/lib/investments"
 import { reading } from "@/lib/reading"
 import { writingPosts } from "@/lib/writing"
 
@@ -25,10 +24,10 @@ const activityColumns = Array.from({ length: 53 }, (_, column) =>
     duration: `${24 + (column * 7 + row * 3) % 13}s`,
   })),
 )
-const sectionColumns = [activityColumns.slice(0, 11), activityColumns.slice(11, 22), activityColumns.slice(22, 33), activityColumns.slice(33, 43), activityColumns.slice(43)]
+const sectionColumns = [activityColumns.slice(0, 14), activityColumns.slice(14, 27), activityColumns.slice(27, 40), activityColumns.slice(40)]
 
-function ExternalRow({ title, detail, href }: { title: string; detail?: string; href?: string }) {
-  const content = <><span><span className="block text-foreground">{title}</span>{detail && <span className="mt-1 block text-sm text-muted">{detail}</span>}</span>{href && <ArrowUpRight className="size-4 shrink-0 text-faint" />}</>
+function ExternalRow({ title, detail, href, showArrow = false }: { title: string; detail?: string; href?: string; showArrow?: boolean }) {
+  const content = <><span><span className="block text-foreground">{title}</span>{detail && <span className="mt-1 block text-sm text-muted">{detail}</span>}</span>{(href || showArrow) && <ArrowUpRight className="size-4 shrink-0 text-faint" />}</>
   return href ? <a href={href} target="_blank" rel="noopener noreferrer" className="collection-row">{content}</a> : <div className="collection-row">{content}</div>
 }
 
@@ -36,20 +35,16 @@ export function HomeCollections({ children }: { children: ReactNode }) {
   const [active, setActive] = useState<number | null>(null)
   const { setTitle } = useSectionTitle()
   useEffect(() => {
-    setTitle(active === null ? "Sebastian Tan" : ["Bio", "Investing", "Reading", "Writing", "Projects"][active])
+    setTitle(active === null ? "Sebastian Tan" : ["Bio", "Reading", "Writing", "Projects"][active])
   }, [active, setTitle])
   const collections = [
     { title: "Bio", description: "A little about me", content: null },
-    { title: "Investing", description: `${investments.length} investments · ${sourced.length} sourced`, content: <>
-      {investments.map(item => <ExternalRow key={item.company} title={item.company} detail={[item.stage, item.date, item.note].filter(Boolean).join(" · ")} href={item.href} />)}
-      {sourced.map(item => <ExternalRow key={item.company} title={item.company} detail={["Sourced", item.date].filter(Boolean).join(" · ")} href={item.href} />)}
-    </> },
     { title: "Reading", description: `${reading.length} essays & ideas`, content: <>{reading.map(item => <ExternalRow key={item.title} title={item.title} detail={[item.author, item.kind].filter(Boolean).join(" · ")} href={item.href} />)}</> },
     { title: "Writing", description: `${writingPosts.length} ${writingPosts.length === 1 ? "essay" : "essays"} · The Stanford Review`, content: <>{writingPosts.map(post => post.href ? <ExternalRow key={post.slug} title={post.title} detail={`${post.publication} · ${post.date}`} href={post.href} /> : <article key={post.slug} className="space-y-5 text-base leading-7 text-body-text"><h3 className="text-foreground">{post.title}</h3>{post.blocks.map((block, i) => typeof block === "string" ? <p key={i}>{block}</p> : <ul key={i} className="list-disc space-y-2 pl-5">{block.items.map(item => <li key={item}>{item}</li>)}</ul>)}</article>)}</> },
     { title: "Projects", description: "Things I’m building", content: <>
+      <ExternalRow title="Tesseract" detail="Frontier hardware for AI inference" showArrow />
       <ExternalRow title="Formenos" detail="AI-native L/S equity hedge fund" href="https://formenos.ai/" />
-      <ExternalRow title="Rivendell" detail="The next Prod for outlier founders" href="https://rivendellfund.com/" />
-      <ExternalRow title="OutsideConnection" detail="Fair-chance job-matching algorithm" href="https://solve.mit.edu/solutions/84351" />
+      <ExternalRow title="Rivendell" detail="Early-stage venture fund" href="https://rivendellfund.com/" />
     </> },
   ]
   return <div className="contribution-chart inline-collections" data-expanded={active !== null}>

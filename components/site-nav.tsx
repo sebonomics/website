@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation"
 import { ScrambleText } from "@/components/scramble-text"
 
 const pages = [
-  { href: "/investments", label: "Investing" },
   { href: "/reading", label: "Reading" },
   { href: "/writing", label: "Writing" },
 ]
