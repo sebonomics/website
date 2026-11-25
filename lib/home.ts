@@ -38,7 +38,7 @@ export const aboutItems: AboutItem[] = [
     html: `After high school, I took a gap year from Stanford to work at Palantir in New York. I originally grew up in Pittsburgh and I live in San Francisco today.`,
   },
   {
-    html: `I love the outdoors, house music, writing, and spending time with amazing people I'm lucky to call friends. Qui audet adipiscitur.`,
+    html: `I love the outdoors, house music, writing, and spending time with amazing people I'm lucky to call friends. I love the phrase qui audet adipiscitur: he who dares, wins.`,
   },
 ]
 
